@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About – SIEC Environmental Consultancy</title>
+  <meta name="description" content="Learn about SIEC's mission, vision, values, and our commitment to sustainable environmental consulting." />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../../css/custom.css" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+  <style>
+    .page-header {
+      background: linear-gradient(135deg, rgba(13,43,32,0.92) 0%, rgba(27,67,50,0.82) 50%, rgba(45,106,79,0.78) 100%);
+      padding-top: 8rem;
+      padding-bottom: 6rem;
+      position: relative;
+    }
+    @media (min-width: 768px) {
+      .page-header { padding-top: 10rem; padding-bottom: 8rem; }
+    }
+    .page-header-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://picsum.photos/seed/siec-forest-canopy/1920/1080');
+      background-size: cover;
+      background-position: center;
+      z-index: -1;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-left: 2px solid #2d6a4f;
+    }
+    .timeline-item:last-child { border-left: 2px solid transparent; padding-bottom: 0; }
+    .timeline-item .dot {
+      position: absolute;
+      left: -7px;
+      top: 0;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #2d6a4f;
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 2px #2d6a4f;
+    }
+
+    .value-card, .process-card, .accred-card {
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .value-card:hover, .process-card:hover, .accred-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.12);
+    }
+
+    .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+    @media (min-width: 768px) { .section-padding { padding-top: 6rem; padding-bottom: 6rem; } }
+    @media (min-width: 1024px) { .section-padding { padding-top: 8rem; padding-bottom: 8rem; } }
+
+    .heading-lg {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.25rem;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+    }
+    @media (min-width: 640px) { .heading-lg { font-size: 3rem; } }
+    @media (min-width: 768px) { .heading-lg { font-size: 3.75rem; } }
+
+    .body-lg { font-size: 1.125rem; line-height: 1.75; color: #6a776a; }
+    @media (min-width: 768px) { .body-lg { font-size: 1.25rem; } }
+
+    .section-tag {
+      display: inline-block;
+      color: #1b4332;
+      font-weight: 600;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      margin-bottom: 1rem;
+    }
+    .section-tag.on-dark { color: #8fbfae; }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
+      border-radius: 1rem;
+    }
+
+    .container-custom {
+      max-width: 1280px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    @media (min-width: 640px) { .container-custom { padding-left: 1.5rem; padding-right: 1.5rem; } }
+    @media (min-width: 1024px) { .container-custom { padding-left: 2rem; padding-right: 2rem; } }
+
+    /* — Photo banner with caption (signature element) — */
+    .photo-banner {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1.25rem;
+    }
+    .photo-banner img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .photo-banner .banner-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(13,43,32,0.85) 0%, rgba(13,43,32,0.15) 45%, transparent 70%);
+    }
+    .photo-banner .banner-caption {
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      padding: 1.5rem 2rem 2rem;
+      color: #fff;
+    }
+
+    /* — Stats band — */
+    .stats-band { position: relative; overflow: hidden; }
+    .stats-band-bg {
+      position: absolute; inset: 0;
+      background-image: url('https://picsum.photos/seed/siec-industrial-site/1920/700');
+      background-size: cover; background-position: center;
+      z-index: 0;
+    }
+    .stats-band-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(13,43,32,0.93) 0%, rgba(27,67,50,0.88) 100%);
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Container -->
+  <div id="header"></div>
+
+  <main>
+<!-- ===== PAGE HEADER - REDESIGNED WITH INCREASED HEIGHT ===== -->
+<section class="page-header relative overflow-hidden min-h-[70vh] md:min-h-[80vh] flex items-center">
+
+  <!-- Background Image -->
+  <div class="absolute inset-0 z-0">
+    <img
+      src="/assets/c2.jfif"
+      alt="Environmental sustainability"
+      loading="lazy"
+      class="w-full h-full object-cover"
+    />
+
+    <!-- Overlay Gradients -->
+    <div class="absolute inset-0 bg-gradient-to-t from-[#0d2b20]/95 via-[#0d2b20]/80 to-[#0d2b20]/40"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-[#0d2b20]/60 to-transparent"></div>
+
+    <!-- Subtle Pattern -->
+    <div
+      class="absolute inset-0"
+      style="background: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(34, 197, 94, 0.03) 40px, rgba(34, 197, 94, 0.03) 41px);"
+    ></div>
+
+    <!-- Glow Orbs -->
+    <div class="absolute top-1/3 right-1/4 w-80 h-80 bg-[#22c55e]/10 rounded-full blur-[100px]"></div>
+    <div class="absolute bottom-1/4 left-1/3 w-64 h-64 bg-[#4ade80]/5 rounded-full blur-[80px]"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] border border-white/5 rounded-full"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl">
+
+      <!-- Badge -->
+      <span class="inline-flex items-center gap-2 text-[#8fbfae] font-semibold text-xs uppercase tracking-[0.3em] mb-5">
+        <span class="w-8 h-px bg-[#8fbfae]/50"></span>
+        About SIEC
+        <span class="relative flex h-1.5 w-1.5">
+          <span class="absolute inline-flex h-full w-full rounded-full bg-[#22c55e] opacity-75 animate-ping"></span>
+          <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#22c55e]"></span>
+        </span>
+        <span class="w-8 h-px bg-[#8fbfae]/50"></span>
+      </span>
+
+      <!-- Heading -->
+      <h1 class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.1] tracking-tight text-white mb-6">
+        Driving Sustainable<br />
+        <span class="bg-gradient-to-r from-[#22c55e] via-[#4ade80] to-[#22c55e] bg-clip-text text-transparent">
+          Change Worldwide
+        </span>
+      </h1>
+
+      <!-- Description -->
+      <p class="text-base sm:text-lg md:text-xl text-white/80 max-w-2xl leading-relaxed backdrop-blur-sm bg-black/20 py-3 px-5 rounded-xl border border-white/5 inline-block">
+        We are a team of dedicated environmental professionals committed to creating a harmonious balance between human activities and the natural world.
+      </p>
+
+      <!-- Stats Bar -->
+      <div class="mt-8 flex flex-wrap items-center gap-6 md:gap-10 pt-6 border-t border-white/10">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-[#22c55e]/20 flex items-center justify-center">
+            <svg class="w-5 h-5 text-[#22c55e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/>
+            </svg>
+          </div>
+          <div>
+            <p class="text-white font-bold text-lg">40+</p>
+            <p class="text-white/40 text-xs uppercase tracking-wider">Countries Served</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-[#22c55e]/20 flex items-center justify-center">
+            <svg class="w-5 h-5 text-[#22c55e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="text-white font-bold text-lg">500+</p>
+            <p class="text-white/40 text-xs uppercase tracking-wider">Projects Delivered</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-[#22c55e]/20 flex items-center justify-center">
+            <svg class="w-5 h-5 text-[#22c55e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="text-white font-bold text-lg">98%</p>
+            <p class="text-white/40 text-xs uppercase tracking-wider">Client Satisfaction</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-white/30 z-10">
+    <span class="text-[8px] uppercase tracking-[0.2em]">Scroll</span>
+    <div class="relative w-px h-8 bg-white/10 overflow-hidden">
+      <div
+        class="absolute inset-x-0 h-1/2 bg-gradient-to-b from-[#22c55e] to-transparent animate-[scroll-fill_2s_ease-in-out_infinite]"
+      ></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== OUR STORY - REDESIGNED WITH COLOR COMBO ===== -->
+<section class="py-12 md:py-16 relative overflow-hidden bg-gradient-to-br from-[#f0f7f4] via-white to-[#e8f5e9]">
+  <!-- Decorative Elements -->
+  <div class="absolute top-0 right-0 w-80 h-80 bg-[#22c55e]/10 rounded-full blur-3xl"></div>
+  <div class="absolute bottom-0 left-0 w-64 h-64 bg-[#4ade80]/10 rounded-full blur-3xl"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] border border-[#22c55e]/5 rounded-full"></div>
+  
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+      
+      <!-- Left Content -->
+      <div>
+        <!-- Badge -->
+        <span class="inline-flex items-center gap-2 text-[#0d2b20] font-semibold text-[10px] uppercase tracking-[0.2em] mb-4">
+          <span class="w-8 h-px bg-gradient-to-r from-[#22c55e] to-[#4ade80]"></span>
+          Our Story
+          <span class="relative flex h-1.5 w-1.5">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#22c55e] opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#22c55e]"></span>
+          </span>
+          <span class="w-8 h-px bg-gradient-to-l from-[#22c55e] to-[#4ade80]"></span>
+        </span>
+        
+        <!-- Heading -->
+        <h2 class="text-3xl sm:text-4xl font-bold text-[#0d2b20] mb-4 leading-[1.15]">
+          Founded with a<br/>
+          <span class="bg-gradient-to-r from-[#22c55e] to-[#1b4332] bg-clip-text text-transparent">Clear Purpose</span>
+        </h2>
+        
+        <!-- Description -->
+        <div class="space-y-3">
+          <p class="text-sm text-neutral-700 leading-relaxed bg-white/50 backdrop-blur-sm p-4 rounded-xl border border-[#22c55e]/10">
+            SIEC was founded with a clear purpose: to provide innovative and comprehensive environmental solutions that address the pressing challenges of our time.
+          </p>
+          <p class="text-sm text-neutral-600 leading-relaxed">
+            We believe that by integrating sustainability principles into every aspect of business and society, we can foster a harmonious relationship between human activities and the natural world.
+          </p>
+        </div>
+        
+        <!-- Feature Cards -->
+        <div class="grid grid-cols-2 gap-3 mt-6">
+          <div class="bg-gradient-to-br from-[#22c55e]/10 to-[#4ade80]/5 p-3 rounded-xl border border-[#22c55e]/20 hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5">
+            <div class="flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-full bg-gradient-to-br from-[#22c55e] to-[#4ade80] flex items-center justify-center text-white shrink-0">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="font-semibold text-[#0d2b20] text-xs">Innovation</p>
+                <p class="text-[10px] text-neutral-500">Pushing boundaries</p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-gradient-to-br from-[#22c55e]/10 to-[#4ade80]/5 p-3 rounded-xl border border-[#22c55e]/20 hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5">
+            <div class="flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-full bg-gradient-to-br from-[#22c55e] to-[#4ade80] flex items-center justify-center text-white shrink-0">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/>
+                </svg>
+              </div>
+              <div>
+                <p class="font-semibold text-[#0d2b20] text-xs">Global Reach</p>
+                <p class="text-[10px] text-neutral-500">40+ countries</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA Link -->
+        <a href="#" class="inline-flex items-center gap-2 mt-5 text-[#22c55e] font-medium text-sm hover:text-[#16a34a] transition-colors group">
+          <span>Learn more about our story</span>
+          <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Right Image Collage -->
+      <div class="grid grid-cols-2 gap-3">
+        <!-- Main Large Image -->
+        <div class="rounded-xl overflow-hidden shadow-xl relative group h-64 md:h-72 ring-2 ring-[#22c55e]/20 hover:ring-[#22c55e]/40 transition-all duration-300">
+          <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=800&auto=format&fit=crop" 
+               alt="Environmental field survey" 
+               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+               loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0d2b20]/60 via-[#0d2b20]/20 to-transparent"></div>
+          <div class="absolute bottom-3 left-3 right-3">
+            <span class="inline-block bg-[#22c55e]/90 backdrop-blur-sm text-white text-[9px] uppercase tracking-wider font-medium px-3 py-1 rounded-full">
+              Field Survey
+            </span>
+          </div>
+        </div>
+        
+        <!-- Right Stack -->
+        <div class="space-y-3">
+          <div class="rounded-xl overflow-hidden shadow-xl relative group h-[148px] md:h-[168px] ring-2 ring-[#22c55e]/20 hover:ring-[#22c55e]/40 transition-all duration-300">
+            <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?q=80&w=800&auto=format&fit=crop" 
+                 alt="Renewable energy" 
+                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                 loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0d2b20]/60 via-[#0d2b20]/20 to-transparent"></div>
+            <div class="absolute bottom-2 left-2 right-2">
+              <span class="inline-block bg-[#22c55e]/90 backdrop-blur-sm text-white text-[8px] uppercase tracking-wider font-medium px-2.5 py-0.5 rounded-full">
+                Renewable Energy
+              </span>
+            </div>
+          </div>
+          <div class="rounded-xl overflow-hidden shadow-xl relative group h-[148px] md:h-[168px] ring-2 ring-[#22c55e]/20 hover:ring-[#22c55e]/40 transition-all duration-300">
+            <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=800&auto=format&fit=crop" 
+                 alt="Laboratory analysis" 
+                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                 loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0d2b20]/60 via-[#0d2b20]/20 to-transparent"></div>
+            <div class="absolute bottom-2 left-2 right-2">
+              <span class="inline-block bg-[#22c55e]/90 backdrop-blur-sm text-white text-[8px] uppercase tracking-wider font-medium px-2.5 py-0.5 rounded-full">
+                Lab Analysis
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+    <!-- ===== IMPACT STATS BANNER ===== -->
+    <section class="stats-band py-16 md:py-20">
+      <div class="stats-band-bg" aria-hidden="true"></div>
+      <div class="stats-band-overlay" aria-hidden="true"></div>
+      <div class="container-custom relative z-10">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div>
+            <p class="font-display text-4xl md:text-5xl font-bold text-white">500+</p>
+            <p class="text-white/60 text-sm uppercase tracking-[0.15em] mt-2">Projects Delivered</p>
+          </div>
+          <div>
+            <p class="font-display text-4xl md:text-5xl font-bold text-white">40+</p>
+            <p class="text-white/60 text-sm uppercase tracking-[0.15em] mt-2">Countries Served</p>
+          </div>
+          <div>
+            <p class="font-display text-4xl md:text-5xl font-bold text-white">20+</p>
+            <p class="text-white/60 text-sm uppercase tracking-[0.15em] mt-2">Years of Practice</p>
+          </div>
+          <div>
+            <p class="font-display text-4xl md:text-5xl font-bold text-white">98%</p>
+            <p class="text-white/60 text-sm uppercase tracking-[0.15em] mt-2">Client Retention</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<!-- ===== MISSION, VISION, VALUES & APPROACH (COMPACT + REDESIGNED) ===== -->
+<section class="py-10 relative overflow-hidden bg-gradient-to-br from-[#f0f7f4] via-white to-[#e8f5e9]">
+  <!-- Subtle decor -->
+  <div class="absolute top-0 left-0 w-64 h-64 bg-[#22c55e]/5 rounded-full blur-3xl"></div>
+  <div class="absolute bottom-0 right-0 w-56 h-56 bg-[#4ade80]/5 rounded-full blur-3xl"></div>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+    <!-- Unified header -->
+    <div class="text-center mb-8">
+      <span class="inline-flex items-center gap-2 text-[#0d2b20] font-semibold text-[9px] uppercase tracking-[0.18em] mb-3">
+        <span class="w-6 h-px bg-gradient-to-r from-[#22c55e] to-[#4ade80]"></span>
+        Our Foundation & Approach
+        <span class="relative flex h-1.5 w-1.5">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#22c55e] opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#22c55e]"></span>
+        </span>
+        <span class="w-6 h-px bg-gradient-to-l from-[#22c55e] to-[#4ade80]"></span>
+      </span>
+      <h2 class="text-xl sm:text-2xl font-bold text-[#0d2b20] leading-[1.2]">
+        Mission, Vision, Values &amp;
+        <span class="bg-gradient-to-r from-[#22c55e] to-[#1b4332] bg-clip-text text-transparent">How We Work</span>
+      </h2>
+      <p class="text-xs text-neutral-600 mt-2 max-w-xl mx-auto">
+        The principles that guide SIEC—and the process we use to turn them into measurable results.
+      </p>
+    </div>
+
+    <!-- Top row: Mission / Vision / Values -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+      <!-- Mission -->
+      <div class="group relative bg-white/80 backdrop-blur-sm p-5 rounded-xl border border-[#22c55e]/10 shadow hover:shadow-md transition-all">
+        <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-[#22c55e] to-[#4ade80] rounded-t-xl"></div>
+        <div class="flex items-center gap-3 mb-2">
+          <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-[#22c55e]/20 to-[#4ade80]/10 flex items-center justify-center text-[#22c55e]">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+          </div>
+          <h3 class="text-base font-bold text-[#0d2b20]">Mission</h3>
+        </div>
+        <p class="text-[11px] text-neutral-600 leading-relaxed">
+          Lead in sustainable environmental consulting with innovative, science-based, client-centric solutions.
+        </p>
+      </div>
+
+      <!-- Vision -->
+      <div class="group relative bg-white/80 backdrop-blur-sm p-5 rounded-xl border border-[#22c55e]/10 shadow hover:shadow-md transition-all">
+        <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-[#22c55e] to-[#4ade80] rounded-t-xl"></div>
+        <div class="flex items-center gap-3 mb-2">
+          <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-[#22c55e]/20 to-[#4ade80]/10 flex items-center justify-center text-[#22c55e]">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+            </svg>
+          </div>
+          <h3 class="text-base font-bold text-[#0d2b20]">Vision</h3>
+        </div>
+        <p class="text-[11px] text-neutral-600 leading-relaxed">
+          Environmental integrity at the core of decision-making, with sustainability embedded in business and society.
+        </p>
+      </div>
+
+      <!-- Values -->
+      <div class="group relative bg-white/80 backdrop-blur-sm p-5 rounded-xl border border-[#22c55e]/10 shadow hover:shadow-md transition-all">
+        <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-[#22c55e] to-[#4ade80] rounded-t-xl"></div>
+        <div class="flex items-center gap-3 mb-2">
+          <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-[#22c55e]/20 to-[#4ade80]/10 flex items-center justify-center text-[#22c55e]">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-base font-bold text-[#0d2b20]">Values</h3>
+        </div>
+        <p class="text-[11px] text-neutral-600 leading-relaxed">
+          Multidisciplinary collaboration across science, ecology, engineering, and policy for comprehensive solutions.
+        </p>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="relative mb-6">
+      <div class="absolute left-1/2 -translate-x-1/2 w-20 h-px bg-gradient-to-r from-transparent via-[#22c55e]/30 to-transparent"></div>
+      <div class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full border-2 border-[#22c55e]/20 bg-white"></div>
+    </div>
+
+    <!-- Our Approach -->
+    <div>
+      <div class="text-center mb-5">
+        <h3 class="text-base sm:text-lg font-bold text-[#0d2b20]">
+          A Process Built on
+          <span class="bg-gradient-to-r from-[#22c55e] to-[#1b4332] bg-clip-text text-transparent">Rigor & Transparency</span>
+        </h3>
+        <p class="text-[11px] text-neutral-600 mt-1">
+          Our proven methodology ensures measurable results at every stage.
+        </p>
+      </div>
+
+      <!-- 4-step grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        <!-- 01 Assess -->
+        <div class="group relative bg-white/80 backdrop-blur-sm p-4 rounded-xl border border-[#22c55e]/10 shadow hover:shadow-md transition-all">
+          <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-[#22c55e] to-[#4ade80] rounded-t-xl"></div>
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-2xl font-bold text-[#22c55e]/15">01</span>
+            <div class="w-8 h-8 rounded-md bg-gradient-to-br from-[#22c55e]/20 to-[#4ade80]/10 flex items-center justify-center text-[#22c55e]">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+              </svg>
+            </div>
+          </div>
+          <h4 class="text-sm font-bold text-[#0d2b20] mb-1">Assess</h4>
+          <p class="text-[11px] text-neutral-600 leading-relaxed">
+            Site surveys, baseline sampling, and regulatory review to map current impact.
+          </p>
+        </div>
+
+        <!-- 02 Design -->
+        <div class="group relative bg-white/80 backdrop-blur-sm p-4 rounded-xl border border-[#22c55e]/10 shadow hover:shadow-md transition-all">
+          <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-[#22c55e] to-[#4ade80] rounded-t-xl"></div>
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-2xl font-bold text-[#22c55e]/15">02</span>
+            <div class="w-8 h-8 rounded-md bg-gradient-to-br from-[#22c55e]/20 to-[#4ade80]/10 flex items-center justify-center text-[#22c55e]">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"/>
+              </svg>
+            </div>
+          </div>
+          <h4 class="text-sm font-bold text-[#0d2b20] mb-1">Design</h4>
+          <p class="text-[11px] text-neutral-600 leading-relaxed">
+            Science-led remediation and sustainability plans tailored to site and sector.
+          </p>
+        </div>
+
+        <!-- 03 Implement -->
+        <div class="group relative bg-white/80 backdrop-blur-sm p-4 rounded-xl border border-[#22c55e]/10 shadow hover:shadow-md transition-all">
+          <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-[#22c55e] to-[#4ade80] rounded-t-xl"></div>
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-2xl font-bold text-[#22c55e]/15">03</span>
+            <div class="w-8 h-8 rounded-md bg-gradient-to-br from-[#22c55e]/20 to-[#4ade80]/10 flex items-center justify-center text-[#22c55e]">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+              </svg>
+            </div>
+          </div>
+          <h4 class="text-sm font-bold text-[#0d2b20] mb-1">Implement</h4>
+          <p class="text-[11px] text-neutral-600 leading-relaxed">
+            On-site execution with continuous monitoring and lab validation at each stage.
+          </p>
+        </div>
+
+        <!-- 04 Report -->
+        <div class="group relative bg-white/80 backdrop-blur-sm p-4 rounded-xl border border-[#22c55e]/10 shadow hover:shadow-md transition-all">
+          <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-[#22c55e] to-[#4ade80] rounded-t-xl"></div>
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-2xl font-bold text-[#22c55e]/15">04</span>
+            <div class="w-8 h-8 rounded-md bg-gradient-to-br from-[#22c55e]/20 to-[#4ade80]/10 flex items-center justify-center text-[#22c55e]">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+              </svg>
+            </div>
+          </div>
+          <h4 class="text-sm font-bold text-[#0d2b20] mb-1">Report</h4>
+          <p class="text-[11px] text-neutral-600 leading-relaxed">
+            Transparent reporting against metrics with recommendations for ongoing improvement.
+          </p>
+        </div>
+      </div>
+
+      <!-- Compact progress indicator -->
+      <div class="mt-5 flex justify-center items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#22c55e]"></span>
+        <span class="w-8 h-px bg-gradient-to-r from-[#22c55e] to-[#4ade80]/50"></span>
+        <span class="w-1.5 h-1.5 rounded-full bg-[#22c55e]/60"></span>
+        <span class="w-8 h-px bg-gradient-to-r from-[#4ade80]/50 to-[#22c55e]/30"></span>
+        <span class="w-1.5 h-1.5 rounded-full bg-[#22c55e]/35"></span>
+        <span class="w-8 h-px bg-gradient-to-r from-[#22c55e]/30 to-transparent"></span>
+        <span class="w-1.5 h-1.5 rounded-full bg-[#22c55e]/15"></span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+    <!-- ===== FIELD PHOTO BANNER ===== -->
+    <!-- <section class="container-custom pb-4 md:pb-8">
+      <div class="photo-banner h-72 md:h-96">
+        <img src="https://picsum.photos/seed/siec-mangroves-field/1600/700" alt="Field team conducting a mangrove restoration survey" loading="lazy" />
+        <div class="banner-overlay" aria-hidden="true"></div>
+        <div class="banner-caption">
+          <p class="text-xs uppercase tracking-[0.2em] text-[#8fbfae] mb-1">Field Notes</p>
+          <p class="font-display text-xl md:text-2xl">Mangrove restoration survey, coastal remediation site</p>
+        </div>
+      </div>
+    </section> -->
+
+<!-- ===== TIMELINE - REDESIGNED (ATTRACTIVE) ===== -->
+<section class="py-12 md:py-16 relative overflow-hidden bg-gradient-to-br from-white via-[#f0f7f4] to-[#e8f5e9]">
+  <!-- Decorative Elements -->
+  <div class="absolute top-0 right-0 w-80 h-80 bg-[#22c55e]/5 rounded-full blur-3xl"></div>
+  <div class="absolute bottom-0 left-0 w-64 h-64 bg-[#4ade80]/5 rounded-full blur-3xl"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] border border-[#22c55e]/5 rounded-full"></div>
+  
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <span class="inline-flex items-center gap-2 text-[#0d2b20] font-semibold text-[10px] uppercase tracking-[0.2em] mb-4">
+        <span class="w-8 h-px bg-gradient-to-r from-[#22c55e] to-[#4ade80]"></span>
+        Our Journey
+        <span class="relative flex h-1.5 w-1.5">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#22c55e] opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#22c55e]"></span>
+        </span>
+        <span class="w-8 h-px bg-gradient-to-l from-[#22c55e] to-[#4ade80]"></span>
+      </span>
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0d2b20] mb-3 leading-[1.15]">
+        Building a Legacy of<br/>
+        <span class="bg-gradient-to-r from-[#22c55e] to-[#1b4332] bg-clip-text text-transparent">Environmental Excellence</span>
+      </h2>
+      <p class="text-sm text-neutral-600 max-w-2xl mx-auto bg-white/50 backdrop-blur-sm py-2 px-4 rounded-full border border-[#22c55e]/10 inline-block">
+        Our journey of impact and innovation since 2006
+      </p>
+    </div>
+
+    <!-- Timeline - Vertical with Alternating Sides -->
+    <div class="max-w-4xl mx-auto relative">
+      
+      <!-- Vertical Line -->
+      <div class="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#22c55e] via-[#4ade80]/60 to-[#22c55e]/20 transform -translate-x-1/2"></div>
+      
+      <!-- Timeline Item 1 -->
+      <div class="relative flex flex-col md:flex-row items-center mb-8 md:mb-12 group">
+        <div class="md:w-1/2 md:pr-12 md:text-right">
+          <span class="text-sm font-bold text-[#22c55e]">2006</span>
+          <div class="md:hidden text-left mt-1">
+            <span class="text-xs text-[#22c55e]/60 uppercase tracking-wider">Milestone</span>
+          </div>
+        </div>
+        
+        <!-- Center Dot -->
+        <div class="absolute left-1/2 transform -translate-x-1/2 w-5 h-5 rounded-full bg-gradient-to-br from-[#22c55e] to-[#4ade80] border-4 border-white shadow-lg shadow-[#22c55e]/30 z-10 transition-all duration-300 group-hover:scale-125 group-hover:shadow-[#22c55e]/50">
+          <div class="absolute inset-1 rounded-full bg-white/20 animate-pulse"></div>
+        </div>
+        
+        <div class="md:w-1/2 md:pl-12 mt-2 md:mt-0 w-full">
+          <div class="bg-white/80 backdrop-blur-sm p-5 rounded-2xl border border-[#22c55e]/10 shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-1 hover:border-[#22c55e]/30">
+            <div class="flex items-center gap-3 md:hidden mb-2">
+              <span class="text-sm font-bold text-[#22c55e]">2006</span>
+              <span class="w-8 h-px bg-[#22c55e]/30"></span>
+            </div>
+            <h4 class="text-lg font-bold text-[#0d2b20]">Foundation of SIEC</h4>
+            <p class="text-sm text-neutral-600 leading-relaxed mt-1">
+              SIEC was established with a vision to provide comprehensive environmental consulting services.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Timeline Item 2 -->
+      <div class="relative flex flex-col md:flex-row items-center mb-8 md:mb-12 group">
+        <div class="md:w-1/2 md:pr-12 md:text-right md:order-2">
+          <span class="text-sm font-bold text-[#22c55e]">2012</span>
+          <div class="md:hidden text-left mt-1">
+            <span class="text-xs text-[#22c55e]/60 uppercase tracking-wider">Milestone</span>
+          </div>
+        </div>
+        
+        <div class="absolute left-1/2 transform -translate-x-1/2 w-5 h-5 rounded-full bg-gradient-to-br from-[#22c55e] to-[#4ade80] border-4 border-white shadow-lg shadow-[#22c55e]/30 z-10 transition-all duration-300 group-hover:scale-125 group-hover:shadow-[#22c55e]/50">
+          <div class="absolute inset-1 rounded-full bg-white/20 animate-pulse"></div>
+        </div>
+        
+        <div class="md:w-1/2 md:pl-12 md:order-1 mt-2 md:mt-0 w-full">
+          <div class="bg-white/80 backdrop-blur-sm p-5 rounded-2xl border border-[#22c55e]/10 shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-1 hover:border-[#22c55e]/30">
+            <div class="flex items-center gap-3 md:hidden mb-2">
+              <span class="text-sm font-bold text-[#22c55e]">2012</span>
+              <span class="w-8 h-px bg-[#22c55e]/30"></span>
+            </div>
+            <h4 class="text-lg font-bold text-[#0d2b20]">International Expansion</h4>
+            <p class="text-sm text-neutral-600 leading-relaxed mt-1">
+              Opened offices in Europe and Asia, expanding our global reach and impact.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Timeline Item 3 -->
+      <div class="relative flex flex-col md:flex-row items-center mb-8 md:mb-12 group">
+        <div class="md:w-1/2 md:pr-12 md:text-right">
+          <span class="text-sm font-bold text-[#22c55e]">2018</span>
+          <div class="md:hidden text-left mt-1">
+            <span class="text-xs text-[#22c55e]/60 uppercase tracking-wider">Milestone</span>
+          </div>
+        </div>
+        
+        <div class="absolute left-1/2 transform -translate-x-1/2 w-5 h-5 rounded-full bg-gradient-to-br from-[#22c55e] to-[#4ade80] border-4 border-white shadow-lg shadow-[#22c55e]/30 z-10 transition-all duration-300 group-hover:scale-125 group-hover:shadow-[#22c55e]/50">
+          <div class="absolute inset-1 rounded-full bg-white/20 animate-pulse"></div>
+        </div>
+        
+        <div class="md:w-1/2 md:pl-12 mt-2 md:mt-0 w-full">
+          <div class="bg-white/80 backdrop-blur-sm p-5 rounded-2xl border border-[#22c55e]/10 shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-1 hover:border-[#22c55e]/30">
+            <div class="flex items-center gap-3 md:hidden mb-2">
+              <span class="text-sm font-bold text-[#22c55e]">2018</span>
+              <span class="w-8 h-px bg-[#22c55e]/30"></span>
+            </div>
+            <h4 class="text-lg font-bold text-[#0d2b20]">Innovation Hub Launch</h4>
+            <p class="text-sm text-neutral-600 leading-relaxed mt-1">
+              Established a dedicated innovation hub for climate change and sustainability research.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Timeline Item 4 -->
+      <div class="relative flex flex-col md:flex-row items-center group">
+        <div class="md:w-1/2 md:pr-12 md:text-right md:order-2">
+          <span class="text-sm font-bold text-[#22c55e]">2024</span>
+          <div class="md:hidden text-left mt-1">
+            <span class="text-xs text-[#22c55e]/60 uppercase tracking-wider">Milestone</span>
+          </div>
+        </div>
+        
+        <div class="absolute left-1/2 transform -translate-x-1/2 w-5 h-5 rounded-full bg-gradient-to-br from-[#22c55e] to-[#4ade80] border-4 border-white shadow-lg shadow-[#22c55e]/30 z-10 transition-all duration-300 group-hover:scale-125 group-hover:shadow-[#22c55e]/50">
+          <div class="absolute inset-1 rounded-full bg-white/20 animate-pulse"></div>
+        </div>
+        
+        <div class="md:w-1/2 md:pl-12 md:order-1 mt-2 md:mt-0 w-full">
+          <div class="bg-white/80 backdrop-blur-sm p-5 rounded-2xl border border-[#22c55e]/10 shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-1 hover:border-[#22c55e]/30">
+            <div class="flex items-center gap-3 md:hidden mb-2">
+              <span class="text-sm font-bold text-[#22c55e]">2024</span>
+              <span class="w-8 h-px bg-[#22c55e]/30"></span>
+            </div>
+            <h4 class="text-lg font-bold text-[#0d2b20]">Global Impact Milestone</h4>
+            <p class="text-sm text-neutral-600 leading-relaxed mt-1">
+              Completed 500+ projects across 40+ countries, driving measurable environmental change.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- End Dot -->
+      <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-3 h-3 rounded-full bg-[#22c55e]/30 border-2 border-white"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ACCREDITATIONS - REDESIGNED WITH CERTIFICATE CARDS ===== -->
+<section class="py-12 md:py-16 relative overflow-hidden bg-gradient-to-br from-white via-[#f0f7f4] to-[#e8f5e9]">
+  <!-- Decorative Elements -->
+  <div class="absolute top-0 left-0 w-80 h-80 bg-[#22c55e]/5 rounded-full blur-3xl"></div>
+  <div class="absolute bottom-0 right-0 w-64 h-64 bg-[#4ade80]/5 rounded-full blur-3xl"></div>
+  
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <span class="inline-flex items-center gap-2 text-[#0d2b20] font-semibold text-[10px] uppercase tracking-[0.2em] mb-4">
+        <span class="w-8 h-px bg-gradient-to-r from-[#22c55e] to-[#4ade80]"></span>
+        Trusted Standards
+        <span class="relative flex h-1.5 w-1.5">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#22c55e] opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#22c55e]"></span>
+        </span>
+        <span class="w-8 h-px bg-gradient-to-l from-[#22c55e] to-[#4ade80]"></span>
+      </span>
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0d2b20] mb-3 leading-[1.15]">
+        Accredited &amp; <span class="bg-gradient-to-r from-[#22c55e] to-[#1b4332] bg-clip-text text-transparent">Certified</span>
+      </h2>
+      <p class="text-sm text-neutral-600 max-w-2xl mx-auto bg-white/50 backdrop-blur-sm py-2 px-4 rounded-full border border-[#22c55e]/10 inline-block">
+        Recognized for excellence in environmental management and sustainability
+      </p>
+    </div>
+
+    <!-- Accreditation Cards Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      
+      <!-- ISO 14001 Card -->
+      <div class="group relative bg-white rounded-2xl border border-[#22c55e]/10 shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-2 hover:border-[#22c55e]/30 overflow-hidden">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#22c55e] to-[#4ade80]"></div>
+        
+        <!-- Certificate Image -->
+        <div class="relative h-40 bg-gradient-to-br from-[#f0f7f4] to-[#e8f5e9] overflow-hidden">
+          <img src="/assets/cer.jpg" 
+               alt="ISO 14001 Certificate" 
+               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+               loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-white/60 to-transparent"></div>
+          <!-- Badge -->
+          <div class="absolute top-3 right-3 bg-[#22c55e]/90 backdrop-blur-sm text-white text-[8px] font-bold uppercase tracking-wider px-2 py-1 rounded-full">
+            Certified
+          </div>
+        </div>
+        
+        <!-- Card Body -->
+        <div class="p-5">
+          <h4 class="font-bold text-[#0d2b20] text-base">ISO 14001:2015</h4>
+          <p class="text-xs text-neutral-500 mt-1 leading-relaxed">
+            Environmental Management System certification demonstrating our commitment to sustainable practices.
+          </p>
+          <a href="#" class="inline-flex items-center gap-1.5 text-[#22c55e] text-xs font-medium mt-3 hover:text-[#16a34a] transition-colors group/link">
+            <span>View Certificate</span>
+            <svg class="w-3.5 h-3.5 transition-transform duration-300 group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- ISO 45001 Card -->
+      <div class="group relative bg-white rounded-2xl border border-[#22c55e]/10 shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-2 hover:border-[#22c55e]/30 overflow-hidden">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#22c55e] to-[#4ade80]"></div>
+        
+        <div class="relative h-40 bg-gradient-to-br from-[#f0f7f4] to-[#e8f5e9] overflow-hidden">
+          <img src="/assets/cer.jpg" 
+               alt="ISO 45001 Certificate" 
+               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+               loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-white/60 to-transparent"></div>
+          <div class="absolute top-3 right-3 bg-[#22c55e]/90 backdrop-blur-sm text-white text-[8px] font-bold uppercase tracking-wider px-2 py-1 rounded-full">
+            Certified
+          </div>
+        </div>
+        
+        <div class="p-5">
+          <h4 class="font-bold text-[#0d2b20] text-base">ISO 45001:2018</h4>
+          <p class="text-xs text-neutral-500 mt-1 leading-relaxed">
+            Occupational Health and Safety Management certification ensuring workplace safety and well-being.
+          </p>
+          <a href="#" class="inline-flex items-center gap-1.5 text-[#22c55e] text-xs font-medium mt-3 hover:text-[#16a34a] transition-colors group/link">
+            <span>View Certificate</span>
+            <svg class="w-3.5 h-3.5 transition-transform duration-300 group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- LEED AP Card -->
+      <div class="group relative bg-white rounded-2xl border border-[#22c55e]/10 shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-2 hover:border-[#22c55e]/30 overflow-hidden">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#22c55e] to-[#4ade80]"></div>
+        
+        <div class="relative h-40 bg-gradient-to-br from-[#f0f7f4] to-[#e8f5e9] overflow-hidden">
+          <img src="/assets/cer.jpg" 
+               alt="LEED Certificate" 
+               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+               loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-white/60 to-transparent"></div>
+          <div class="absolute top-3 right-3 bg-[#22c55e]/90 backdrop-blur-sm text-white text-[8px] font-bold uppercase tracking-wider px-2 py-1 rounded-full">
+            Certified
+          </div>
+        </div>
+        
+        <div class="p-5">
+          <h4 class="font-bold text-[#0d2b20] text-base">LEED AP</h4>
+          <p class="text-xs text-neutral-500 mt-1 leading-relaxed">
+            Leadership in Energy and Environmental Design accreditation for sustainable building practices.
+          </p>
+          <a href="#" class="inline-flex items-center gap-1.5 text-[#22c55e] text-xs font-medium mt-3 hover:text-[#16a34a] transition-colors group/link">
+            <span>View Certificate</span>
+            <svg class="w-3.5 h-3.5 transition-transform duration-300 group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Registered ECs Card -->
+      <div class="group relative bg-white rounded-2xl border border-[#22c55e]/10 shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-2 hover:border-[#22c55e]/30 overflow-hidden">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#22c55e] to-[#4ade80]"></div>
+        
+        <div class="relative h-40 bg-gradient-to-br from-[#f0f7f4] to-[#e8f5e9] overflow-hidden">
+          <img src="/assets/cer.jpg" 
+               alt="Registered ECs Certificate" 
+               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+               loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-white/60 to-transparent"></div>
+          <div class="absolute top-3 right-3 bg-[#22c55e]/90 backdrop-blur-sm text-white text-[8px] font-bold uppercase tracking-wider px-2 py-1 rounded-full">
+            Certified
+          </div>
+        </div>
+        
+        <div class="p-5">
+          <h4 class="font-bold text-[#0d2b20] text-base">Registered ECs</h4>
+          <p class="text-xs text-neutral-500 mt-1 leading-relaxed">
+            Certified Environmental Consultants with expertise in sustainability and environmental management.
+          </p>
+          <a href="#" class="inline-flex items-center gap-1.5 text-[#22c55e] text-xs font-medium mt-3 hover:text-[#16a34a] transition-colors group/link">
+            <span>View Certificate</span>
+            <svg class="w-3.5 h-3.5 transition-transform duration-300 group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Decorative Line -->
+    <div class="mt-10 flex justify-center items-center gap-4">
+      <span class="w-12 h-px bg-gradient-to-r from-transparent to-[#22c55e]/30"></span>
+      <span class="w-2 h-2 rounded-full bg-[#22c55e]/30"></span>
+      <span class="w-12 h-px bg-gradient-to-l from-transparent to-[#22c55e]/30"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA - PHOTO BANNER STYLE ===== -->
+<section class="container-custom pb-4 md:pb-8">
+  <div class="relative h-72 md:h-96 overflow-hidden rounded-2xl">
+    
+    <!-- Background Image -->
+    <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1974&auto=format&fit=crop" 
+         alt="Join us in building a sustainable future" 
+         loading="lazy" 
+         class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
+    
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-gradient-to-t from-[#0d2b20]/95 via-[#0d2b20]/80 to-[#0d2b20]/40" aria-hidden="true"></div>
+    <div class="absolute inset-0" style="background: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(34, 197, 94, 0.03) 40px, rgba(34, 197, 94, 0.03) 41px);" aria-hidden="true"></div>
+    
+    <!-- Glow Orbs -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-[#22c55e]/5 rounded-full blur-3xl" aria-hidden="true"></div>
+    <div class="absolute bottom-0 right-0 w-64 h-64 bg-[#4ade80]/5 rounded-full blur-2xl" aria-hidden="true"></div>
+
+    <!-- Content -->
+    <div class="absolute inset-0 flex items-center justify-center">
+      <div class="text-center max-w-3xl mx-auto px-6">
+        
+        <!-- Badge -->
+        <span class="inline-flex items-center gap-2 text-[#8fbfae] text-[10px] uppercase tracking-[0.2em] font-medium mb-4">
+          <span class="w-6 h-px bg-[#8fbfae]/50"></span>
+          Let's Connect
+          <span class="relative flex h-1.5 w-1.5">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#22c55e] opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#22c55e]"></span>
+          </span>
+          <span class="w-6 h-px bg-[#8fbfae]/50"></span>
+        </span>
+
+        <!-- Heading -->
+        <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-[1.15]">
+          Join Us in Building a<br/>
+          <span class="bg-gradient-to-r from-[#22c55e] via-[#4ade80] to-[#22c55e] bg-clip-text text-transparent">Sustainable Future</span>
+        </h2>
+
+        <!-- Description -->
+        <p class="text-white/70 text-sm md:text-base max-w-xl mx-auto mb-8 leading-relaxed backdrop-blur-sm bg-black/20 py-2 px-4 rounded-xl border border-white/5 inline-block">
+          Whether you're a client, partner, or potential team member, we'd love to connect.
+        </p>
+
+        <!-- CTA Button -->
+        <a href="#" class="group inline-flex items-center px-8 py-3.5 bg-white text-[#0d2b20] font-medium rounded-full transition-all duration-300 hover:bg-white/90 hover:shadow-[0_15px_30px_-10px_rgba(255,255,255,0.3)] hover:-translate-y-0.5">
+          <span>Get in Touch</span>
+          <svg class="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Field Notes Caption -->
+    <div class="absolute bottom-4 left-6 right-6 pointer-events-none">
+      <div class="flex items-center gap-3">
+        <span class="text-[10px] uppercase tracking-[0.2em] text-[#8fbfae] font-medium">Field Notes</span>
+        <span class="w-8 h-px bg-[#8fbfae]/30"></span>
+        <span class="text-xs text-white/60 font-medium">Building a sustainable future — together</span>
+      </div>
+    </div>
+  </div>
+</section>
+  </main>
+
+  <!-- Footer Container -->
+  <div id="footer"></div>
+
+  <!-- Scripts -->
+  <script src="../../header/header.js"></script>
+  <script src="../../footer/footer.js"></script>
+  <script src="about.js"></script>
+</body>
+</html>

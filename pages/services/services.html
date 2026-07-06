@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services – SIEC Environmental Consultancy</title>
+  <meta name="description" content="Comprehensive environmental consulting services including EIA, sustainability, climate change, monitoring, and waste management." />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../../css/custom.css" />
+
+  <!-- Google Fonts: Fraunces (display), Inter (body), IBM Plex Mono (field data) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340..600;1,9..144,400..500&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+  <style>
+    :root{
+      --ink:#16281f;
+      --paper:#f0eee1;
+      --paper-dim:#e7e4d3;
+      --moss:#3f5c3f;
+      --fern:#6b8f5c;
+      --teal:#2f7d78;
+      --clay:#b8763a;
+      --deep-teal:#35514a;
+      --line:rgba(22,40,31,0.14);
+      --rule:1px solid var(--line);
+    }
+
+    body{
+      background:var(--paper);
+      color:var(--ink);
+      font-family:'Inter', sans-serif;
+    }
+
+    .font-display{ font-family:'Fraunces', serif; }
+    .font-mono{ font-family:'IBM Plex Mono', monospace; }
+
+    .container-custom{
+      max-width:1280px;
+      margin-left:auto;
+      margin-right:auto;
+      padding-left:1.25rem;
+      padding-right:1.25rem;
+    }
+    @media (min-width:768px){ .container-custom{ padding-left:2rem; padding-right:2rem; } }
+
+    /* ===== Field-tag / eyebrow ===== */
+    .field-tag{
+      display:inline-flex;
+      align-items:center;
+      gap:.5rem;
+      font-family:'IBM Plex Mono', monospace;
+      font-size:.7rem;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+    }
+    .field-tag::before{
+      content:'';
+      width:6px; height:6px;
+      border-radius:1px;
+      background:currentColor;
+      display:inline-block;
+      transform:rotate(45deg);
+    }
+
+    /* ===== Hero ===== */
+    .page-header{
+      position:relative;
+      overflow:hidden;
+      background:linear-gradient(160deg,#0f2018 0%, var(--ink) 55%, #1c3327 100%);
+      padding-top:7.5rem;
+      padding-bottom:6rem;
+    }
+    @media (min-width:768px){ .page-header{ padding-top:9.5rem; padding-bottom:7.5rem; } }
+
+    .topo-layer{
+      position:absolute;
+      inset:0;
+      opacity:.16;
+      pointer-events:none;
+    }
+    .topo-layer svg{ width:100%; height:100%; }
+
+    .report-stamp{
+      font-family:'IBM Plex Mono', monospace;
+      font-size:.65rem;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:rgba(240,238,225,.75);
+      border:1px solid rgba(240,238,225,.28);
+      border-radius:2px;
+      padding:.6rem .9rem;
+      display:inline-flex;
+      flex-direction:column;
+      gap:.15rem;
+      backdrop-filter:blur(2px);
+    }
+    .report-stamp b{ color:#fff; font-weight:600; letter-spacing:.16em; }
+
+    .heading-hero{
+      font-family:'Fraunces', serif;
+      font-optical-sizing:auto;
+      font-weight:480;
+      font-size:2.6rem;
+      line-height:1.06;
+      letter-spacing:-0.01em;
+      color:var(--paper);
+    }
+    @media (min-width:640px){ .heading-hero{ font-size:3.6rem; } }
+    @media (min-width:1024px){ .heading-hero{ font-size:4.6rem; } }
+    .heading-hero em{ font-style:italic; font-weight:400; color:#cfe4d3; }
+
+    /* ===== Section headings ===== */
+    .heading-section{
+      font-family:'Fraunces', serif;
+      font-optical-sizing:auto;
+      font-weight:460;
+      font-size:2rem;
+      line-height:1.16;
+      letter-spacing:-0.015em;
+      color:var(--ink);
+    }
+    @media (min-width:768px){ .heading-section{ font-size:2.75rem; } }
+
+    .lede{
+      font-size:1.1rem;
+      line-height:1.75;
+      color:#4d5a4d;
+      max-width:44rem;
+    }
+
+    .section-padding{ padding-top:4.5rem; padding-bottom:4.5rem; }
+    @media (min-width:768px){ .section-padding{ padding-top:6.5rem; padding-bottom:6.5rem; } }
+
+    /* ===== Stratigraphy (signature element) ===== */
+    .core-log{
+      position:relative;
+      display:flex;
+      flex-direction:column;
+      border-top:var(--rule);
+    }
+
+    .stratum{
+      display:grid;
+      grid-template-columns:104px 1fr;
+      column-gap:2.25rem;
+      border-bottom:var(--rule);
+      padding-top:2.75rem;
+      padding-bottom:2.75rem;
+    }
+    @media (max-width:899px){
+      .stratum{ grid-template-columns:1fr; }
+    }
+
+    .stratum-rail{
+      position:relative;
+      display:flex;
+      flex-direction:column;
+    }
+    @media (max-width:899px){ .stratum-rail{ display:none; } }
+
+    .depth-tick{
+      font-family:'IBM Plex Mono', monospace;
+      font-size:.7rem;
+      color:#6a776a;
+      letter-spacing:.05em;
+    }
+
+    .stratum-band{
+      margin-top:.6rem;
+      flex:1;
+      width:14px;
+      border-radius:3px;
+      background:var(--stratum-color);
+      opacity:.85;
+      transform:scaleY(0);
+      transform-origin:top;
+    }
+
+    .stratum-content{ position:relative; }
+
+    .field-code{
+      font-family:'IBM Plex Mono', monospace;
+      font-size:.75rem;
+      letter-spacing:.14em;
+      color:var(--stratum-color);
+      font-weight:600;
+      display:block;
+      margin-bottom:.6rem;
+    }
+
+    .stratum-title{
+      font-family:'Fraunces', serif;
+      font-weight:480;
+      font-size:1.65rem;
+      line-height:1.2;
+      letter-spacing:-0.01em;
+      color:var(--ink);
+      margin-bottom:.85rem;
+    }
+    @media (min-width:768px){ .stratum-title{ font-size:2rem; } }
+
+    .stratum-desc{
+      color:#4d5a4d;
+      line-height:1.75;
+      max-width:38rem;
+      margin-bottom:1.4rem;
+    }
+
+    .field-notes{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:.55rem;
+      margin-bottom:1.6rem;
+    }
+    @media (min-width:640px){ .field-notes{ grid-template-columns:1fr 1fr; column-gap:1.5rem; } }
+
+    .field-notes li{
+      display:flex;
+      align-items:baseline;
+      gap:.55rem;
+      font-size:.92rem;
+      color:#33402f;
+    }
+    .field-notes li::before{
+      content:'▸';
+      color:var(--stratum-color);
+      font-size:.8rem;
+      line-height:1;
+    }
+
+    .readout{
+      display:flex;
+      flex-wrap:wrap;
+      gap:1.75rem;
+      border-top:1px dashed var(--line);
+      padding-top:1rem;
+    }
+    .readout-item{ display:flex; flex-direction:column; gap:.2rem; }
+    .readout-label{
+      font-family:'IBM Plex Mono', monospace;
+      font-size:.65rem;
+      letter-spacing:.14em;
+      color:#8a9587;
+      text-transform:uppercase;
+    }
+    .readout-value{
+      font-size:.88rem;
+      color:var(--ink);
+      font-weight:500;
+      max-width:24rem;
+    }
+
+    .core-cap{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding-top:1.5rem;
+      font-family:'IBM Plex Mono', monospace;
+      font-size:.7rem;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:#7a8577;
+    }
+
+    /* ===== CTA ===== */
+    .cta-section{
+      position:relative;
+      overflow:hidden;
+      background:linear-gradient(160deg,#0f2018 0%, var(--ink) 60%, #1a3024 100%);
+      color:var(--paper);
+    }
+    .coord-tag{
+      font-family:'IBM Plex Mono', monospace;
+      font-size:.72rem;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:#9fc2ab;
+    }
+
+    .btn-primary{
+      display:inline-flex;
+      align-items:center;
+      gap:.6rem;
+      padding:.95rem 2rem;
+      background:var(--paper);
+      color:var(--ink);
+      font-weight:500;
+      border-radius:2px;
+      transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+    }
+    .btn-primary:hover{
+      transform:translateY(-2px);
+      box-shadow:0 14px 30px -10px rgba(0,0,0,.45);
+      background:#fff;
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .stratum-band{ transform:scaleY(1) !important; }
+      .btn-primary{ transition:none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Container -->
+  <div id="header"></div>
+
+  <main>
+    <!-- ===== PAGE HEADER ===== -->
+    <section class="page-header">
+      <div class="topo-layer" aria-hidden="true">
+        <svg viewBox="0 0 1280 640" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <g fill="none" stroke="#cfe4d3" stroke-width="1.1">
+            <path d="M-40,80 C160,20 300,140 480,90 C660,40 780,140 980,90 C1120,55 1220,95 1320,70"/>
+            <path d="M-40,150 C140,95 320,205 500,150 C680,95 800,205 1000,150 C1140,110 1230,150 1320,130"/>
+            <path d="M-40,230 C160,175 330,275 520,220 C700,165 820,270 1010,215 C1150,175 1230,215 1320,195"/>
+            <path d="M-40,470 C170,410 330,520 510,465 C690,410 820,520 1010,460 C1150,420 1230,460 1320,440"/>
+            <path d="M-40,540 C160,490 320,590 500,540 C680,490 810,590 1000,535 C1140,495 1230,535 1320,515"/>
+            <path d="M-40,610 C160,560 330,650 520,600 C700,555 820,650 1010,600 C1150,565 1230,600 1320,585"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="container-custom relative z-10">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+          <div class="max-w-3xl">
+            <span class="field-tag mb-5" style="color:#9fc2ab;">Service Log — SIEC</span>
+            <h1 class="heading-hero mb-6">Five ways we go<br/><em>deep</em> on the ground</h1>
+            <p class="text-lg md:text-xl leading-relaxed" style="color:rgba(240,238,225,.78); max-width:36rem;">
+              Every engagement starts the same way a site investigation does — at the surface, then down through the layers until the picture is complete.
+            </p>
+          </div>
+          <div class="report-stamp shrink-0">
+            <span>Field Report No.</span>
+            <b>SIEC / SVC / 2026</b>
+            <span>Rev. 03 — Services Index</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== INTRO ===== -->
+    <section class="section-padding pb-0 md:pb-0">
+      <div class="container-custom">
+        <span class="field-tag mb-4" style="color:var(--moss);">Core Sample</span>
+        <h2 class="heading-section mb-4">One log, eleven<br/>service strata.</h2>
+        <p class="lede">Scroll the column below the way a geotechnical engineer reads a borehole log — top to bottom, layer by layer. Each stratum is a distinct practice area; together they form the full depth of what SIEC delivers on a project.</p>
+      </div>
+    </section>
+
+    <!-- ===== STRATIGRAPHY / SERVICES ===== -->
+    <section class="section-padding">
+      <div class="container-custom">
+        <div class="core-log" id="core-log">
+
+          <!-- Stratum 01: EIA -->
+          <div class="stratum" style="--stratum-color:#3f5c3f;">
+            <div class="stratum-rail">
+              <span class="depth-tick">0.0m</span>
+              <div class="stratum-band" data-flex="1.05" style="flex:1.05;"></div>
+            </div>
+            <div class="stratum-content">
+              <span class="field-code">EIA — 01</span>
+              <h3 class="stratum-title">Environmental Impact Assessment</h3>
+              <p class="stratum-desc">Comprehensive assessments to evaluate the potential environmental effects of proposed projects or developments. We identify and mitigate potential negative impacts, ensuring sustainable practices and compliance with environmental regulations.</p>
+              <ul class="field-notes">
+                <li>Baseline environmental studies</li>
+                <li>Impact prediction &amp; modeling</li>
+                <li>Mitigation &amp; management plans</li>
+              </ul>
+              <div class="readout">
+                <div class="readout-item">
+                  <span class="readout-label">Scope</span>
+                  <span class="readout-value">Pre-construction through post-approval monitoring</span>
+                </div>
+                <div class="readout-item">
+                  <span class="readout-label">Delivers</span>
+                  <span class="readout-value">Regulator-ready EIA report</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stratum 02: Sustainability Consulting -->
+          <div class="stratum" style="--stratum-color:#2f7d78;">
+            <div class="stratum-rail">
+              <span class="depth-tick">2.5m</span>
+              <div class="stratum-band" style="flex:0.95;"></div>
+            </div>
+            <div class="stratum-content">
+              <span class="field-code">SUS — 02</span>
+              <h3 class="stratum-title">Environmental Sustainability Consulting</h3>
+              <p class="stratum-desc">Strategic consulting to assist businesses in developing and implementing sustainable practices. We evaluate current operations, set sustainability goals, create action plans, and provide guidance on resource conservation, waste reduction, energy efficiency, and emissions reduction.</p>
+              <ul class="field-notes">
+                <li>ESG strategy &amp; reporting</li>
+                <li>Carbon footprint analysis</li>
+                <li>Sustainability roadmap development</li>
+              </ul>
+              <div class="readout">
+                <div class="readout-item">
+                  <span class="readout-label">Scope</span>
+                  <span class="readout-value">Corporate &amp; portfolio-level</span>
+                </div>
+                <div class="readout-item">
+                  <span class="readout-label">Delivers</span>
+                  <span class="readout-value">ESG-aligned roadmap</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stratum 03: Green Building -->
+          <div class="stratum" style="--stratum-color:#6b8f5c;">
+            <div class="stratum-rail">
+              <span class="depth-tick">5.0m</span>
+              <div class="stratum-band" style="flex:0.9;"></div>
+            </div>
+            <div class="stratum-content">
+              <span class="field-code">GBL — 03</span>
+              <h3 class="stratum-title">Green Building &amp; Certification</h3>
+              <p class="stratum-desc">Expertise in designing and constructing environmentally friendly buildings. We provide guidance on green building standards, such as LEED certification, sustainable building materials, energy-efficient design, and renewable energy integration.</p>
+              <ul class="field-notes">
+                <li>LEED &amp; green building certification</li>
+                <li>Sustainable material selection</li>
+                <li>Energy-efficient design consultancy</li>
+              </ul>
+              <div class="readout">
+                <div class="readout-item">
+                  <span class="readout-label">Scope</span>
+                  <span class="readout-value">New builds &amp; major retrofits</span>
+                </div>
+                <div class="readout-item">
+                  <span class="readout-label">Delivers</span>
+                  <span class="readout-value">Certification-ready project plan</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stratum 04: Carbon Footprint -->
+          <div class="stratum" style="--stratum-color:#b8763a;">
+            <div class="stratum-rail">
+              <span class="depth-tick">7.5m</span>
+              <div class="stratum-band" style="flex:1.1;"></div>
+            </div>
+            <div class="stratum-content">
+              <span class="field-code">CFA — 04</span>
+              <h3 class="stratum-title">Carbon Footprint Assessment &amp; Reduction</h3>
+              <p class="stratum-desc">Comprehensive assessments to measure an organization’s greenhouse gas emissions. We develop strategies to reduce emissions through energy-efficient practices, transportation optimization, and carbon offset programs.</p>
+              <ul class="field-notes">
+                <li>Full carbon footprint measurement</li>
+                <li>Emission reduction strategy</li>
+                <li>Carbon offset project development</li>
+              </ul>
+              <div class="readout">
+                <div class="readout-item">
+                  <span class="readout-label">Scope</span>
+                  <span class="readout-value">Organisation-wide or site-specific</span>
+                </div>
+                <div class="readout-item">
+                  <span class="readout-label">Delivers</span>
+                  <span class="readout-value">Net-zero transition plan</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stratum 05: Environmental Education -->
+          <div class="stratum" style="--stratum-color:#35514a;">
+            <div class="stratum-rail">
+              <span class="depth-tick">10.0m</span>
+              <div class="stratum-band" style="flex:0.85;"></div>
+            </div>
+            <div class="stratum-content">
+              <span class="field-code">EET — 05</span>
+              <h3 class="stratum-title">Environmental Education &amp; Training</h3>
+              <p class="stratum-desc">Educational programs and training sessions designed to raise awareness and promote environmental stewardship. We deliver workshops, seminars, and employee training on sustainable practices, environmental regulations, and conservation principles.</p>
+              <ul class="field-notes">
+                <li>Workshops &amp; seminar programs</li>
+                <li>Employee sustainability training</li>
+                <li>Regulatory awareness sessions</li>
+              </ul>
+              <div class="readout">
+                <div class="readout-item">
+                  <span class="readout-label">Scope</span>
+                  <span class="readout-value">Staff, management, and stakeholders</span>
+                </div>
+                <div class="readout-item">
+                  <span class="readout-label">Delivers</span>
+                  <span class="readout-value">Customised training modules</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stratum 06: Environmental Remediation -->
+          <div class="stratum" style="--stratum-color:#2f7d78;">
+            <div class="stratum-rail">
+              <span class="depth-tick">12.5m</span>
+              <div class="stratum-band" style="flex:1.0;"></div>
+            </div>
+            <div class="stratum-content">
+              <span class="field-code">REM — 06</span>
+              <h3 class="stratum-title">Environmental Remediation</h3>
+              <p class="stratum-desc">Remediation solutions for contaminated sites. We conduct assessments, develop remediation plans, and implement strategies to clean up and restore polluted areas, ensuring the protection of ecosystems and human health.</p>
+              <ul class="field-notes">
+                <li>Site assessment &amp; characterisation</li>
+                <li>Remediation plan development</li>
+                <li>Clean-up &amp; restoration management</li>
+              </ul>
+              <div class="readout">
+                <div class="readout-item">
+                  <span class="readout-label">Scope</span>
+                  <span class="readout-value">Industrial, commercial, and brownfield sites</span>
+                </div>
+                <div class="readout-item">
+                  <span class="readout-label">Delivers</span>
+                  <span class="readout-value">Full remediation strategy &amp; closure</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stratum 07: Renewable Energy -->
+          <div class="stratum" style="--stratum-color:#b8763a;">
+            <div class="stratum-rail">
+              <span class="depth-tick">15.0m</span>
+              <div class="stratum-band" style="flex:0.9;"></div>
+            </div>
+            <div class="stratum-content">
+              <span class="field-code">REN — 07</span>
+              <h3 class="stratum-title">Renewable Energy Solutions</h3>
+              <p class="stratum-desc">Assisting businesses in adopting renewable energy sources to reduce dependence on fossil fuels. We offer expertise in solar, wind, geothermal, and other renewable energy technologies, helping clients transition to cleaner energy alternatives.</p>
+              <ul class="field-notes">
+                <li>Feasibility &amp; site assessments</li>
+                <li>Technology selection &amp; integration</li>
+                <li>Project development support</li>
+              </ul>
+              <div class="readout">
+                <div class="readout-item">
+                  <span class="readout-label">Scope</span>
+                  <span class="readout-value">Facility to portfolio-wide</span>
+                </div>
+                <div class="readout-item">
+                  <span class="readout-label">Delivers</span>
+                  <span class="readout-value">Renewable energy roadmap</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stratum 08: Water Conservation -->
+          <div class="stratum" style="--stratum-color:#3f5c3f;">
+            <div class="stratum-rail">
+              <span class="depth-tick">17.5m</span>
+              <div class="stratum-band" style="flex:0.8;"></div>
+            </div>
+            <div class="stratum-content">
+              <span class="field-code">WCM — 08</span>
+              <h3 class="stratum-title">Water Conservation &amp; Management</h3>
+              <p class="stratum-desc">Water conservation strategies and management solutions to help businesses optimize water usage, reduce water waste, and protect water resources. We offer water audits, efficiency assessments, leak detection, and water-saving technologies.</p>
+              <ul class="field-notes">
+                <li>Water audits &amp; efficiency assessments</li>
+                <li>Leak detection &amp; repair programs</li>
+                <li>Water-saving technology implementation</li>
+              </ul>
+              <div class="readout">
+                <div class="readout-item">
+                  <span class="readout-label">Scope</span>
+                  <span class="readout-value">Industrial, commercial, and agricultural</span>
+                </div>
+                <div class="readout-item">
+                  <span class="readout-label">Delivers</span>
+                  <span class="readout-value">Integrated water management plan</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stratum 09: Energy Efficiency Audits -->
+          <div class="stratum" style="--stratum-color:#6b8f5c;">
+            <div class="stratum-rail">
+              <span class="depth-tick">20.0m</span>
+              <div class="stratum-band" style="flex:0.95;"></div>
+            </div>
+            <div class="stratum-content">
+              <span class="field-code">EEA — 09</span>
+              <h3 class="stratum-title">Energy Efficiency Audits</h3>
+              <p class="stratum-desc">Detailed energy efficiency audits to assess usage and identify conservation opportunities. We provide recommendations for energy-efficient technologies, practices, and systems to reduce consumption and greenhouse gas emissions.</p>
+              <ul class="field-notes">
+                <li>Comprehensive energy audits</li>
+                <li>Opportunity identification</li>
+                <li>Implementation support &amp; tracking</li>
+              </ul>
+              <div class="readout">
+                <div class="readout-item">
+                  <span class="readout-label">Scope</span>
+                  <span class="readout-value">Buildings, operations, and processes</span>
+                </div>
+                <div class="readout-item">
+                  <span class="readout-label">Delivers</span>
+                  <span class="readout-value">Prioritised efficiency action plan</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stratum 10: Waste Management -->
+          <div class="stratum" style="--stratum-color:#35514a;">
+            <div class="stratum-rail">
+              <span class="depth-tick">22.5m</span>
+              <div class="stratum-band" style="flex:1.0;"></div>
+            </div>
+            <div class="stratum-content">
+              <span class="field-code">WMC — 10</span>
+              <h3 class="stratum-title">Waste Management &amp; Circular Economy</h3>
+              <p class="stratum-desc">Waste management solutions that prioritize recycling, composting, and waste reduction. We help businesses implement effective practices, including waste audits, diversion programs, and the establishment of recycling infrastructure.</p>
+              <ul class="field-notes">
+                <li>Waste audit &amp; characterization</li>
+                <li>Circular economy strategy</li>
+                <li>Waste reduction &amp; diversion programs</li>
+              </ul>
+              <div class="readout">
+                <div class="readout-item">
+                  <span class="readout-label">Scope</span>
+                  <span class="readout-value">Facility to supply-chain level</span>
+                </div>
+                <div class="readout-item">
+                  <span class="readout-label">Delivers</span>
+                  <span class="readout-value">Waste diversion programme</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="core-cap">
+            <span>End of core — 24.0m</span>
+            <span>11 strata logged</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <!-- <section class="section-padding cta-section">
+      <div class="topo-layer" aria-hidden="true">
+        <svg viewBox="0 0 1280 480" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <g fill="none" stroke="#cfe4d3" stroke-width="1.1">
+            <path d="M-40,60 C160,10 300,110 480,70 C660,30 780,110 980,70 C1120,45 1220,75 1320,55"/>
+            <path d="M-40,140 C150,90 320,190 500,140 C680,90 800,190 1000,140 C1140,105 1230,140 1320,120"/>
+            <path d="M-40,340 C160,290 330,390 520,340 C700,290 820,390 1010,340 C1150,300 1230,340 1320,320"/>
+            <path d="M-40,410 C160,365 320,455 500,410 C680,365 810,455 1000,410 C1140,375 1230,410 1320,395"/>
+          </g>
+        </svg>
+      </div>
+      <div class="container-custom relative z-10 text-center">
+        <div class="max-w-2xl mx-auto">
+          <span class="coord-tag mb-4 inline-block">Next Site Visit — Open Slot</span>
+          <h2 class="heading-section text-white mb-4" style="color:var(--paper);">Ready to start<br/>the next log?</h2>
+          <p class="mb-9" style="color:rgba(240,238,225,.72); font-size:1.1rem; line-height:1.75;">Tell us what you're working on and where. We'll scope the strata that matter for your site.</p>
+          <a href="../contact/contact.html" class="btn-primary">
+            Contact our team
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section> -->
+  </main>
+
+  <!-- Footer Container -->
+  <div id="footer"></div>
+
+  <!-- Scripts -->
+  <script src="../../header/header.js"></script>
+  <script src="../../footer/footer.js"></script>
+  <script src="services.js"></script>
+
+  <script>
+    (function(){
+      var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var bands = document.querySelectorAll('.stratum-band');
+
+      if (reduceMotion) {
+        bands.forEach(function(b){ b.style.transform = 'scaleY(1)'; });
+        return;
+      }
+
+      function initReveal(){
+        if (!window.gsap) {
+          bands.forEach(function(b){ b.style.transform = 'scaleY(1)'; });
+          return;
+        }
+        if (window.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
+
+        bands.forEach(function(band, i){
+          gsap.to(band, {
+            scaleY: 1,
+            duration: 0.7,
+            ease: 'power2.out',
+            delay: i * 0.05,
+            scrollTrigger: {
+              trigger: band.closest('.stratum'),
+              start: 'top 82%',
+              once: true
+            }
+          });
+        });
+      }
+
+      window.addEventListener('load', initReveal);
+      // Fallback in case load already fired before this script ran
+      setTimeout(function(){
+        if (window.gsap) initReveal();
+      }, 400);
+    })();
+  </script>
+</body>
+</html>
