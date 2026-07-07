@@ -354,6 +354,240 @@
         </div>
       </div>
     </section> -->
+  
+  <style>
+/* Back to Top Button */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    box-shadow: 0 4px 20px rgba(34, 197, 94, 0.4);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px) scale(0.8);
+    z-index: 1000;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+.back-to-top:hover {
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 8px 30px rgba(34, 197, 94, 0.5);
+    background: linear-gradient(135deg, #16a34a, #15803d);
+}
+
+.back-to-top:active {
+    transform: scale(0.9);
+}
+
+.back-to-top svg {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+}
+
+.back-to-top:hover svg {
+    transform: translateY(-2px);
+}
+
+/* Pulse ring animation */
+.back-to-top::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: transparent;
+    border: 2px solid rgba(34, 197, 94, 0.3);
+    animation: pulse-ring 2s ease-out infinite;
+}
+
+@keyframes pulse-ring {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* Scroll progress ring */
+.back-to-top .progress-ring {
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.back-to-top .progress-ring svg {
+    transform: rotate(-90deg);
+    width: 100%;
+    height: 100%;
+}
+
+.back-to-top .progress-ring circle {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.3);
+    stroke-width: 2;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.3s ease;
+}
+
+/* Continuous Bounce Effect */
+.back-to-top.visible {
+    animation: continuous-bounce 2s ease-in-out infinite;
+}
+
+@keyframes continuous-bounce {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    25% {
+        transform: translateY(-8px) scale(1.05);
+    }
+    50% {
+        transform: translateY(0) scale(1);
+    }
+    75% {
+        transform: translateY(-4px) scale(1.03);
+    }
+}
+
+/* Keep hover interaction */
+.back-to-top:hover {
+    animation: hover-bounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes hover-bounce {
+    0% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-12px) scale(1.15);
+    }
+    100% {
+        transform: translateY(-3px) scale(1.1);
+    }
+}
+
+/* Click bounce */
+.back-to-top:active {
+    transform: scale(0.85);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 44px;
+        height: 44px;
+        font-size: 20px;
+    }
+    .back-to-top svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+</style>
+
+<!-- Back to Top Button -->
+<button id="backToTop" class="back-to-top" aria-label="Back to top">
+    <!-- Your image -->
+    <img src="/assets/btt-removebg-preview.png" alt="Back to top">
+
+    <!-- Progress ring -->
+    <div class="progress-ring">
+        <svg viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="46" 
+                stroke-dasharray="289" 
+                stroke-dashoffset="289" 
+                id="progressCircle"/>
+        </svg>
+    </div>
+</button>
+<script>// Back to Top JavaScript
+document.addEventListener('DOMContentLoaded', function() {
+    const backToTopButton = document.getElementById('backToTop');
+    const progressCircle = document.getElementById('progressCircle');
+    const scrollThreshold = 300;
+    let isVisible = false;
+
+    // Function to update progress ring
+    function updateProgress() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        
+        // Update progress ring
+        if (progressCircle) {
+            const circumference = 289; // 2 * PI * 46
+            const offset = circumference - (scrollPercent / 100) * circumference;
+            progressCircle.style.strokeDashoffset = offset;
+        }
+
+        // Show/hide button
+        if (scrollTop > scrollThreshold) {
+            if (!isVisible) {
+                backToTopButton.classList.add('visible');
+                isVisible = true;
+            }
+        } else {
+            if (isVisible) {
+                backToTopButton.classList.remove('visible');
+                isVisible = false;
+            }
+        }
+    }
+
+    // Scroll event listener with throttling for performance
+    let ticking = false;
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            window.requestAnimationFrame(function() {
+                updateProgress();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+
+    // Click handler with smooth scroll
+    backToTopButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        // Add click animation
+        this.style.transform = 'scale(0.8)';
+        setTimeout(() => {
+            this.style.transform = '';
+        }, 200);
+        
+        // Smooth scroll to top
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // Initial check
+    updateProgress();
+});</script>
   </main>
 
   <!-- Footer placeholder -->
