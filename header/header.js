@@ -6,6 +6,28 @@
   const toggle = document.getElementById('menu-toggle');
   const menu = document.getElementById('mobile-menu');
 
+  // ---- Active page underline ----------------------------------------
+  // Matched by keyword rather than an exact-string map, so it keeps
+  // working regardless of trailing slashes, base paths, or nesting depth.
+  const path = window.location.pathname.toLowerCase();
+
+  function detectActivePage() {
+    if (path.includes('/about')) return 'about';
+    if (path.includes('/services')) return 'services';
+    if (path.includes('/projects')) return 'projects';
+    if (path.includes('/careers')) return 'careers';
+    if (path.includes('/contact')) return 'contact';
+    return 'home';
+  }
+
+  const activePage = detectActivePage();
+
+  header.querySelectorAll('.nav-link, .mobile-nav-link').forEach((link) => {
+    const page = link.getAttribute('data-page');
+    link.classList.toggle('active', page === activePage);
+  });
+  // ---------------------------------------------------------------------
+
   // Hamburger open/close
   toggle.addEventListener('click', () => {
     const isOpen = menu.classList.toggle('is-open');

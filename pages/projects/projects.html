@@ -243,117 +243,292 @@
     <!-- ===== PROJECTS GRID ===== -->
     <section class="section-padding">
       <div class="container-custom">
-        <div id="projectsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          <!-- Card 1: Energy -->
-          <div class="project-card" data-category="energy">
-            <div class="img-wrapper">
-              <img 
-                src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&h=400&fit=crop&crop=center&auto=format" 
-                alt="Solar panels" class="card-img w-full h-full object-cover" loading="lazy" />
-              <span class="badge">Energy</span>
-            </div>
-            <div class="card-content">
-              <h3 class="card-title">Solar Farm Environmental Assessment</h3>
-              <p class="card-desc">Comprehensive EIA for a 200MW PV facility in Arizona, including wildlife impact and mitigation planning.</p>
-              <div class="card-meta"><span>2024</span><span>Arizona, USA</span></div>
-            </div>
-          </div>
+        <!-- ===================================================================
+     UPDATED CSS — replace the existing .project-card related rules
+     inside your <style> block with these
+=================================================================== -->
+<style>
+  /* project card – full-bleed image with gradient text overlay */
+  .project-card {
+    position: relative;
+    height: 460px;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    box-shadow: 0 10px 35px -8px rgba(0, 30, 15, 0.15);
+    transition: transform 0.35s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.4s ease;
+    will-change: transform;
+    cursor: pointer;
+  }
+  .project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 28px 50px -16px rgba(0, 50, 25, 0.3);
+  }
 
-          <!-- Card 2: Water -->
-          <div class="project-card" data-category="water">
-            <div class="img-wrapper">
-              <img 
-                src="https://images.unsplash.com/photo-1588405748880-12d1d2a59f6d?w=600&h=400&fit=crop&crop=center&auto=format" 
-                alt="River restoration" class="card-img w-full h-full object-cover" loading="lazy" />
-              <span class="badge">Water</span>
-            </div>
-            <div class="card-content">
-              <h3 class="card-title">Watershed Restoration Initiative</h3>
-              <p class="card-desc">Restoration of 50km of river ecosystem in the Pacific Northwest, improving water quality and habitat.</p>
-              <div class="card-meta"><span>2023</span><span>Oregon, USA</span></div>
-            </div>
-          </div>
+  .project-card .card-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.2, 0, 0, 1);
+    will-change: transform;
+  }
+  .project-card:hover .card-img {
+    transform: scale(1.06);
+  }
 
-          <!-- Card 3: Carbon -->
-          <div class="project-card" data-category="carbon">
-            <div class="img-wrapper">
-              <img 
-                src="https://images.unsplash.com/photo-1535083783855-76ae62b2914e?w=600&h=400&fit=crop&crop=center&auto=format" 
-                alt="Corporate sustainability" class="card-img w-full h-full object-cover" loading="lazy" />
-              <span class="badge">Carbon</span>
-            </div>
-            <div class="card-content">
-              <h3 class="card-title">Corporate Net-Zero Strategy</h3>
-              <p class="card-desc">Carbon reduction roadmap and net-zero transition plan for a Fortune 500 manufacturing company.</p>
-              <div class="card-meta"><span>2024</span><span>Global</span></div>
-            </div>
-          </div>
+  /* dark gradient so white text stays readable over any photo */
+  .project-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(6, 20, 13, 0.92) 0%,
+      rgba(6, 20, 13, 0.55) 38%,
+      rgba(6, 20, 13, 0) 68%
+    );
+    pointer-events: none;
+  }
 
-          <!-- Card 4: Biodiversity -->
-          <div class="project-card" data-category="biodiversity">
-            <div class="img-wrapper">
-              <img 
-                src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=600&h=400&fit=crop&crop=center&auto=format" 
-                alt="Coastal biodiversity" class="card-img w-full h-full object-cover" loading="lazy" />
-              <span class="badge">Biodiversity</span>
-            </div>
-            <div class="card-content">
-              <h3 class="card-title">Biodiversity Conservation Plan</h3>
-              <p class="card-desc">Comprehensive strategy for coastal development zones, protecting endangered species and habitats.</p>
-              <div class="card-meta"><span>2023</span><span>Florida, USA</span></div>
-            </div>
-          </div>
+  .project-card .card-content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    padding: 1.75rem 1.75rem 2rem;
+  }
 
-          <!-- Card 5: Circular -->
-          <div class="project-card" data-category="circular">
-            <div class="img-wrapper">
-              <img 
-                src="https://images.unsplash.com/photo-1532996122725-e3c354a0b15b?w=600&h=400&fit=crop&crop=center&auto=format" 
-                alt="Waste to energy" class="card-img w-full h-full object-cover" loading="lazy" />
-              <span class="badge">Circular Economy</span>
-            </div>
-            <div class="card-content">
-              <h3 class="card-title">Waste-to-Value Program</h3>
-              <p class="card-desc">Circular economy program converting organic waste to renewable energy and compost for a major municipality.</p>
-              <div class="card-meta"><span>2024</span><span>California, USA</span></div>
-            </div>
-          </div>
+  .project-card .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.25;
+    color: #ffffff;
+    margin-bottom: 1.1rem;
+    letter-spacing: -0.01em;
+  }
 
-          <!-- Card 6: Climate -->
-          <div class="project-card" data-category="climate">
-            <div class="img-wrapper">
-              <img 
-                src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&h=400&fit=crop&crop=center&auto=format" 
-                alt="Climate resilience" class="card-img w-full h-full object-cover" loading="lazy" />
-              <span class="badge">Climate</span>
-            </div>
-            <div class="card-content">
-              <h3 class="card-title">Climate Risk Assessment</h3>
-              <p class="card-desc">Climate risk and vulnerability assessment for a coastal city, informing adaptation and resilience planning.</p>
-              <div class="card-meta"><span>2023</span><span>Florida, USA</span></div>
-            </div>
-          </div>
-        </div>
+  .project-card .card-meta-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
+  }
+  .project-card .meta-label {
+    color: #7fd7ac;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+    font-size: 0.75rem;
+    min-width: 62px;
+  }
+  .project-card .meta-value {
+    color: rgba(255, 255, 255, 0.88);
+    font-weight: 400;
+  }
+</style>
+
+<!-- ===================================================================
+     UPDATED MARKUP — replace the existing #projectsGrid contents
+=================================================================== -->
+<div id="projectsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+
+  <!-- Card 1: Energy -->
+  <div class="project-card" data-category="energy">
+    <img
+      src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&h=800&fit=crop&crop=center&auto=format"
+      alt="Solar panels" class="card-img" loading="lazy" />
+    <div class="card-content">
+      <h3 class="card-title">Solar Farm Environmental Assessment</h3>
+      <div class="card-meta-row"><span class="meta-label">Location</span><span class="meta-value">Arizona, USA</span></div>
+      <div class="card-meta-row"><span class="meta-label">Industry</span><span class="meta-value">Energy</span></div>
+    </div>
+  </div>
+
+  <!-- Card 2: Water -->
+  <div class="project-card" data-category="water">
+    <img
+      src="/assets/p_2.jfif"
+      alt="River restoration" class="card-img" loading="lazy" />
+    <div class="card-content">
+      <h3 class="card-title">Watershed Restoration Initiative</h3>
+      <div class="card-meta-row"><span class="meta-label">Location</span><span class="meta-value">Oregon, USA</span></div>
+      <div class="card-meta-row"><span class="meta-label">Industry</span><span class="meta-value">Water</span></div>
+    </div>
+  </div>
+
+  <!-- Card 3: Carbon -->
+  <div class="project-card" data-category="carbon">
+    <img
+      src="/assets/p_3.jpg"
+      alt="Corporate sustainability" class="card-img" loading="lazy" />
+    <div class="card-content">
+      <h3 class="card-title">Corporate Net-Zero Strategy</h3>
+      <div class="card-meta-row"><span class="meta-label">Location</span><span class="meta-value">Global</span></div>
+      <div class="card-meta-row"><span class="meta-label">Industry</span><span class="meta-value">Carbon</span></div>
+    </div>
+  </div>
+
+  <!-- Card 4: Biodiversity -->
+  <div class="project-card" data-category="biodiversity">
+    <img
+      src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=600&h=800&fit=crop&crop=center&auto=format"
+      alt="Coastal biodiversity" class="card-img" loading="lazy" />
+    <div class="card-content">
+      <h3 class="card-title">Biodiversity Conservation Plan</h3>
+      <div class="card-meta-row"><span class="meta-label">Location</span><span class="meta-value">Florida, USA</span></div>
+      <div class="card-meta-row"><span class="meta-label">Industry</span><span class="meta-value">Biodiversity</span></div>
+    </div>
+  </div>
+
+  <!-- Card 5: Circular -->
+  <div class="project-card" data-category="circular">
+    <img
+      src="/assets/p_5.png"
+      alt="Waste to energy" class="card-img" loading="lazy" />
+    <div class="card-content">
+      <h3 class="card-title">Waste-to-Value Program</h3>
+      <div class="card-meta-row"><span class="meta-label">Location</span><span class="meta-value">California, USA</span></div>
+      <div class="card-meta-row"><span class="meta-label">Industry</span><span class="meta-value">Circular Economy</span></div>
+    </div>
+  </div>
+
+  <!-- Card 6: Climate -->
+  <div class="project-card" data-category="climate">
+    <img
+      src="/assets/p_6.avif"
+      alt="Climate resilience" class="card-img" loading="lazy" />
+    <div class="card-content">
+      <h3 class="card-title">Climate Risk Assessment</h3>
+      <div class="card-meta-row"><span class="meta-label">Location</span><span class="meta-value">Florida, USA</span></div>
+      <div class="card-meta-row"><span class="meta-label">Industry</span><span class="meta-value">Climate</span></div>
+    </div>
+  </div>
+
+</div>
       </div>
     </section>
 
-    <!-- ===== CTA ===== -->
-    <!-- <section class="section-padding bg-[#0f2b1e] text-white relative overflow-hidden">
-      <div class="absolute inset-0 bg-[#1b4a33] opacity-20"></div>
-      <div class="container-custom relative z-10 text-center">
-        <div class="max-w-3xl mx-auto">
-          <span class="inline-block text-[#9dc7b5] font-semibold text-sm uppercase tracking-[0.2em] mb-4">Let's create impact</span>
-          <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl text-white leading-tight mb-4">Have a project in mind?</h2>
-          <p class="text-white/70 text-lg leading-relaxed mb-8 max-w-xl mx-auto">Let's discuss how SIEC can help you achieve your environmental goals.</p>
-          <a href="../contact/contact.html" class="btn-primary text-[#1b4332] bg-white hover:bg-white/90">
-            Start your project
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+<!-- ===== CTA - FIELD PHOTO BANNER STYLE (TAILWIND ONLY) ===== -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-4 md:pb-8 mt-8 md:mt-12">
+  <div class="relative h-72 md:h-96 overflow-hidden rounded-2xl">
+
+    <!-- Background Image -->
+    <img src="/assets/cta_1.jpeg"
+         alt="Environmental sustainability"
+         loading="lazy"
+         class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
+
+    <!-- Overlay Gradient -->
+<div class="absolute inset-0 bg-gradient-to-t from-[#0d2b20]/50 via-[#0d2b20]/25 to-transparent"></div>
+
+    <!-- Glow Orbs -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-[#22c55e]/5 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 right-0 w-64 h-64 bg-[#4ade80]/5 rounded-full blur-2xl"></div>
+
+    <!-- Content -->
+    <div class="absolute inset-0 flex items-center justify-center">
+      <div class="text-center max-w-3xl mx-auto px-6">
+
+        <!-- Badge -->
+        <span class="inline-flex items-center gap-2 text-[#8fbfae] text-[10px] uppercase tracking-[0.2em] font-medium mb-4">
+          <span class="w-6 h-px bg-[#8fbfae]/50"></span>
+          Let's create impact
+          <span class="relative flex h-1.5 w-1.5">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#22c55e] opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#22c55e]"></span>
+          </span>
+          <span class="w-6 h-px bg-[#8fbfae]/50"></span>
+        </span>
+
+        <!-- Heading -->
+        <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 leading-[1.15]">
+          Have a project
+          <br class="sm:hidden" />
+          <span class="bg-gradient-to-r from-[#22c55e] via-[#4ade80] to-[#22c55e] bg-clip-text text-transparent">
+            in mind
+          </span>?
+        </h2>
+
+        <!-- Description -->
+        <p class="text-white/70 text-sm md:text-base max-w-xl mx-auto mb-6 leading-relaxed backdrop-blur-sm bg-black/20 py-2 px-4 rounded-xl border border-white/5 inline-block">
+          Let's discuss how SIEC can help you achieve your environmental goals.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-wrap justify-center gap-3">
+          <a href="../contact/contact.html"
+             class="group inline-flex items-center px-6 py-2.5 bg-[#22c55e] text-white text-sm font-medium rounded-full transition-all duration-300 hover:bg-[#16a34a] hover:shadow-[0_15px_30px_-10px_#22c55e] hover:-translate-y-0.5">
+            <span>Start your project</span>
+            <svg class="w-4 h-4 ml-1.5 transition-transform duration-300 group-hover:translate-x-1"
+                 fill="none"
+                 stroke="currentColor"
+                 viewBox="0 0 24 24">
+              <path stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+
+          <a href="#"
+             class="group inline-flex items-center px-6 py-2.5 text-white/80 text-sm font-medium rounded-full border border-white/20 transition-all duration-300 hover:bg-white/10 hover:border-white/40 hover:-translate-y-0.5">
+            <span>Learn More</span>
+            <svg class="w-4 h-4 ml-1.5 transition-transform duration-300 group-hover:translate-x-1"
+                 fill="none"
+                 stroke="currentColor"
+                 viewBox="0 0 24 24">
+              <path stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>
           </a>
         </div>
+
+        <!-- Trust Indicators -->
+        <div class="mt-6 pt-4 border-t border-white/10 flex flex-wrap justify-center items-center gap-5 text-white/40 text-xs">
+          <span class="flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#22c55e]"></span>
+            200+ partners
+          </span>
+
+          <span class="flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-[#22c55e]" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+            </svg>
+            4.9/5
+          </span>
+
+          <span class="flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/>
+            </svg>
+            40+ countries
+          </span>
+
+          <span class="flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-[#22c55e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+            ISO 14001
+          </span>
+        </div>
+
       </div>
-    </section> -->
+    </div>
+
+  </div>
+</section>
   
   <style>
 /* Back to Top Button */

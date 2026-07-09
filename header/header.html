@@ -1,106 +1,240 @@
-<header id="site-header" class="fixed top-0 inset-x-0 z-50 transition-colors duration-500">
+<header id="site-header" class="fixed top-0 inset-x-0 z-50 transition-all duration-500 bg-[#FAF6EC]/95 backdrop-blur-[20px] mx-4 sm:mx-6 lg:mx-8 mt-3 sm:mt-4 lg:mt-5 rounded-3xl sm:rounded-4xl lg:rounded-[40px] shadow-[0_4px_30px_rgba(0,0,0,0.08)] border border-white/30">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-20">
-
       <!-- Logo -->
       <a href="../home/index.html" class="flex items-center magnetic" aria-label="SIEC home">
-  <img
-    src="/assets/logo.png"
-    alt="SIEC Consultancy"
-    class="h-12 w-auto object-contain"
-  >
-</a>
-
+        <img
+          src="/assets/logo-removebg-preview.png"
+          alt="SIEC Consultancy"
+          class="h-12 w-auto object-contain"
+        >
+      </a>
       <!-- Desktop nav -->
       <nav aria-label="Primary" class="hidden lg:flex items-center gap-10">
-        <a href="/index.html" class="nav-link">Home</a>
-        <a href="/pages/about/about.html" class="nav-link">About</a>
-        <a href="/pages/services/services.html" class="nav-link">Services</a>
-        <a href="/pages/projects/projects.html" class="nav-link">Projects</a>
-        <!-- <a href="../laboratory/laboratory.html" class="nav-link">Laboratory</a> -->
-        <a href="/pages/careers/careers.html" class="nav-link">Careers</a>
+        <a href="/index.html" class="nav-link relative text-sm font-medium text-charcoal transition-colors duration-300 pb-1" data-page="home">
+          Home
+          <span class="absolute left-0 -bottom-1 h-0.5 bg-gradient-to-r from-[#6CB33F] to-[#C5A83A] transition-all duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] rounded-sm active-indicator"></span>
+        </a>
+        <a href="/pages/about/about.html" class="nav-link relative text-sm font-medium text-charcoal transition-colors duration-300 pb-1" data-page="about">
+          About
+          <span class="absolute left-0 -bottom-1 h-0.5 bg-gradient-to-r from-[#6CB33F] to-[#C5A83A] transition-all duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] rounded-sm active-indicator"></span>
+        </a>
+        <a href="/pages/services/services.html" class="nav-link relative text-sm font-medium text-charcoal transition-colors duration-300 pb-1" data-page="services">
+          Services
+          <span class="absolute left-0 -bottom-1 h-0.5 bg-gradient-to-r from-[#6CB33F] to-[#C5A83A] transition-all duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] rounded-sm active-indicator"></span>
+        </a>
+        <a href="/pages/projects/projects.html" class="nav-link relative text-sm font-medium text-charcoal transition-colors duration-300 pb-1" data-page="projects">
+          Projects
+          <span class="absolute left-0 -bottom-1 h-0.5 bg-gradient-to-r from-[#6CB33F] to-[#C5A83A] transition-all duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] rounded-sm active-indicator"></span>
+        </a>
+        <a href="/pages/careers/careers.html" class="nav-link relative text-sm font-medium text-charcoal transition-colors duration-300 pb-1" data-page="careers">
+          Careers
+          <span class="absolute left-0 -bottom-1 h-0.5 bg-gradient-to-r from-[#6CB33F] to-[#C5A83A] transition-all duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] rounded-sm active-indicator"></span>
+        </a>
       </nav>
-
       <div class="hidden lg:block">
-       <a href="/pages/contact/contact.html" class="magnetic inline-flex items-center px-6 py-3 bg-[#6CB33F] text-white text-sm font-medium rounded-full transition-all duration-300 hover:bg-[#4E9A2D] hover:shadow-lg hover:scale-105">
-  Get in Touch
-</a>
+        <a href="/pages/contact/contact.html" class="magnetic inline-flex items-center px-6 py-3 bg-[#6CB33F] text-white text-sm font-medium rounded-full transition-all duration-300 hover:bg-[#4E9A2D] hover:shadow-lg hover:scale-105">
+          Get in Touch
+        </a>
       </div>
-
       <!-- Hamburger -->
-      <button id="menu-toggle" class="lg:hidden relative w-10 h-10 flex flex-col items-center justify-center gap-[6px]" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <button id="menu-toggle" class="lg:hidden relative w-10 h-10 flex flex-col items-center justify-center gap-[6px] text-charcoal" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
         <span class="menu-bar block w-6 h-[2px] bg-current transition-transform duration-300"></span>
         <span class="menu-bar block w-6 h-[2px] bg-current transition-opacity duration-300"></span>
         <span class="menu-bar block w-6 h-[2px] bg-current transition-transform duration-300"></span>
       </button>
     </div>
   </div>
-
   <!-- Mobile menu -->
   <div id="mobile-menu" class="fixed inset-0 z-40 bg-[#0d0d0d] text-white flex flex-col justify-center px-8 -translate-y-full transition-transform duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] lg:hidden" aria-hidden="true">
     <nav aria-label="Mobile" class="flex flex-col gap-6">
-      <a href="/index.html" class="mobile-nav-link font-display text-4xl">Home</a>
-      <a href="/pages/about/about.html" class="mobile-nav-link font-display text-4xl">About</a>
-      <a href="/pages/services/services.html" class="mobile-nav-link font-display text-4xl">Services</a>
-      <a href="/pages/projects/projects.html" class="mobile-nav-link font-display text-4xl">Projects</a>
-      <!-- <a href="../laboratory/laboratory.html" class="mobile-nav-link font-display text-4xl">Laboratory</a> -->
-      <a href="/pages/careers/careers.html" class="mobile-nav-link font-display text-4xl">Careers</a>
-      <a href="/pages/contact/contact.html" class="mobile-nav-link font-display text-4xl text-[#e8622c]">Contact</a>
+      <a href="/index.html" class="mobile-nav-link font-display text-4xl text-white/90 hover:text-white transition-colors relative" data-page="home">
+        Home
+        <span class="absolute left-0 -bottom-2 h-0.5 bg-gradient-to-r from-[#6CB33F] to-[#C5A83A] transition-all duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] rounded-sm active-indicator-mobile"></span>
+      </a>
+      <a href="/pages/about/about.html" class="mobile-nav-link font-display text-4xl text-white/90 hover:text-white transition-colors relative" data-page="about">
+        About
+        <span class="absolute left-0 -bottom-2 h-0.5 bg-gradient-to-r from-[#6CB33F] to-[#C5A83A] transition-all duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] rounded-sm active-indicator-mobile"></span>
+      </a>
+      <a href="/pages/services/services.html" class="mobile-nav-link font-display text-4xl text-white/90 hover:text-white transition-colors relative" data-page="services">
+        Services
+        <span class="absolute left-0 -bottom-2 h-0.5 bg-gradient-to-r from-[#6CB33F] to-[#C5A83A] transition-all duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] rounded-sm active-indicator-mobile"></span>
+      </a>
+      <a href="/pages/projects/projects.html" class="mobile-nav-link font-display text-4xl text-white/90 hover:text-white transition-colors relative" data-page="projects">
+        Projects
+        <span class="absolute left-0 -bottom-2 h-0.5 bg-gradient-to-r from-[#6CB33F] to-[#C5A83A] transition-all duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] rounded-sm active-indicator-mobile"></span>
+      </a>
+      <a href="/pages/careers/careers.html" class="mobile-nav-link font-display text-4xl text-white/90 hover:text-white transition-colors relative" data-page="careers">
+        Careers
+        <span class="absolute left-0 -bottom-2 h-0.5 bg-gradient-to-r from-[#6CB33F] to-[#C5A83A] transition-all duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] rounded-sm active-indicator-mobile"></span>
+      </a>
+      <a href="/pages/contact/contact.html" class="mobile-nav-link font-display text-4xl text-[#e8622c] hover:text-[#ff7a3f] transition-colors relative" data-page="contact">
+        Contact
+        <span class="absolute left-0 -bottom-2 h-0.5 bg-gradient-to-r from-[#6CB33F] to-[#C5A83A] transition-all duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] rounded-sm active-indicator-mobile"></span>
+      </a>
     </nav>
   </div>
 </header>
-
 <style>
-  .nav-link {
-    position: relative;
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--color-charcoal);
-    transition: color 0.3s;
-  }
-  .nav-link::after {
-    content: '';
-    position: absolute;
-    left: 0; bottom: -4px;
-    width: 0; height: 1px;
-    background: var(--color-orange);
-    transition: width 0.3s var(--ease-out);
-  }
-  .nav-link:hover::after { width: 100%; }
-
-  #site-header.header-on-dark .nav-link,
-  #site-header.header-on-dark .header-logo-text,
-  #site-header.header-on-dark .header-logo-sub {
-    color: #fff;
-  }
+  /* Custom styles for header - minimal required */
   #site-header.header-scrolled {
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(12px);
-    box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+    background: rgba(250, 246, 236, 0.9);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.12);
   }
   #site-header.header-scrolled.header-on-dark {
-    background: rgba(13, 13, 13, 0.75);
+    background: rgba(13, 13, 13, 0.85);
+    border-color: rgba(255, 255, 255, 0.1);
   }
-  .header-logo-sub { color: #8a8a86; }
-
-  .mobile-nav-link { color: #fff; opacity: 0.9; }
-  #mobile-menu.is-open { transform: translateY(0); }
-
-  #menu-toggle.is-open .menu-bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-  #menu-toggle.is-open .menu-bar:nth-child(2) { opacity: 0; }
-  #menu-toggle.is-open .menu-bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-
-  #site-header {
-  background: #fff;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
-}
-
-#site-header.header-scrolled {
-  background: #fff;
-  backdrop-filter: blur(12px);
-}
-
-#site-header.header-scrolled.header-on-dark {
-  background: #fff;
-}
+  #site-header.header-on-dark .nav-link {
+    color: rgba(255, 255, 255, 0.9);
+  }
+  #site-header.header-on-dark .nav-link.active {
+    color: #6CB33F;
+  }
+  #site-header.header-on-dark .menu-bar {
+    color: white;
+  }
+  /* DEFAULT STATE - underline is ALWAYS visible but transparent/light */
+  .active-indicator {
+    width: 0;
+    opacity: 0.3;
+    transition: all 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+  /* ACTIVE STATE - underline is FULLY visible with glow */
+  .nav-link.active .active-indicator {
+    width: 100% !important;
+    opacity: 1 !important;
+    box-shadow: 0 0 12px rgba(108, 179, 63, 0.4);
+  }
+  .nav-link.active {
+    color: #4E9A2D;
+  }
+  /* HOVER STATE - underline becomes visible on hover too */
+  .nav-link:hover .active-indicator {
+    width: 100%;
+    opacity: 0.7;
+  }
+  /* But if it's already active, keep it at 100% and full opacity */
+  .nav-link.active:hover .active-indicator {
+    opacity: 1 !important;
+  }
+  /* Mobile active state - ALWAYS visible when on the page */
+  .active-indicator-mobile {
+    width: 0;
+    opacity: 0.3;
+    transition: all 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+  .mobile-nav-link.active .active-indicator-mobile {
+    width: 100% !important;
+    opacity: 1 !important;
+  }
+  .mobile-nav-link.active {
+    color: #6CB33F !important;
+  }
+  .mobile-nav-link:hover .active-indicator-mobile {
+    width: 100%;
+    opacity: 0.7;
+  }
+  .mobile-nav-link.active:hover .active-indicator-mobile {
+    opacity: 1 !important;
+  }
+  /* Hamburger animation */
+  #menu-toggle.is-open .menu-bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  #menu-toggle.is-open .menu-bar:nth-child(2) {
+    opacity: 0;
+  }
+  #menu-toggle.is-open .menu-bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+  #mobile-menu.is-open {
+    transform: translateY(0);
+  }
+  /* Responsive border radius utilities (since Tailwind doesn't have all values) */
+  @media (min-width: 640px) {
+    #site-header {
+      border-radius: 32px;
+    }
+  }
+  @media (min-width: 1024px) {
+    #site-header {
+      border-radius: 40px;
+    }
+  }
 </style>
+<script>
+  /* SIEC — Header behavior with curved edges and active state */
+  (function initHeader() {
+    const header = document.getElementById('site-header');
+    if (!header) return;
+    const toggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('mobile-menu');
+    // Determine current page from URL — matched by keyword rather than an
+    // exact-string map, so it keeps working regardless of trailing slashes,
+    // base paths, or how deep the page is nested.
+    const path = window.location.pathname.toLowerCase();
+    function detectActivePage() {
+      if (path.includes('/about')) return 'about';
+      if (path.includes('/services')) return 'services';
+      if (path.includes('/projects')) return 'projects';
+      if (path.includes('/careers')) return 'careers';
+      if (path.includes('/contact')) return 'contact';
+      if (path.includes('/home') || path === '/' || path.endsWith('/index.html')) return 'home';
+      return 'home';
+    }
+    const activePage = detectActivePage();
+    // Add active class to matching nav links - this makes the underline permanently visible
+    document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
+      const page = link.getAttribute('data-page');
+      if (page === activePage) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+    // Hamburger open/close
+    if (toggle && menu) {
+      toggle.addEventListener('click', () => {
+        const isOpen = menu.classList.toggle('is-open');
+        toggle.classList.toggle('is-open', isOpen);
+        toggle.setAttribute('aria-expanded', String(isOpen));
+        menu.setAttribute('aria-hidden', String(!isOpen));
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+      });
+      menu.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+          menu.classList.remove('is-open');
+          toggle.classList.remove('is-open');
+          document.body.style.overflow = '';
+        });
+      });
+    }
+    // Dark-on-hero detection
+    const heroSection = document.querySelector('main > section:first-of-type');
+    const heroIsDark = heroSection && 
+      getComputedStyle(heroSection).backgroundColor !== 'rgba(0, 0, 0, 0)' &&
+      heroSection.id === 'hero';
+    if (heroIsDark) {
+      header.classList.add('header-on-dark');
+    }
+    // Scroll state management
+    const applyScrollState = () => {
+      const scrolled = window.scrollY > 40;
+      header.classList.toggle('header-scrolled', scrolled);
+      
+      if (heroIsDark) {
+        header.classList.toggle('header-on-dark', !scrolled);
+      }
+    };
+    applyScrollState();
+    window.addEventListener('scroll', applyScrollState, { passive: true });
+    // Re-bind magnetic + cursor highlight behaviour
+    if (window.SIEC) {
+      if (SIEC.rebindMagnetic) SIEC.rebindMagnetic();
+      if (SIEC.bindCursorTargets) SIEC.bindCursorTargets();
+    }
+  })();
+</script>
