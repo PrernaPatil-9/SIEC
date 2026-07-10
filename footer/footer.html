@@ -5,299 +5,631 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<footer class="bg-[#0d2b20] text-white relative overflow-hidden font-['Poppins']">
+<footer class="gf">
+  
 
-  <!-- Ambient background accents -->
-  <div class="absolute inset-0 pointer-events-none">
-    <div class="absolute inset-0" style="background: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(34, 197, 94, 0.02) 40px, rgba(34, 197, 94, 0.02) 41px);"></div>
-    <div class="absolute top-0 right-1/4 w-72 h-72 rounded-full bg-[#22c55e]/10 blur-[100px]"></div>
-    <div class="absolute bottom-0 left-1/5 w-60 h-60 rounded-full bg-[#8fbfae]/10 blur-[80px]"></div>
+  <!-- HERO BAND with Logo -->
+  <div class="gf-hero">
+    <div>
+      <div class="gf-logo-area">
+        <img class="gf-logo-img" src="/assets/logo-removebg-preview.png" alt="SIEC Logo">
+      </div>
+    </div>
+   <a href="../contact/contact.html"
+   class="gf-cta bg-[#6CB33F] hover:bg-[#4E9A2D] text-white transition-all duration-300 hover:shadow-lg hover:scale-105">
+  Start a Project
+  <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10"/>
+  </svg>
+</a>
   </div>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-10 relative z-10">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
+  <!-- 4-COL GRID -->
+  <div class="gf-grid">
 
-     <!-- Company Info -->
-<div class="lg:col-span-5">
-  <!-- Logo Image instead of text -->
-  <a href="/" class="inline-block">
-    <img 
-      src="/assets/logo.png" 
-      alt="SIEC - Sustainable Integrated Environmental Consultants" 
-      class="h-12 md:h-14 w-auto object-contain"
-      loading="lazy"
-    />
+    <!-- COL 1: STATS + SOCIAL + MINI ADDRESS -->
+    <div class="gf-col">
+      <div class="gf-stat-row">
+        <div>
+          <div class="gf-stat-num">10+</div>
+          <div class="gf-stat-label">Years</div>
+        </div>
+        <div>
+          <div class="gf-stat-num">200+</div>
+          <div class="gf-stat-label">Projects</div>
+        </div>
+        <div>
+          <div class="gf-stat-num">5★</div>
+          <div class="gf-stat-label">Rating</div>
+        </div>
+      </div>
+
+      <div class="gf-social">
+        <a href="#" class="gf-soc" aria-label="Facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="#" class="gf-soc" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://wa.me/918008924800" target="_blank" class="gf-soc wa" aria-label="WhatsApp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="#" class="gf-soc" aria-label="LinkedIn">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </div>
+
+      <div class="gf-address-mini">
+        Pune, Maharashtra, India<br>
+        Mon – Sat · 9 AM – 7 PM
+      </div>
+    </div>
+
+    <!-- COL 2: QUICK LINKS with Icons -->
+    <div class="gf-col">
+      <div class="gf-ch">Navigate</div>
+      <ul class="gf-navlist">
+        <li><a href="/index.html" class="gf-navlink"><span class="material-symbols-outlined">home</span>Home</a></li>
+        <li><a href="../about/about.html" class="gf-navlink"><span class="material-symbols-outlined">info</span>About Us</a></li>
+        <li><a href="../services/services.html" class="gf-navlink"><span class="material-symbols-outlined">engineering</span>Services</a></li>
+        <li><a href="../projects/projects.html" class="gf-navlink"><span class="material-symbols-outlined">folder</span>Projects</a></li>
+        <li><a href="../careers/careers.html" class="gf-navlink"><span class="material-symbols-outlined">work</span>Careers</a></li>
+      </ul>
+    </div>
+
+    <!-- COL 3: SERVICES with Icons -->
+    <div class="gf-col">
+      <div class="gf-ch">Services</div>
+      <ul class="gf-svclist">
+        <li><a href="#" class="gf-svcitem"><span class="gf-svcnum">01</span><span class="material-symbols-outlined service-icon">eco</span>Environmental Remediation</a></li>
+        <li><a href="#" class="gf-svcitem"><span class="gf-svcnum">02</span><span class="material-symbols-outlined service-icon">analytics</span>Sustainability Consulting</a></li>
+        <li><a href="#" class="gf-svcitem"><span class="gf-svcnum">03</span><span class="material-symbols-outlined service-icon">factory</span>Industrial Solutions</a></li>
+        <li><a href="#" class="gf-svcitem"><span class="gf-svcnum">04</span><span class="material-symbols-outlined service-icon">cloud</span>Carbon Footprint</a></li>
+        <li><a href="#" class="gf-svcitem"><span class="gf-svcnum">05</span><span class="material-symbols-outlined service-icon">construction</span>Energy Efficiency Audits</a></li>
+      </ul>
+    </div>
+
+    <!-- COL 4: CONTACT with Icons -->
+    <div class="gf-col">
+      <div class="gf-ch">Contact</div>
+      <ul class="gf-ctlist">
+        <li class="gf-ctitem">
+          <span class="gf-ctlabel">Phone</span>
+          <a href="tel:+918008924800" class="gf-ctval"><span class="material-symbols-outlined contact-icon">call</span>+91 800 9924 800</a>
+        </li>
+        <li class="gf-ctitem">
+          <span class="gf-ctlabel">Email</span>
+          <a href="mailto:marketing@sienvconsult.com" class="gf-ctval"><span class="material-symbols-outlined contact-icon">mail</span>marketing@sienvconsult.com</a>
+        </li>
+        <li class="gf-ctitem">
+          <span class="gf-ctlabel">Studio</span>
+          <span class="gf-ctval"><span class="material-symbols-outlined contact-icon">location_on</span>Pune, Maharashtra</span>
+        </li>
+        <li class="gf-ctitem">
+          <div class="gf-hours-chip">
+            <div class="gf-dot"></div>
+            <span class="material-symbols-outlined" style="font-size:14px;">schedule</span>
+            Mon – Sat · 9:00 AM – 7:00 PM
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- BOTTOM BAR -->
+<div class="gf-bottom">
+  <p class="gf-copy">&copy; <span id="footer-year"></span> SIEC. All rights reserved.</p>
+
+ <p class="gf-dev">
+  Developed by
+  <a href="https://kunashmedia.com/" target="_blank" rel="noopener noreferrer" style="color: #ff8c00;">
+    Kunash Media
   </a>
+</p>
 
-  <!-- Subtext: normal white, no bold -->
-  <p class="mt-4 text-sm leading-relaxed max-w-sm text-white font-normal">
-    Sustainable Environmental &amp; Industrial Consultancy — science-led
-    solutions for organizations building a lower-impact future.
-  </p>
-
-  <form
-    id="newsletter-form"
-    class="mt-8 flex max-w-sm border-b border-white/30 focus-within:border-[#22c55e] transition-colors"
-  >
-    <label for="newsletter-email" class="sr-only">
-      Email address
-    </label>
-
-    <input
-      id="newsletter-email"
-      type="email"
-      required
-      placeholder="Your email address"
-      class="bg-transparent flex-1 py-3 text-sm text-white placeholder-white/70 focus:outline-none"
-    />
-
-    <button
-      type="submit"
-      class="magnetic text-sm font-bold text-[#22c55e] px-2 hover:text-[#4ade80] transition-colors"
-    >
-      Subscribe
-    </button>
-  </form>
-
-  <p
-    id="newsletter-status"
-    class="text-xs text-white font-normal mt-2"
-    role="status"
-  ></p>
-
-  <!-- Social Media -->
-  <div class="flex items-center gap-5 mt-8">
-    <a
-      href="https://instagram.com/"
-      target="_blank"
-      class="text-white text-2xl hover:text-[#22c55e] transition duration-300 hover:scale-110"
-    >
-      <i class="fa-brands fa-instagram"></i>
-    </a>
-
-    <a
-      href="https://facebook.com/"
-      target="_blank"
-      class="text-white text-2xl hover:text-[#22c55e] transition duration-300 hover:scale-110"
-    >
-      <i class="fa-brands fa-facebook-f"></i>
-    </a>
-
-    <a
-      href="https://x.com/"
-      target="_blank"
-      class="text-white text-2xl hover:text-[#22c55e] transition duration-300 hover:scale-110"
-    >
-      <i class="fa-brands fa-x-twitter"></i>
-    </a>
-
-    <a
-      href="https://youtube.com/"
-      target="_blank"
-      class="text-white text-2xl hover:text-[#22c55e] transition duration-300 hover:scale-110"
-    >
-      <i class="fa-brands fa-youtube"></i>
-    </a>
-
-    <a
-      href="#"
-      class="text-white text-2xl hover:text-[#22c55e] transition duration-300 hover:scale-110"
-    >
-      <i class="fa-solid fa-share-nodes"></i>
-    </a>
-  </div>
+  <p class="gf-loc">Pune, India</p>
 </div>
-
-      <!-- Company -->
-      <div class="lg:col-span-2">
-        <p class="text-xs uppercase tracking-[0.2em] text-white font-bold mb-4">
-          Company
-        </p>
-
-        <!-- All list items: normal font-weight -->
-        <ul class="space-y-3 text-sm font-normal">
-          <li>
-            <a href="../about/about.html" class="footer-link flex items-center gap-2">
-              <span class="material-symbols-outlined text-base text-[#22c55e]">info</span>
-              About
-            </a>
-          </li>
-
-          <li>
-            <a href="../careers/careers.html" class="footer-link flex items-center gap-2">
-              <span class="material-symbols-outlined text-base text-[#22c55e]">work</span>
-              Careers
-            </a>
-          </li>
-
-          <li>
-            <a href="../projects/projects.html" class="footer-link flex items-center gap-2">
-              <span class="material-symbols-outlined text-base text-[#22c55e]">folder</span>
-              Projects
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Work -->
-      <div class="lg:col-span-2">
-        <p class="text-xs uppercase tracking-[0.2em] text-white font-bold mb-4">
-          Work
-        </p>
-
-        <!-- All list items: normal font-weight -->
-        <ul class="space-y-3 text-sm font-normal">
-          <li>
-            <a href="../services/services.html" class="footer-link flex items-center gap-2">
-              <span class="material-symbols-outlined text-base text-[#22c55e]">engineering</span>
-              Services
-            </a>
-          </li>
-
-          <!-- <li>
-            <a href="../laboratory/laboratory.html" class="footer-link flex items-center gap-2">
-              <span class="material-symbols-outlined text-base text-[#22c55e]">science</span>
-              Laboratory
-            </a>
-          </li> -->
-
-          <li>
-            <a href="../contact/contact.html" class="footer-link flex items-center gap-2">
-              <span class="material-symbols-outlined text-base text-[#22c55e]">contact_mail</span>
-              Contact
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Head Office -->
-      <div class="lg:col-span-3">
-        <p class="text-xs uppercase tracking-[0.2em] text-white font-bold mb-4">
-          Head Office
-        </p>
-
-        <!-- Address subtext: normal white, no bold -->
-        <address class="not-italic text-sm leading-relaxed text-white font-normal space-y-4">
-
-          <div class="flex items-start gap-3">
-            <span class="material-symbols-outlined text-[#22c55e]">
-              location_on
-            </span>
-
-            <span class="font-normal">
-              Office-401, Sanskriti Arcade, Kaspate Wasti, Wakad, Pune, Maharashtra, India 411057
-            </span>
-          </div>
-
-          <div class="flex items-center gap-3">
-            <span class="material-symbols-outlined text-[#22c55e]">
-              mail
-            </span>
-
-            <a href="mailto:hello@siec.example" class="footer-link font-normal">
-              marketing@sienvconsult.com
-            </a>
-          </div>
-
-          <div class="flex items-center gap-3">
-            <span class="material-symbols-outlined text-[#22c55e]">
-              call
-            </span>
-
-            <a href="tel:+919876543210" class="footer-link font-normal">
-              +91 800 9924 800
-            </a>
-          </div>
-
-          <div class="flex items-center gap-3">
-            <span class="material-symbols-outlined text-[#22c55e]">
-              schedule
-            </span>
-
-            <span class="font-normal">Mon - Sat : 9:00 AM - 6:00 PM</span>
-          </div>
-
-        </address>
-      </div>
-
-    </div>
-
-    <!-- Bottom Footer -->
-    <div class="border-t border-white/20 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-
-      <p class="text-xs text-white font-normal">
-        &copy; <span id="footer-year"></span> SIEC. All rights reserved.
-      </p>
-
-      <div class="flex gap-6 text-xs font-normal">
-        <a href="#" class="footer-link flex items-center gap-1">
-          <span class="material-symbols-outlined text-sm">shield</span>
-          Privacy Policy
-        </a>
-
-        <a href="#" class="footer-link flex items-center gap-1">
-          <span class="material-symbols-outlined text-sm">gavel</span>
-          Terms of Service
-        </a>
-      </div>
-
-    </div>
-  </div>
 </footer>
 
 <style>
-  .footer-link {
-    color: #ffffff;
-    font-weight: 400; /* normal weight */
+  /* ===== FOOTER STYLES ===== */
+  .gf {
+    background: #fdf8f0;
+    border-top: 1px solid rgba(46, 204, 113, 0.2);
+    font-family: 'Poppins', sans-serif;
+    color: #1a3a2a;
+    padding: 0 2rem 1.5rem;
+    position: relative;
+  }
+
+  .gf-accent {
+    height: 3px;
+    background: linear-gradient(90deg, #2ecc71, #3498db, #2ecc71);
+    width: 100%;
+    margin-bottom: 2.5rem;
+  }
+
+  .gf-hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  padding-top: 2rem; /* ADD THIS LINE - adds space above logo and button */
+  position: relative;
+}
+
+  /* Horizontal golden divider line after hero */
+  .gf-hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(
+      to right,
+      transparent 0%,
+      #f1c40f 20%,
+      #f1c40f 80%,
+      transparent 100%
+    );
+    opacity: 0.5;
+    border-radius: 2px;
+  }
+
+  /* Decorative dot on horizontal divider */
+  .gf-hero::before {
+    content: '◆';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #f1c40f;
+    font-size: 10px;
+    opacity: 0.6;
+    background: #fdf8f0;
+    padding: 0 8px;
+    z-index: 1;
+  }
+
+  .gf-logo-area {
+    display: flex;
+    align-items: center;
+  }
+
+  .gf-logo-img {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+  }
+
+ .gf-cta {
+  background: #6CB33F;
+  color: #fff;
+  padding: 0.7rem 1.8rem;
+  border-radius: 40px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: all 0.3s ease;
+  letter-spacing: 0.3px;
+  border: none;
+}
+
+.gf-cta:hover {
+  background: #4E9A2D;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(108, 179, 63, 0.35);
+}
+
+  .gf-cta svg {
+    transition: transform 0.3s ease;
+  }
+
+  .gf-cta:hover svg {
+    transform: translate(3px, -3px);
+  }
+
+  .gf-grid {
+    display: grid;
+    grid-template-columns: 2fr 1.2fr 1.5fr 1.8fr;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+    position: relative;
+  }
+
+  /* Column divider lines - golden */
+  .gf-col {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 0 0.5rem;
+  }
+
+  /* Vertical divider lines between columns */
+  .gf-col:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: -1rem;
+    top: 5%;
+    bottom: 5%;
+    width: 2px;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      #f1c40f 15%,
+      #f1c40f 85%,
+      transparent 100%
+    );
+    opacity: 0.4;
+    border-radius: 2px;
+  }
+
+  /* Decorative dot on divider lines */
+  .gf-col:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    right: -1.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    background: #f1c40f;
+    border-radius: 50%;
+    opacity: 0.6;
+    z-index: 2;
+    box-shadow: 0 0 10px rgba(241, 196, 15, 0.3);
+  }
+
+  /* First column - left border */
+  .gf-col:first-child {
+    padding-left: 0;
+  }
+
+  /* Last column - right border */
+  .gf-col:last-child {
+    padding-right: 0;
+  }
+
+  /* Hide dots on smaller screens */
+  @media (max-width: 1024px) {
+    .gf-col:not(:last-child)::before {
+      display: none;
+    }
+  }
+
+  .gf-stat-row {
+    display: flex;
+    gap: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .gf-stat-num {
+    font-size: 1.6rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #2ecc71, #3498db);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+  }
+
+  .gf-stat-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #2d5a3d;
+    font-weight: 400;
+  }
+
+  .gf-social {
+    display: flex;
+    gap: 0.8rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .gf-soc {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #e8e0d0;
+    color: #1a3a2a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
     text-decoration: none;
-    transition: all 0.3s ease;
+    font-size: 14px;
   }
 
-  .footer-link:hover {
-    color: #22c55e;
+  .gf-soc:hover {
+    background: linear-gradient(135deg, #2ecc71, #3498db);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(46, 204, 113, 0.3);
   }
 
-  .material-symbols-outlined {
-    font-variation-settings:
-      "FILL" 0,
-      "wght" 400,
-      "GRAD" 0,
-      "opsz" 24;
-    transition: all 0.3s ease;
-  }
-
-  .footer-link:hover .material-symbols-outlined {
-    color: #22c55e;
-    transform: translateX(2px);
-  }
-
-  #newsletter-email::placeholder {
-    color: rgba(255, 255, 255, 0.7);
+  .gf-address-mini {
+    font-size: 0.8rem;
+    color: #1a4a2a;
+    line-height: 1.6;
     font-weight: 400;
   }
 
-  #newsletter-email {
-    color: #ffffff;
+  .gf-ch {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #2ecc71;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+  }
+
+  /* Underline for section headers */
+  .gf-ch::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background: linear-gradient(90deg, #f1c40f, transparent);
+    border-radius: 2px;
+  }
+
+  .gf-navlist,
+  .gf-svclist,
+  .gf-ctlist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .gf-navlist li,
+  .gf-svclist li {
+    margin-bottom: 0.6rem;
+  }
+
+  .gf-navlink,
+  .gf-svcitem {
+    color: #1a3a2a;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    transition: all 0.3s ease;
+    padding: 0.2rem 0;
+  }
+
+  .gf-navlink .material-symbols-outlined,
+  .gf-svcitem .material-symbols-outlined {
+    font-size: 18px;
+    color: #3498db;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+  }
+
+  .gf-navlink:hover,
+  .gf-svcitem:hover {
+    color: #2ecc71;
+    transform: translateX(4px);
+  }
+
+  .gf-navlink:hover .material-symbols-outlined,
+  .gf-svcitem:hover .material-symbols-outlined {
+    color: #2ecc71;
+    opacity: 1;
+  }
+
+  .gf-svcnum {
+    font-size: 0.6rem;
+    font-weight: 600;
+    color: #2ecc71;
+    opacity: 0.6;
+    min-width: 18px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .gf-ctitem {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    padding: 0.2rem 0;
+  }
+
+  .gf-ctlabel {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #2d6a3d;
+    font-weight: 500;
+  }
+
+  .gf-ctval {
+    color: #1a3a2a;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.3s ease;
+    margin-top: 0.1rem;
+  }
+
+  .gf-ctval .material-symbols-outlined {
+    font-size: 18px;
+    color: #3498db;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+  }
+
+  .gf-ctval:hover {
+    color: #2ecc71;
+  }
+
+  .gf-ctval:hover .material-symbols-outlined {
+    color: #2ecc71;
+    opacity: 1;
+  }
+
+  .gf-hours-chip {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: #1a4a2a;
+    background: #e8e0d0;
+    padding: 0.4rem 0.9rem;
+    border-radius: 30px;
+    margin-top: 0.2rem;
+    transition: all 0.3s ease;
+  }
+
+  .gf-hours-chip:hover {
+    background: #ddd5c5;
+    transform: translateY(-1px);
+  }
+
+  .gf-hours-chip .material-symbols-outlined {
+    font-size: 14px;
+    color: #2ecc71;
+  }
+
+  .gf-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #2ecc71;
+    animation: pulse-dot 2s infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(0.8); }
+  }
+
+  .gf-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(46, 204, 113, 0.15);
+    font-size: 0.7rem;
+    color: #1a4a2a;
+  }
+
+  .gf-copy {
     font-weight: 400;
   }
 
-  #newsletter-email:-webkit-autofill,
-  #newsletter-email:-webkit-autofill:hover,
-  #newsletter-email:-webkit-autofill:focus {
-    -webkit-text-fill-color: #ffffff;
-    transition: background-color 5000s ease-in-out 0s;
+  .gf-dev a {
+    color: #1a4a2a;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    position: relative;
   }
 
-  /* Ensure all address and list text is normal weight */
-  address span,
-  address a,
-  .footer-link,
-  ul li a {
-    font-weight: 400 !important;
+  .gf-dev a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #2ecc71;
+    transition: width 0.3s ease;
+  }
+
+  .gf-dev a:hover::after {
+    width: 100%;
+  }
+
+  .gf-dev a:hover {
+    color: #2ecc71;
+  }
+
+  .gf-loc {
+    font-weight: 400;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .gf-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .gf-col:not(:last-child)::after {
+      display: none;
+    }
+
+    .gf-col:not(:last-child)::before {
+      display: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .gf {
+      padding: 0 1rem 1rem;
+    }
+
+    .gf-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .gf-col:not(:last-child)::after {
+      display: none;
+    }
+
+    .gf-col:not(:last-child)::before {
+      display: none;
+    }
+
+    .gf-hero {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    /* Hide decorative diamond on mobile */
+    .gf-hero::before {
+      display: none;
+    }
+
+    .gf-stat-row {
+      gap: 1.5rem;
+    }
+
+    .gf-bottom {
+      flex-direction: column;
+      text-align: center;
+      gap: 0.4rem;
+    }
+
+    .gf-ch::after {
+      width: 20px;
+    }
   }
 </style>
 
 <script>
-  // Footer Year
-  document.getElementById("footer-year").textContent = new Date().getFullYear();
+  (function initFooter() {
+    const yearEl = document.getElementById('footer-year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+  })();
 </script>

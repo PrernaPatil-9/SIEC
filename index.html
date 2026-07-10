@@ -96,6 +96,25 @@
   .animate-\[spin_16s_linear_infinite\] {
     animation: spin 16s linear infinite;
   }
+
+    /* Marquee Animation */
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .logo-marquee {
+    animation: marquee 25s linear infinite;
+    width: max-content;
+  }
+
+  .logo-marquee:hover {
+    animation-play-state: paused;
+  }
   </style>
 </head>
 <body>
@@ -103,181 +122,296 @@
   <div id="header"></div>
 
   <main>
-<!-- ===== HERO SECTION — compact split layout with video background ===== -->
-<section id="hero" class="relative min-h-[85vh] flex items-center overflow-hidden bg-[#0d2b20] pt-20 md:pt-24 lg:pt-28">
-
-  <!-- ===== BACKGROUND LAYER WITH VIDEO ===== -->
+<!-- ===== HERO SECTION — full-bleed image, text-only, no split panel ===== -->
+<!-- Full viewport height -->
+<section id="hero" class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[#0d2b20]">
+  <!-- ===== BACKGROUND IMAGE LAYER ===== -->
   <div class="absolute inset-0 z-0">
-    <!-- Video Background -->
-    <video class="absolute inset-0 w-full h-full object-cover" autoplay loop muted playsinline>
-      <source src="/assets/1.mp4" type="video/mp4">
-      <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1920&auto=format&fit=crop&q=80" alt="Environmental background" class="w-full h-full object-cover">
-    </video>
-    
-    <!-- Overlays -->
-    <div class="absolute inset-0 bg-gradient-to-tr from-[#0d2b20]/80 via-[#0d2b20]/60 to-[#1b4332]/70"></div>
-    <div class="absolute inset-0" style="background: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(34, 197, 94, 0.02) 40px, rgba(34, 197, 94, 0.02) 41px);"></div>
-    
-    <!-- Glow orbs -->
-    <div class="absolute top-1/3 right-1/3 w-72 h-72 rounded-full bg-[#22c55e]/10 blur-[100px] animate-float-slow"></div>
-    <div class="absolute bottom-1/3 left-1/4 w-60 h-60 rounded-full bg-[#8fbfae]/10 blur-[80px] animate-float-slow" style="animation-delay: 2s;"></div>
+    <img
+      src="/assets/hero-bg.jpg"
+      onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1920&auto=format&fit=crop&q=80'"
+      alt="Field environmental assessment site"
+      class="w-full h-full object-cover animate-ken-burns"
+    >
+    <!-- Tonal overlays: readability first, brand-green wash second -->
+    <div class="absolute inset-0 bg-gradient-to-b from-[#0d2b20]/95 via-[#0d2b20]/70 to-[#0d2b20]/95"></div>
+    <div class="absolute inset-0 bg-[#0d2b20]/30 mix-blend-multiply"></div>
+    <div class="absolute inset-0" style="background: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(34,197,94,0.03) 40px, rgba(34,197,94,0.03) 41px);"></div>
   </div>
 
-  <!-- ===== MAIN CONTENT ===== -->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full py-6 md:py-8">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+  <!-- Ambient glow, kept subtle -->
+  <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[300px] rounded-full bg-[#22c55e]/10 blur-[120px] pointer-events-none"></div>
 
-      <!-- ===== Left: copy with professional animations ===== -->
-      <div class="lg:col-span-7">
-        <!-- Badge - Fade In with Slide -->
-        <span class="inline-flex items-center gap-2 text-white/70 font-semibold text-[10px] uppercase tracking-[0.3em] mb-4 opacity-0 animate-fade-slide">
-          <span class="w-5 h-px bg-[#22c55e]"></span>
-          Environmental &amp; Industrial Consultancy
-          <span class="relative flex h-1.5 w-1.5 ml-1">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#22c55e] opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#22c55e]"></span>
-          </span>
+  <!-- ===== CONTENT — centered, text only ===== -->
+  <div class="relative z-10 max-w-4xl mx-auto px-6 sm:px-8 text-center pt-16">
+
+    <!-- Eyebrow -->
+    <div class="inline-flex items-center gap-2.5 mb-7 opacity-0 animate-fade-up" style="animation-delay:0.15s;">
+      <span class="relative flex h-1.5 w-1.5">
+        <span class="absolute inline-flex h-full w-full rounded-full bg-[#22c55e] opacity-75 animate-ping"></span>
+        <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#22c55e]"></span>
+      </span>
+      <!-- <span class="font-mono text-[11px] uppercase tracking-[0.25em] text-white/60">
+        Environmental &amp; Industrial Consultancy
+      </span> -->
+    </div>
+
+    <!-- Headline -->
+    <h1 class="font-display text-[2.75rem] sm:text-6xl md:text-7xl leading-[1.05] tracking-tight text-white">
+      <span class="block opacity-0 animate-fade-up" style="animation-delay:0.3s;">Where science meets</span>
+      <span class="block italic bg-gradient-to-r from-[#4ade80] via-[#22c55e] to-[#4ade80] bg-clip-text text-transparent opacity-0 animate-fade-up" style="animation-delay:0.5s;">
+        sustainable engineering
+      </span>
+    </h1>
+
+    <!-- Description -->
+    <p class="font-body text-base md:text-lg text-white/65 max-w-xl mx-auto mt-6 leading-relaxed opacity-0 animate-fade-up" style="animation-delay:0.7s;">
+      SIEC turns environmental risk into measurable strategy — assessment, remediation,
+      and climate advisory for organizations building responsibly.
+    </p>
+
+    <!-- Buttons -->
+    <div class="flex flex-wrap items-center justify-center gap-4 mt-9 opacity-0 animate-fade-up" style="animation-delay:0.9s;">
+      <a href="/pages/services/services.html" class="inline-flex items-center px-7 py-3.5 bg-[#22c55e] text-[#0d2b20] font-body font-semibold rounded-full text-sm transition-all duration-300 hover:bg-[#4ade80] hover:shadow-[0_15px_30px_-10px_#22c55e] hover:-translate-y-0.5 group">
+        <span>Explore Services</span>
+        <svg class="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+      <a href="/pages/about/about.html" class="inline-flex items-center gap-2 text-white/80 font-body font-medium text-sm group">
+        <span class="w-9 h-9 rounded-full border border-white/25 flex items-center justify-center group-hover:border-white/60 group-hover:bg-white/10 transition-all duration-300">
+          <svg class="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+          </svg>
         </span>
+        About Us
+      </a>
+    </div>
+  </div>
 
-        <!-- Main Heading - Staggered Fade Up with Blur -->
-        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl leading-[1.05] tracking-tight text-white mb-4">
-          <span class="block opacity-0 animate-fade-up-blur" style="animation-delay: 0.2s;">Where science</span>
-          <span class="block bg-gradient-to-r from-[#22c55e] via-[#4ade80] to-[#22c55e] bg-clip-text text-transparent italic opacity-0 animate-fade-up-blur" style="animation-delay: 0.5s;">
-            meets sustainable
-          </span>
-          <span class="block opacity-0 animate-fade-up-blur" style="animation-delay: 0.8s;">engineering.</span>
-        </h1>
-
-        <!-- Description - Smooth Fade with Scale -->
-        <p class="text-base md:text-lg text-white/70 max-w-lg mb-6 leading-relaxed backdrop-blur-sm bg-black/20 p-3 rounded-xl border border-white/5 opacity-0 animate-fade-scale" style="animation-delay: 1.1s;">
-          SIEC turns environmental risk into measurable strategy — assessment, remediation,
-          and climate advisory for organizations building responsibly.
-        </p>
-
-        <!-- Buttons - Elegant Slide Up -->
-        <div class="flex flex-wrap items-center gap-4">
-          <a href="/pages/services/services.html" class="inline-flex items-center px-6 py-3 bg-[#22c55e] text-white font-medium rounded-full transition-all duration-300 hover:bg-[#16a34a] hover:shadow-[0_15px_30px_-10px_#22c55e] hover:-translate-y-0.5 group text-sm opacity-0 animate-slide-up-elegant" style="animation-delay: 1.4s;">
-            <span>Explore Services</span>
-            <svg class="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1 group-hover:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-            </svg>
-          </a>
-          <a href="/pages/about/about.html" class="inline-flex items-center gap-2 text-white/80 font-medium group text-sm opacity-0 animate-slide-up-elegant" style="animation-delay: 1.6s;">
-            <span class="w-9 h-9 rounded-full border border-white/25 flex items-center justify-center group-hover:border-white/60 group-hover:bg-white/10 transition-all duration-300 group-hover:scale-110 group-hover:rotate-12">
-              <svg class="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-              </svg>
-            </span>
-            About Us
-          </a>
+  <!-- ===== SIGNATURE ELEMENT — full-width data/measurement strip ===== -->
+  <div class="relative z-10 w-full mt-16 opacity-0 animate-fade-up" style="animation-delay:1.15s;">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="border-t border-white/10"></div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 divide-x divide-white/10">
+        <div class="flex flex-col items-center py-5 px-2">
+          <span class="font-display text-2xl text-white">500+</span>
+          <span class="font-mono text-[9px] uppercase tracking-[0.2em] text-white/40 mt-1">Projects</span>
         </div>
-
-        <!-- Trust indicators - Elegant Fade In -->
-        <div class="flex items-center gap-6 mt-6 pt-4 border-t border-white/5">
-          <div class="flex items-center gap-2 opacity-0 animate-fade-in" style="animation-delay: 1.8s;">
-            <div class="flex -space-x-1.5">
-              <div class="w-6 h-6 rounded-full bg-gradient-to-br from-[#1b4332] to-[#2d6a4f] border-2 border-[#0d2b20] flex items-center justify-center text-white text-[8px] font-bold transition-transform duration-300 hover:scale-110">JM</div>
-              <div class="w-6 h-6 rounded-full bg-gradient-to-br from-[#2d6a4f] to-[#40916c] border-2 border-[#0d2b20] flex items-center justify-center text-white text-[8px] font-bold transition-transform duration-300 hover:scale-110">SK</div>
-              <div class="w-6 h-6 rounded-full bg-gradient-to-br from-[#40916c] to-[#52b788] border-2 border-[#0d2b20] flex items-center justify-center text-white text-[8px] font-bold transition-transform duration-300 hover:scale-110">AR</div>
-            </div>
-            <span class="text-white/50 text-xs">200+ partners</span>
-          </div>
-          <div class="flex items-center gap-1.5 text-white/50 text-xs opacity-0 animate-fade-in" style="animation-delay: 2s;">
+        <div class="flex flex-col items-center py-5 px-2">
+          <span class="font-display text-2xl text-white">40</span>
+          <span class="font-mono text-[9px] uppercase tracking-[0.2em] text-white/40 mt-1">Countries</span>
+        </div>
+        <div class="flex flex-col items-center py-5 px-2">
+          <span class="font-display text-2xl text-white">ISO 14001</span>
+          <span class="font-mono text-[9px] uppercase tracking-[0.2em] text-white/40 mt-1">Certified</span>
+        </div>
+        <div class="flex flex-col items-center py-5 px-2">
+          <span class="font-display text-2xl text-white flex items-center gap-1.5">
+            4.9
             <svg class="w-4 h-4 text-[#22c55e]" fill="currentColor" viewBox="0 0 20 20">
               <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
             </svg>
-            <span>4.9/5</span>
-          </div>
+          </span>
+          <span class="font-mono text-[9px] uppercase tracking-[0.2em] text-white/40 mt-1">Client Rating</span>
         </div>
       </div>
-
-      <!-- ===== Right: floating visual panel ===== -->
-      <div class="lg:col-span-5 relative">
-        <div class="relative aspect-[4/3.5] rounded-2xl overflow-hidden bg-gradient-to-br from-[#1b4332] to-[#0d2b20] border border-white/10 shadow-xl opacity-0 animate-float-in" style="animation-delay: 0.8s;">
-
-          <!-- ===== SLIDING BANNERS CONTAINER ===== -->
-          <div class="absolute inset-0 w-full h-full">
-
-            <!-- Banner 1 -->
-            <div class="absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out opacity-100" data-slide="0">
-              <img
-                src="/assets/b4.jpg"
-                alt="Environmental field assessment"
-                class="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-              />
-            </div>
-          </div>
-
-          <!-- Scan line -->
-          <div class="absolute inset-0 overflow-hidden pointer-events-none">
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#22c55e]/5 to-transparent animate-scan"></div>
-          </div>
-
-          <!-- ISO Badge -->
-          <div class="absolute top-4 right-4 w-14 h-14 rounded-full border border-white/25 flex items-center justify-center bg-black/40 backdrop-blur-sm z-10">
-            <svg viewBox="0 0 100 100" class="absolute inset-0 w-full h-full animate-spin-slow">
-              <path
-                id="orbitPath"
-                fill="none"
-                d="M 50,50 m -36,0 a 36,36 0 1,1 72,0 a 36,36 0 1,1 -72,0"
-              />
-              <text font-size="7.5" fill="rgba(255,255,255,0.6)" letter-spacing="2">
-                <textPath href="#orbitPath">ISO 14001 · SIEC ·</textPath>
-              </text>
-            </svg>
-            <span class="w-2 h-2 rounded-full bg-[#22c55e] animate-pulse"></span>
-          </div>
-
-          <!-- Live Indicator -->
-          <div class="absolute top-4 left-4 bg-black/60 backdrop-blur-md border border-white/10 rounded-full px-3 py-1.5 flex items-center gap-1.5 z-10 opacity-0 animate-fade-slide" style="animation-delay: 1.2s;">
-            <span class="relative flex h-2 w-2">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#22c55e] opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-2 w-2 bg-[#22c55e]"></span>
-            </span>
-            <span class="text-white/70 text-[10px] font-medium tracking-wider">LIVE</span>
-          </div>
-        </div>
-
-        <!-- Floating Stat Card -->
-        <div class="absolute -bottom-3 -left-3 w-48 p-3.5 bg-white/10 backdrop-blur-xl border border-white/15 rounded-xl shadow-xl hover:-translate-y-1 transition-transform duration-300 opacity-0 animate-float-in" style="animation-delay: 1.6s;">
-          <div class="flex items-center gap-2.5 mb-1.5">
-            <div class="w-8 h-8 rounded-full bg-[#22c55e]/20 flex items-center justify-center text-[#22c55e]">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1.5"
-                  d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
-                />
-              </svg>
-            </div>
-            <div>
-              <p class="text-white text-xl font-display leading-none">500+</p>
-              <p class="text-white/40 text-[7px] uppercase tracking-[0.15em]">Projects</p>
-            </div>
-          </div>
-          <p class="text-white/40 text-[7px] uppercase tracking-[0.15em] border-t border-white/5 pt-1.5">
-            40 countries
-          </p>
-        </div>
-
-        <!-- Floating Badge -->
-        <div class="absolute -top-2 -right-2 bg-black/60 backdrop-blur-xl border border-white/10 rounded-full px-2.5 py-1 text-white/90 text-[10px] flex items-center gap-1 shadow-xl opacity-0 animate-float-in" style="animation-delay: 1.8s;">
-          <span class="text-[#22c55e] text-xs animate-pulse">✦</span>
-          <span>100% Renewable</span>
-        </div>
-      </div>
+      <div class="border-t border-white/10"></div>
     </div>
   </div>
 
-  <!-- ===== Vertical scroll cue ===== -->
-  <div class="absolute bottom-6 left-4 sm:left-6 lg:left-8 flex items-center gap-2 text-white/30 z-10 opacity-0 animate-fade-in" style="animation-delay: 2.2s;">
-    <span class="text-[8px] uppercase tracking-[0.2em] [writing-mode:vertical-rl]">Scroll</span>
-    <div class="w-px h-10 bg-white/10 overflow-hidden relative">
-      <div class="w-full h-full bg-gradient-to-b from-[#22c55e] to-transparent animate-scroll-indicator"></div>
+  <!-- Scroll cue -->
+  <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30 z-10 opacity-0 animate-fade-in" style="animation-delay:1.6s;">
+    <span class="font-mono text-[8px] uppercase tracking-[0.25em]">Scroll</span>
+    <div class="w-px h-8 bg-white/10 overflow-hidden relative">
+      <div class="absolute inset-x-0 top-0 h-full w-full bg-gradient-to-b from-[#22c55e] to-transparent animate-scroll-drop"></div>
     </div>
   </div>
 </section>
+
+<!-- Hero banner style -->
+<style>
+  .font-display { font-family: 'Fraunces', serif; }
+.font-body { font-family: 'Inter', sans-serif; }
+.font-mono { font-family: 'IBM Plex Mono', monospace; }
+
+@keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes kenBurns { 0% { transform:scale(1); } 100% { transform:scale(1.08); } }
+@keyframes scrollDrop { 0% { transform:translateY(-100%); } 100% { transform:translateY(220%); } }
+
+.animate-fade-up { animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) both; }
+.animate-fade-in { animation: fadeIn 1.1s ease both; }
+.animate-ken-burns { animation: kenBurns 18s ease-out forwards; }
+.animate-scroll-drop { animation: scrollDrop 2.2s cubic-bezier(0.65,0,0.35,1) infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up, .animate-fade-in, .animate-ken-burns, .animate-scroll-drop {
+    animation: none !important; opacity: 1 !important; transform: none !important;
+  }
+}
+</style>
+
+<!-- ============================================================
+     ABOUT SIEC – REDESIGNED LEFT SIDE + HEXAGON IMAGE
+     ============================================================ -->
+     <section class="about-siec-section relative overflow-hidden bg-gradient-to-br from-[#f0f7f4] via-white to-[#e8f5e9] py-12 md:py-16">
+      <!-- Decorative orbs & shapes -->
+      <div class="absolute top-0 right-0 w-80 h-80 bg-[#22c55e]/10 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 left-0 w-64 h-64 bg-[#4ade80]/10 rounded-full blur-3xl"></div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] border border-[#22c55e]/5 rounded-full"></div>
+    
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start lg:items-center">
+    
+          <!-- ===== LEFT SIDE: REDESIGNED CONTENT ===== -->
+          <div>
+            <!-- Badge -->
+            <span class="inline-flex items-center gap-2 text-[#0d2b20] font-semibold text-[10px] uppercase tracking-[0.2em] mb-4">
+              <span class="w-8 h-px bg-gradient-to-r from-[#22c55e] to-[#4ade80]"></span>
+              About SIEC
+              <span class="relative flex h-1.5 w-1.5">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#22c55e] opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#22c55e]"></span>
+              </span>
+              <span class="w-8 h-px bg-gradient-to-l from-[#22c55e] to-[#4ade80]"></span>
+            </span>
+    
+            <!-- Heading -->
+            <h2 class="text-3xl sm:text-4xl font-bold text-[#0d2b20] mb-4 leading-[1.15]">
+              Who We Are<br/>
+              <span class="bg-gradient-to-r from-[#22c55e] to-[#1b4332] bg-clip-text text-transparent">At a Glance</span>
+            </h2>
+    
+            <!-- Description - cleaner, more refined -->
+            <p class="text-sm text-neutral-700 leading-relaxed mb-5 bg-white/40 backdrop-blur-sm p-4 rounded-xl border border-[#22c55e]/10">
+              <strong class="text-[#0d2b20]">SIEC</strong> is a global environmental consultancy that combines scientific rigor with practical know‑how. We help businesses, governments, and communities navigate complex environmental challenges — from site remediation and regulatory compliance to long‑term sustainability strategy.
+            </p>
+    
+            <!-- ===== NEW: KEY FACTS LIST (replaces the second paragraph) ===== -->
+            <div class="space-y-3 mb-6">
+              <div class="flex items-start gap-3 bg-white/60 backdrop-blur-sm p-3 rounded-xl border border-[#22c55e]/10 hover:shadow-md transition-all duration-300">
+                <div class="w-7 h-7 rounded-full bg-gradient-to-br from-[#22c55e] to-[#4ade80] flex items-center justify-center text-white shrink-0 mt-0.5">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-sm font-semibold text-[#0d2b20]">Multidisciplinary Expertise</p>
+                  <p class="text-xs text-neutral-500">Ecologists, engineers, policy experts &amp; data scientists working together.</p>
+                </div>
+              </div>
+    
+              <div class="flex items-start gap-3 bg-white/60 backdrop-blur-sm p-3 rounded-xl border border-[#22c55e]/10 hover:shadow-md transition-all duration-300">
+                <div class="w-7 h-7 rounded-full bg-gradient-to-br from-[#22c55e] to-[#4ade80] flex items-center justify-center text-white shrink-0 mt-0.5">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/>
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-sm font-semibold text-[#0d2b20]">Global Reach, Local Impact</p>
+                  <p class="text-xs text-neutral-500">Serving 40+ countries with deep regional knowledge and networks.</p>
+                </div>
+              </div>
+    
+              <div class="flex items-start gap-3 bg-white/60 backdrop-blur-sm p-3 rounded-xl border border-[#22c55e]/10 hover:shadow-md transition-all duration-300">
+                <div class="w-7 h-7 rounded-full bg-gradient-to-br from-[#22c55e] to-[#4ade80] flex items-center justify-center text-white shrink-0 mt-0.5">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-sm font-semibold text-[#0d2b20]">Science‑Led Solutions</p>
+                  <p class="text-xs text-neutral-500">Data-driven strategies that deliver measurable environmental outcomes.</p>
+                </div>
+              </div>
+            </div>
+    
+            <!-- Pillars (compact) - kept but made cleaner -->
+            <div class="grid grid-cols-2 gap-3 mt-2">
+              <div class="bg-gradient-to-br from-[#22c55e]/10 to-[#4ade80]/5 p-3 rounded-xl border border-[#22c55e]/20 hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-7 h-7 rounded-full bg-gradient-to-br from-[#22c55e] to-[#4ade80] flex items-center justify-center text-white shrink-0">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="font-semibold text-[#0d2b20] text-xs">Innovation</p>
+                    <p class="text-[10px] text-neutral-500">Pushing boundaries</p>
+                  </div>
+                </div>
+              </div>
+              <div class="bg-gradient-to-br from-[#22c55e]/10 to-[#4ade80]/5 p-3 rounded-xl border border-[#22c55e]/20 hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-7 h-7 rounded-full bg-gradient-to-br from-[#22c55e] to-[#4ade80] flex items-center justify-center text-white shrink-0">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="font-semibold text-[#0d2b20] text-xs">Global</p>
+                    <p class="text-[10px] text-neutral-500">40+ countries</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+            <!-- CTA -->
+            <a href="/pages/about/about.html" class="inline-flex items-center gap-2 mt-5 text-[#22c55e] font-medium text-sm hover:text-[#16a34a] transition-colors group">
+              <span>About Us</span>
+              <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+              </svg>
+            </a>
+          </div>
+    
+          <!-- ===== RIGHT SIDE: HEXAGON WITH SINGLE IMAGE ===== -->
+          <div class="flex justify-center items-center">
+            <div class="relative w-full max-w-md aspect-square">
+              <!-- Hexagon container using clip-path -->
+<div class="absolute inset-0 overflow-hidden"
+     style="clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);">
+
+  <video
+    src="/assets/a2.mp4"
+    class="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="metadata">
+  </video>
+
+  <!-- Overlay for depth -->
+  <div class="absolute inset-0 bg-gradient-to-t from-[#0d2b20]/50 via-[#0d2b20]/10 to-transparent"></div>
+</div>
+    
+              <!-- Decorative hexagon ring (glow) -->
+              <div class="absolute inset-0 pointer-events-none"
+                   style="clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);">
+                <div class="w-full h-full border-2 border-[#22c55e]/30 shadow-[inset_0_0_40px_rgba(34,197,94,0.05)]"></div>
+              </div>
+    
+              <!-- Floating label (positioned at the bottom) -->
+              <div class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur-sm text-[#0d2b20] text-xs font-semibold uppercase tracking-wider px-4 py-2 rounded-full shadow-md border border-[#22c55e]/20 whitespace-nowrap z-10">
+                <span class="flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-[#22c55e] animate-pulse"></span>
+                  Field &amp; Lab Excellence
+                </span>
+              </div>
+    
+              <!-- Decorative dots (brand flair) -->
+              <div class="absolute -top-3 -right-3 w-6 h-6 rounded-full bg-[#22c55e]/20 border border-[#22c55e]/40"></div>
+              <div class="absolute -bottom-3 -left-3 w-4 h-4 rounded-full bg-[#4ade80]/20 border border-[#4ade80]/40"></div>
+              <div class="absolute top-1/4 -left-4 w-3 h-3 rounded-full bg-[#22c55e]/10 border border-[#22c55e]/30"></div>
+              <div class="absolute bottom-1/4 -right-4 w-3 h-3 rounded-full bg-[#4ade80]/10 border border-[#4ade80]/30"></div>
+            </div>
+          </div>
+    
+        </div>
+      </div>
+    </section>
 
 <!-- ===== PROFESSIONAL ANIMATION KEYFRAMES ===== -->
 <style>
@@ -507,10 +641,10 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-  <!-- ===== TRUST BAR ===== -->
-<section class="py-12 bg-[#f4f2ec] border-y border-[#e7e2d8] overflow-hidden">
+<!-- ===== TRUST BAR ===== -->
+<section class="py-12 bg-[#fdf8f0] border-y border-[#e8e0d0] overflow-hidden">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <p class="text-center text-sm uppercase tracking-[0.2em] text-neutral-400 mb-6">
+    <p class="text-center text-sm uppercase tracking-[0.2em] text-[#2ecc71] mb-6 font-semibold">
       Our Comprehensive Services
     </p>
 
@@ -518,53 +652,53 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="logo-marquee flex gap-8 items-center animate-marquee">
         
         <!-- Service 1 -->
-        <div class="flex-shrink-0 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full border border-[#e7e2d8] shadow-sm hover:shadow-md transition-all duration-300 hover:bg-white hover:border-[#40513B]/30">
-          <span class="text-neutral-700 font-semibold text-sm whitespace-nowrap">Environmental Impact Assessment</span>
+        <div class="flex-shrink-0 bg-gradient-to-r from-[#2ecc71]/20 to-[#3498db]/20 backdrop-blur-sm px-4 py-2 rounded-full border border-[#2ecc71]/30 shadow-sm hover:shadow-md transition-all duration-300 hover:from-[#2ecc71]/30 hover:to-[#3498db]/30 hover:border-[#2ecc71]/60">
+          <span class="text-[#1a3a2a] font-semibold text-sm whitespace-nowrap">Environmental Impact Assessment</span>
         </div>
         
         <!-- Service 2 -->
-        <div class="flex-shrink-0 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full border border-[#e7e2d8] shadow-sm hover:shadow-md transition-all duration-300 hover:bg-white hover:border-[#40513B]/30">
-          <span class="text-neutral-700 font-semibold text-sm whitespace-nowrap">Sustainability Consulting</span>
+        <div class="flex-shrink-0 bg-gradient-to-r from-[#2ecc71]/20 to-[#3498db]/20 backdrop-blur-sm px-4 py-2 rounded-full border border-[#2ecc71]/30 shadow-sm hover:shadow-md transition-all duration-300 hover:from-[#2ecc71]/30 hover:to-[#3498db]/30 hover:border-[#2ecc71]/60">
+          <span class="text-[#1a3a2a] font-semibold text-sm whitespace-nowrap">Sustainability Consulting</span>
         </div>
         
         <!-- Service 3 -->
-        <div class="flex-shrink-0 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full border border-[#e7e2d8] shadow-sm hover:shadow-md transition-all duration-300 hover:bg-white hover:border-[#40513B]/30">
-          <span class="text-neutral-700 font-semibold text-sm whitespace-nowrap">Climate Change & Carbon</span>
+        <div class="flex-shrink-0 bg-gradient-to-r from-[#2ecc71]/20 to-[#3498db]/20 backdrop-blur-sm px-4 py-2 rounded-full border border-[#2ecc71]/30 shadow-sm hover:shadow-md transition-all duration-300 hover:from-[#2ecc71]/30 hover:to-[#3498db]/30 hover:border-[#2ecc71]/60">
+          <span class="text-[#1a3a2a] font-semibold text-sm whitespace-nowrap">Climate Change & Carbon</span>
         </div>
         
         <!-- Service 4 -->
-        <div class="flex-shrink-0 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full border border-[#e7e2d8] shadow-sm hover:shadow-md transition-all duration-300 hover:bg-white hover:border-[#40513B]/30">
-          <span class="text-neutral-700 font-semibold text-sm whitespace-nowrap">Natural Resource Management</span>
+        <div class="flex-shrink-0 bg-gradient-to-r from-[#2ecc71]/20 to-[#3498db]/20 backdrop-blur-sm px-4 py-2 rounded-full border border-[#2ecc71]/30 shadow-sm hover:shadow-md transition-all duration-300 hover:from-[#2ecc71]/30 hover:to-[#3498db]/30 hover:border-[#2ecc71]/60">
+          <span class="text-[#1a3a2a] font-semibold text-sm whitespace-nowrap">Natural Resource Management</span>
         </div>
         
         <!-- Service 5 -->
-        <div class="flex-shrink-0 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full border border-[#e7e2d8] shadow-sm hover:shadow-md transition-all duration-300 hover:bg-white hover:border-[#40513B]/30">
-          <span class="text-neutral-700 font-semibold text-sm whitespace-nowrap">Environmental Monitoring</span>
+        <div class="flex-shrink-0 bg-gradient-to-r from-[#2ecc71]/20 to-[#3498db]/20 backdrop-blur-sm px-4 py-2 rounded-full border border-[#2ecc71]/30 shadow-sm hover:shadow-md transition-all duration-300 hover:from-[#2ecc71]/30 hover:to-[#3498db]/30 hover:border-[#2ecc71]/60">
+          <span class="text-[#1a3a2a] font-semibold text-sm whitespace-nowrap">Environmental Monitoring</span>
         </div>
         
         <!-- Service 6 -->
-        <div class="flex-shrink-0 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full border border-[#e7e2d8] shadow-sm hover:shadow-md transition-all duration-300 hover:bg-white hover:border-[#40513B]/30">
-          <span class="text-neutral-700 font-semibold text-sm whitespace-nowrap">Compliance & Regulatory Support</span>
+        <div class="flex-shrink-0 bg-gradient-to-r from-[#2ecc71]/20 to-[#3498db]/20 backdrop-blur-sm px-4 py-2 rounded-full border border-[#2ecc71]/30 shadow-sm hover:shadow-md transition-all duration-300 hover:from-[#2ecc71]/30 hover:to-[#3498db]/30 hover:border-[#2ecc71]/60">
+          <span class="text-[#1a3a2a] font-semibold text-sm whitespace-nowrap">Compliance & Regulatory Support</span>
         </div>
 
         <!-- Duplicate for seamless loop -->
-        <div class="flex-shrink-0 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full border border-[#e7e2d8] shadow-sm hover:shadow-md transition-all duration-300 hover:bg-white hover:border-[#40513B]/30">
-          <span class="text-neutral-700 font-semibold text-sm whitespace-nowrap">Environmental Impact Assessment</span>
+        <div class="flex-shrink-0 bg-gradient-to-r from-[#2ecc71]/20 to-[#3498db]/20 backdrop-blur-sm px-4 py-2 rounded-full border border-[#2ecc71]/30 shadow-sm hover:shadow-md transition-all duration-300 hover:from-[#2ecc71]/30 hover:to-[#3498db]/30 hover:border-[#2ecc71]/60">
+          <span class="text-[#1a3a2a] font-semibold text-sm whitespace-nowrap">Environmental Impact Assessment</span>
         </div>
-        <div class="flex-shrink-0 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full border border-[#e7e2d8] shadow-sm hover:shadow-md transition-all duration-300 hover:bg-white hover:border-[#40513B]/30">
-          <span class="text-neutral-700 font-semibold text-sm whitespace-nowrap">Sustainability Consulting</span>
+        <div class="flex-shrink-0 bg-gradient-to-r from-[#2ecc71]/20 to-[#3498db]/20 backdrop-blur-sm px-4 py-2 rounded-full border border-[#2ecc71]/30 shadow-sm hover:shadow-md transition-all duration-300 hover:from-[#2ecc71]/30 hover:to-[#3498db]/30 hover:border-[#2ecc71]/60">
+          <span class="text-[#1a3a2a] font-semibold text-sm whitespace-nowrap">Sustainability Consulting</span>
         </div>
-        <div class="flex-shrink-0 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full border border-[#e7e2d8] shadow-sm hover:shadow-md transition-all duration-300 hover:bg-white hover:border-[#40513B]/30">
-          <span class="text-neutral-700 font-semibold text-sm whitespace-nowrap">Climate Change & Carbon</span>
+        <div class="flex-shrink-0 bg-gradient-to-r from-[#2ecc71]/20 to-[#3498db]/20 backdrop-blur-sm px-4 py-2 rounded-full border border-[#2ecc71]/30 shadow-sm hover:shadow-md transition-all duration-300 hover:from-[#2ecc71]/30 hover:to-[#3498db]/30 hover:border-[#2ecc71]/60">
+          <span class="text-[#1a3a2a] font-semibold text-sm whitespace-nowrap">Climate Change & Carbon</span>
         </div>
-        <div class="flex-shrink-0 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full border border-[#e7e2d8] shadow-sm hover:shadow-md transition-all duration-300 hover:bg-white hover:border-[#40513B]/30">
-          <span class="text-neutral-700 font-semibold text-sm whitespace-nowrap">Natural Resource Management</span>
+        <div class="flex-shrink-0 bg-gradient-to-r from-[#2ecc71]/20 to-[#3498db]/20 backdrop-blur-sm px-4 py-2 rounded-full border border-[#2ecc71]/30 shadow-sm hover:shadow-md transition-all duration-300 hover:from-[#2ecc71]/30 hover:to-[#3498db]/30 hover:border-[#2ecc71]/60">
+          <span class="text-[#1a3a2a] font-semibold text-sm whitespace-nowrap">Natural Resource Management</span>
         </div>
-        <div class="flex-shrink-0 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full border border-[#e7e2d8] shadow-sm hover:shadow-md transition-all duration-300 hover:bg-white hover:border-[#40513B]/30">
-          <span class="text-neutral-700 font-semibold text-sm whitespace-nowrap">Environmental Monitoring</span>
+        <div class="flex-shrink-0 bg-gradient-to-r from-[#2ecc71]/20 to-[#3498db]/20 backdrop-blur-sm px-4 py-2 rounded-full border border-[#2ecc71]/30 shadow-sm hover:shadow-md transition-all duration-300 hover:from-[#2ecc71]/30 hover:to-[#3498db]/30 hover:border-[#2ecc71]/60">
+          <span class="text-[#1a3a2a] font-semibold text-sm whitespace-nowrap">Environmental Monitoring</span>
         </div>
-        <div class="flex-shrink-0 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full border border-[#e7e2d8] shadow-sm hover:shadow-md transition-all duration-300 hover:bg-white hover:border-[#40513B]/30">
-          <span class="text-neutral-700 font-semibold text-sm whitespace-nowrap">Compliance & Regulatory Support</span>
+        <div class="flex-shrink-0 bg-gradient-to-r from-[#2ecc71]/20 to-[#3498db]/20 backdrop-blur-sm px-4 py-2 rounded-full border border-[#2ecc71]/30 shadow-sm hover:shadow-md transition-all duration-300 hover:from-[#2ecc71]/30 hover:to-[#3498db]/30 hover:border-[#2ecc71]/60">
+          <span class="text-[#1a3a2a] font-semibold text-sm whitespace-nowrap">Compliance & Regulatory Support</span>
         </div>
 
       </div>
@@ -704,599 +838,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </section> -->
 
-
-<!-- ===== SECTION: PROCESS + IMAGE + DARK FEATURES (with #40513B green color) ===== -->
-<section class="relative">
-
-  <!-- ---- Single combined image container ---- -->
-  <div class="relative w-full overflow-hidden">
-    <!-- Single Background Image with Parallax -->
-    <div class="absolute inset-0" id="parallax-bg">
-      <img
-        src="/assets/m.jfif"
-        alt="Rolling green hills"
-        class="w-full h-full object-cover object-center"
-        style="object-position: center 25%;"
-      />
-    </div>
-    
-    <!-- Content - Top section -->
-    <div class="relative z-10 max-w-4xl mx-auto px-6 pt-1 md:pt-2 pb-32 md:pb-40">
-      <h2 class="text-center text-3xl sm:text-4xl md:text-[2.75rem] font-bold text-[#1a1a1a] leading-tight mt-8 scroll-animate fade-in-zoom">
-        Why SIEC
-      </h2>
-      
-      <p class="text-center text-sm text-neutral-500 mt-3 max-w-md mx-auto scroll-animate fade-in-up-glow delay-200">
-        Committed to sustainability and environmental stewardship
-      </p>
-    </div>
-
-   <!-- Timeline Overlay -->
-<div class="relative z-10 max-w-3xl mx-auto px-6 -mt-12 md:-mt-16 pb-56 md:pb-72">
-  <div class="relative">
-
-    <!-- Vertical Line -->
-    <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-white/40 md:-translate-x-1/2"></div>
-
-    <!-- Point 1 -->
-    <div class="relative flex flex-col md:items-start mb-8 md:mb-10 pl-12 md:pl-0 scroll-animate slide-in-left-3d">
-      <div class="md:w-1/2 md:pl-10 text-left">
-        <h4 class="text-base md:text-lg font-semibold text-white">
-          Expertise and Experience
-        </h4>
-        <p class="text-sm md:text-base text-white/80 leading-relaxed mt-1 max-w-xs">
-          Extensive experience across energy, infrastructure, and manufacturing sectors
-        </p>
-      </div>
-
-      <span class="absolute left-4 md:left-1/2 top-1.5 -translate-x-1/2 w-2.5 h-2.5 rotate-45 bg-[#7a8f5c] border-2 border-[#f4f2ec]"></span>
-    </div>
-
-    <!-- Point 2 -->
-    <div class="relative flex flex-col md:items-end mb-8 md:mb-10 pl-12 md:pl-0 scroll-animate slide-in-right-3d">
-      <div class="md:w-1/2 md:pr-10 md:ml-auto text-left md:text-right">
-        <h4 class="text-base md:text-lg font-semibold text-white">
-          Innovation and Customization
-        </h4>
-        <p class="text-sm md:text-base text-white/80 leading-relaxed mt-1 max-w-xs md:ml-auto">
-          Practical, cost-effective solutions tailored to your needs
-        </p>
-      </div>
-
-      <span class="absolute left-4 md:left-1/2 top-1.5 -translate-x-1/2 w-2.5 h-2.5 rotate-45 bg-[#7a8f5c] border-2 border-[#f4f2ec]"></span>
-    </div>
-
-    <!-- Point 3 -->
-    <div class="relative flex flex-col md:items-start mb-8 md:mb-10 pl-12 md:pl-0 scroll-animate slide-in-left-3d delay-200">
-      <div class="md:w-1/2 md:pl-10 text-left">
-        <h4 class="text-base md:text-lg font-semibold text-white">
-          Sustainability Focus
-        </h4>
-        <p class="text-sm md:text-base text-white/80 leading-relaxed mt-1 max-w-xs">
-          Minimizing environmental impact while enhancing efficiency
-        </p>
-      </div>
-
-      <span class="absolute left-4 md:left-1/2 top-1.5 -translate-x-1/2 w-2.5 h-2.5 rotate-45 bg-[#7a8f5c] border-2 border-[#f4f2ec]"></span>
-    </div>
-
-    <!-- Point 4 -->
-    <div class="relative flex flex-col md:items-end pl-12 md:pl-0 scroll-animate slide-in-right-3d delay-200">
-      <div class="md:w-1/2 md:pr-10 md:ml-auto text-left md:text-right">
-        <h4 class="text-base md:text-lg font-semibold text-white">
-          Reliable and Timely
-        </h4>
-        <p class="text-sm md:text-base text-white/80 leading-relaxed mt-1 max-w-xs md:ml-auto">
-          High-quality results delivered on time, every time
-        </p>
-      </div>
-
-      <span class="absolute left-4 md:left-1/2 top-1.5 -translate-x-1/2 w-2.5 h-2.5 rotate-45 bg-[#7a8f5c] border-2 border-[#f4f2ec]"></span>
-    </div>
-
-  </div>
-</div>
-
-    <!-- Green Gradient at bottom of image -->
-    <div class="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-[#40513B] via-[#40513B]/70 to-transparent"></div>
-    
-    <!-- Green glow orb effect -->
-    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-[#40513B]/30 rounded-full blur-[100px]"></div>
-  </div>
-
-  <!-- ---- Bottom: feature section with #40513B color ---- -->
-<div class="bg-[#40513B] relative overflow-hidden">
-  <!-- Animated gradient background -->
-  <div class="absolute inset-0 opacity-10">
-    <div class="absolute inset-0 animate-gradient-shift" style="background: linear-gradient(45deg, #40513B, #2d3d2a, #5a7a4a, #40513B); background-size: 400% 400%;"></div>
-  </div>
-  
-  <!-- Blur transition effect at the top -->
-  <div class="absolute top-0 left-0 right-0 -translate-y-1/2 h-32 bg-gradient-to-t from-[#40513B] via-[#40513B]/60 to-transparent blur-[2px]"></div>
-
-  <div class="max-w-5xl mx-auto px-6 pt-16 pb-20 md:pb-24 text-center relative z-10 font-sans">
-    <h3 class="text-3xl sm:text-4xl md:text-[2.75rem] font-semibold text-white leading-tight scroll-animate fade-in-rotate">
-      What Makes Us Different<br/>
-      <span class="font-medium text-[#b8d4b0] scroll-animate fade-in-scale delay-300">
-        Leading the way in sustainable consulting
-      </span>
-    </h3>
-
-    <p class="text-sm md:text-base text-white/50 max-w-xl mx-auto mt-6 leading-relaxed font-normal scroll-animate fade-in-blur delay-400">
-      At SIEC, we combine scientific expertise, innovative technologies, and a client-centric approach to deliver tailored solutions that promote a greener and more sustainable future.
-    </p>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 mt-16">
-
-  <!-- Feature 1 -->
-  <div class="px-6 md:border-r md:border-white/15 scroll-animate flip-in-left delay-500 group">
-    <div class="transition-transform duration-500 group-hover:scale-110 group-hover:rotate-2">
-      <h5 class="text-[#b8d4b0] font-semibold text-sm">
-        Multidisciplinary Approach
-      </h5>
-      <p class="text-xs text-white/40 leading-relaxed mt-2 transition-all duration-300 group-hover:text-white/70">
-        Experts from diverse backgrounds including environmental science, ecology, engineering, and policy
-      </p>
-    </div>
-  </div>
-
-  <!-- Feature 2 -->
-  <div class="px-6 md:border-r md:border-white/15 scroll-animate flip-in-right delay-600 group">
-    <div class="transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-2">
-      <h5 class="text-[#b8d4b0] font-semibold text-sm">
-        Scientific Expertise
-      </h5>
-      <p class="text-xs text-white/40 leading-relaxed mt-2 transition-all duration-300 group-hover:text-white/70">
-        Evidence-based solutions grounded in the latest environmental research and best practices
-      </p>
-    </div>
-  </div>
-
-  <!-- Feature 3 -->
-  <div class="px-6 md:border-r md:border-white/15 scroll-animate flip-in-left delay-700 group">
-    <div class="transition-transform duration-500 group-hover:scale-110 group-hover:rotate-2">
-      <h5 class="text-[#b8d4b0] font-semibold text-sm">
-        Innovative Technologies
-      </h5>
-      <p class="text-xs text-white/40 leading-relaxed mt-2 transition-all duration-300 group-hover:text-white/70">
-        Cutting-edge tools and methods to address complex environmental challenges effectively
-      </p>
-    </div>
-  </div>
-
-  <!-- Feature 4 -->
-  <div class="px-6 scroll-animate flip-in-right delay-800 group">
-    <div class="transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-2">
-      <h5 class="text-[#b8d4b0] font-semibold text-sm">
-        Client-Centric Solutions
-      </h5>
-      <p class="text-xs text-white/40 leading-relaxed mt-2 transition-all duration-300 group-hover:text-white/70">
-        Tailored services designed to meet the unique needs of every organization and community
-      </p>
-    </div>
-  </div>
-
-</div>
-  </div>
-</div>
-
-</section>
-
-<!-- ===== ADVANCED ANIMATION STYLES ===== -->
-<style>
-/* Initial hidden state for scroll animations */
-.scroll-animate {
-  opacity: 0;
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* When element becomes visible */
-.scroll-animate.visible {
-  opacity: 1;
-}
-
-/* 1. Fade In with Zoom */
-@keyframes fadeInZoom {
-  0% {
-    opacity: 0;
-    transform: scale(0.8) translateY(30px);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
-
-.fade-in-zoom.visible {
-  animation: fadeInZoom 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-}
-
-/* 2. Fade In with Glow Effect */
-@keyframes fadeInUpGlow {
-  0% {
-    opacity: 0;
-    transform: translateY(40px);
-    filter: blur(8px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
-  }
-}
-
-.fade-in-up-glow.visible {
-  animation: fadeInUpGlow 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-}
-
-/* 3. 3D Slide In from Left */
-@keyframes slideInLeft3D {
-  0% {
-    opacity: 0;
-    transform: translateX(-80px) rotateY(30deg) scale(0.9);
-    perspective: 1000px;
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0) rotateY(0) scale(1);
-    perspective: 1000px;
-  }
-}
-
-.slide-in-left-3d.visible {
-  animation: slideInLeft3D 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-}
-
-/* 4. 3D Slide In from Right */
-@keyframes slideInRight3D {
-  0% {
-    opacity: 0;
-    transform: translateX(80px) rotateY(-30deg) scale(0.9);
-    perspective: 1000px;
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0) rotateY(0) scale(1);
-    perspective: 1000px;
-  }
-}
-
-.slide-in-right-3d.visible {
-  animation: slideInRight3D 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-}
-
-/* 5. Fade In with Rotation */
-@keyframes fadeInRotate {
-  0% {
-    opacity: 0;
-    transform: rotateX(-15deg) translateY(60px);
-    perspective: 1000px;
-  }
-  100% {
-    opacity: 1;
-    transform: rotateX(0) translateY(0);
-    perspective: 1000px;
-  }
-}
-
-.fade-in-rotate.visible {
-  animation: fadeInRotate 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-}
-
-/* 6. Fade In with Scale */
-@keyframes fadeInScale {
-  0% {
-    opacity: 0;
-    transform: scale(0.5) rotate(-5deg);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) rotate(0);
-  }
-}
-
-.fade-in-scale.visible {
-  animation: fadeInScale 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-}
-
-/* 7. Fade In with Blur */
-@keyframes fadeInBlur {
-  0% {
-    opacity: 0;
-    transform: translateY(30px) scale(1.1);
-    filter: blur(10px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0);
-  }
-}
-
-.fade-in-blur.visible {
-  animation: fadeInBlur 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-}
-
-/* 8. Flip In from Left */
-@keyframes flipInLeft {
-  0% {
-    opacity: 0;
-    transform: perspective(600px) rotateY(-60deg) translateX(-30px);
-  }
-  100% {
-    opacity: 1;
-    transform: perspective(600px) rotateY(0) translateX(0);
-  }
-}
-
-.flip-in-left.visible {
-  animation: flipInLeft 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-}
-
-/* 9. Flip In from Right */
-@keyframes flipInRight {
-  0% {
-    opacity: 0;
-    transform: perspective(600px) rotateY(60deg) translateX(30px);
-  }
-  100% {
-    opacity: 1;
-    transform: perspective(600px) rotateY(0) translateX(0);
-  }
-}
-
-.flip-in-right.visible {
-  animation: flipInRight 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-}
-
-/* 10. Animated Gradient Background */
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-.animate-gradient-shift {
-  animation: gradientShift 10s ease infinite;
-}
-
-/* Parallax Effect for Background */
-#parallax-bg {
-  transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Delay Classes */
-.delay-200 {
-  transition-delay: 0.2s;
-  animation-delay: 0.2s;
-}
-
-.delay-300 {
-  transition-delay: 0.3s;
-  animation-delay: 0.3s;
-}
-
-.delay-400 {
-  transition-delay: 0.4s;
-  animation-delay: 0.4s;
-}
-
-.delay-500 {
-  transition-delay: 0.5s;
-  animation-delay: 0.5s;
-}
-
-.delay-600 {
-  transition-delay: 0.6s;
-  animation-delay: 0.6s;
-}
-
-.delay-700 {
-  transition-delay: 0.7s;
-  animation-delay: 0.7s;
-}
-
-.delay-800 {
-  transition-delay: 0.8s;
-  animation-delay: 0.8s;
-}
-
-/* Stagger Children Animation - makes features appear one by one */
-.scroll-animate.stagger-children {
-  transition-delay: 0.1s;
-}
-</style>
-
-<!-- ===== ADVANCED SCROLL TRIGGER JAVASCRIPT ===== -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Intersection Observer for scroll animations
-  const animatedElements = document.querySelectorAll('.scroll-animate');
-  
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        
-        // If element has stagger children, add staggered animation
-        if (entry.target.classList.contains('stagger-children')) {
-          const children = entry.target.children;
-          Array.from(children).forEach((child, index) => {
-            child.style.transitionDelay = `${(index + 1) * 0.1}s`;
-            child.classList.add('visible');
-          });
-        }
-      }
-    });
-  }, {
-    threshold: 0.2,
-    rootMargin: '0px 0px -30px 0px'
-  });
-  
-  animatedElements.forEach(element => {
-    observer.observe(element);
-  });
-
-  // Parallax effect on scroll
-  const parallaxBg = document.getElementById('parallax-bg');
-  if (parallaxBg) {
-    window.addEventListener('scroll', function() {
-      const scrolled = window.pageYOffset;
-      const section = parallaxBg.closest('section');
-      if (section) {
-        const rect = section.getBoundingClientRect();
-        const offset = rect.top + window.pageYOffset;
-        const distance = scrolled - offset;
-        if (distance > -100 && distance < 500) {
-          const speed = distance * 0.15;
-          parallaxBg.style.transform = `translateY(${speed}px)`;
-        }
-      }
-    });
-  }
-
-  // Mouse tracking for 3D effect on cards
-  document.querySelectorAll('.group').forEach(card => {
-    card.addEventListener('mousemove', function(e) {
-      const rect = this.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
-      this.querySelector('div').style.transform = 
-        `perspective(1000px) rotateY(${x * 10}deg) rotateX(${y * -10}deg)`;
-    });
-    
-    card.addEventListener('mouseleave', function() {
-      this.querySelector('div').style.transform = 'perspective(1000px) rotateY(0) rotateX(0)';
-    });
-  });
-});
-
-// Re-run animations when elements come into view after page load
-window.addEventListener('load', function() {
-  const visibleElements = document.querySelectorAll('.scroll-animate');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.1 });
-  
-  visibleElements.forEach(el => observer.observe(el));
-});
-</script>
-
-<!-- ===== MISSION & VISION (Side by Side in One Row with #628141 text div) ===== -->
-<section class="relative py-16 bg-[#40513B]">
-  
-  <!-- Subtle pattern overlay for depth -->
-  <div class="absolute inset-0 opacity-5" style="background: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(255,255,255,0.05) 40px, rgba(255,255,255,0.05) 41px);"></div>
-  
-  <!-- Green glow orb effect -->
-  <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-[#40513B]/50 rounded-full blur-[100px]"></div>
-
-  <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
-    
-    <!-- Single Box with Mission & Vision Side by Side - #628141 background -->
-    <div class="rounded-2xl bg-[#628141] shadow-lg hover:shadow-xl transition-shadow p-8 md:p-10 border border-white/10">
-      
-      <!-- FLEXBOX: Forces Mission LEFT and Vision RIGHT in SAME ROW -->
-      <div class="flex flex-col md:flex-row gap-6 md:gap-8">
-        
-        <!-- MISSION - LEFT SIDE (takes 50% width) -->
-        <div class="flex-1 flex flex-col">
-          <span class="text-xs font-bold tracking-widest uppercase text-[#b8d4b0] bg-white/20 px-3 py-1 rounded-full inline-block w-fit mb-3">
-            Mission
-          </span>
-          <h3 class="text-xl md:text-2xl font-bold text-white mb-2">
-            Leading sustainable consulting
-          </h3>
-          <p class="text-sm text-white/50 leading-relaxed">
-            Combining scientific expertise with practical, client-centric approaches to deliver measurable environmental impact.
-          </p>
-          <div class="flex items-center gap-3 bg-white/15 rounded-full pl-2 pr-5 py-1.5 w-fit mt-4">
-            <div class="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center text-white">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-              </svg>
-            </div>
-            <span class="text-xs font-medium text-white/50">Measurable impact</span>
-          </div>
-        </div>
-
-        <!-- VERTICAL DIVIDER LINE -->
-        <div class="hidden md:block w-px bg-white/20 flex-shrink-0"></div>
-        <div class="md:hidden w-full h-px bg-white/20 my-2"></div>
-
-        <!-- VISION - RIGHT SIDE (takes 50% width) -->
-        <div class="flex-1 flex flex-col">
-          <span class="text-xs font-bold tracking-widest uppercase text-[#b8d4b0] bg-white/20 px-3 py-1 rounded-full inline-block w-fit mb-3">
-            Vision
-          </span>
-          <h3 class="text-xl md:text-2xl font-bold text-white mb-2">
-            Environmental integrity first
-          </h3>
-          <p class="text-sm text-white/50 leading-relaxed">
-            Embedding sustainability in every aspect of business and society for a healthier, more resilient future.
-          </p>
-          <div class="flex items-center gap-3 bg-white/15 rounded-full pl-2 pr-5 py-1.5 w-fit mt-4">
-            <div class="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center text-white">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-              </svg>
-            </div>
-            <span class="text-xs font-medium text-white/50">Global change</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ===== STATS COUNTERS - WORKING WITH TAILWIND ONLY ===== -->
-<section class="py-16 md:py-20 bg-[#40513B]">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-      <div class="text-center opacity-0 translate-y-8" style="animation: revealUp 0.6s ease forwards 0.1s;">
-        <div class="text-4xl md:text-5xl font-bold text-[#b8d4b0] counter-number" data-target="25">0</div>
-        <p class="text-sm text-white/50 mt-2 font-medium">Years of Excellence</p>
-      </div>
-      <div class="text-center opacity-0 translate-y-8" style="animation: revealUp 0.6s ease forwards 0.2s;">
-        <div class="text-4xl md:text-5xl font-bold text-[#b8d4b0] counter-number" data-target="500">0</div>
-        <p class="text-sm text-white/50 mt-2 font-medium">Projects Delivered</p>
-      </div>
-      <div class="text-center opacity-0 translate-y-8" style="animation: revealUp 0.6s ease forwards 0.3s;">
-        <div class="text-4xl md:text-5xl font-bold text-[#b8d4b0] counter-number" data-target="50">0</div>
-        <p class="text-sm text-white/50 mt-2 font-medium">Expert Consultants</p>
-      </div>
-      <div class="text-center opacity-0 translate-y-8" style="animation: revealUp 0.6s ease forwards 0.4s;">
-        <div class="text-4xl md:text-5xl font-bold text-[#b8d4b0] counter-number" data-target="40">0</div>
-        <p class="text-sm text-white/50 mt-2 font-medium">Countries Served</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ===== SERVICES PREVIEW (Compact - Removed Top Right Glow) ===== -->
-<section class="pt-12 pb-20 relative overflow-hidden bg-[#40513B]">
-  
-  <!-- Bold background accents -->
-  <div class="absolute inset-0 pointer-events-none">
-    <div class="absolute -bottom-24 -left-24 w-80 h-80 bg-[#628141] rounded-full blur-3xl opacity-20"></div>
-    <!-- Subtle pattern -->
-    <div class="absolute inset-0 opacity-[0.05]"
-         style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 20px 20px;">
-    </div>
-  </div>
+<section class="pt-12 pb-20 relative overflow-hidden">
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
     <!-- Header: with slide-up animation -->
@@ -1305,34 +848,30 @@ window.addEventListener('load', function() {
          onscroll="this.style.opacity='1'; this.style.transform='translateY(0)'"
          id="services-header">
       <div class="lg:col-span-8">
-        <span class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full border border-white/20 bg-white/10 text-[#b8d4b0] text-[10px] font-semibold uppercase tracking-widest mb-3 hover:bg-white/20 transition-all duration-300 hover:scale-105">
-          <span class="w-1.5 h-1.5 rounded-full bg-[#b8d4b0] animate-pulse"></span>
-          What We Do
-        </span>
-        <h2 class="text-3xl sm:text-4xl font-display font-semibold mb-3 leading-tight text-white">
-          Comprehensive Environmental<br />
-          <span class="text-[#b8d4b0] relative inline-block">
-            Solutions
-            <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-[#b8d4b0] transform origin-left transition-all duration-1000" 
-                  style="width: 0;"
-                  onscroll="this.style.width='100%'"
-                  id="underline-anim"></span>
-          </span>
-        </h2>
+<span class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full border border-gray-300 bg-gray-100 text-[#40513B] text-[10px] font-semibold uppercase tracking-widest mb-3">
+  <span class="w-1.5 h-1.5 rounded-full bg-[#40513B]"></span>
+  What We Do
+</span>
+
+<h2 class="text-3xl sm:text-4xl font-display font-semibold mb-3 leading-tight">
+  <span class="text-black">Comprehensive</span> 
+  <span class="text-[#40513B]">Environmental</span><br />
+  <span class="text-[#2563EB]">Solutions</span>
+</h2>
         <p class="text-base text-white/50 max-w-xl">
           From assessment to implementation, end‑to‑end environmental consulting tailored to your needs.
         </p>
       </div>
 
-      <div class="lg:col-span-4 flex lg:justify-end">
-        <a href="/pages/services/services.html"
-           class="group inline-flex items-center px-5 py-2.5 bg-[#628141] text-white font-semibold rounded-full transition-all duration-300 hover:bg-[#7a9a5a] hover:shadow-lg hover:-translate-y-0.5 hover:scale-105 active:scale-95">
-          View All Services
-          <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 group-hover:rotate-12 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-          </svg>
-        </a>
-      </div>
+     <div class="lg:col-span-4 flex lg:justify-end">
+  <a href="/pages/services/services.html"
+     class="group inline-flex items-center px-5 py-2.5 bg-[#6CB33F] text-white font-semibold rounded-full transition-all duration-300 hover:bg-[#4E9A2D] hover:shadow-lg hover:-translate-y-0.5 hover:scale-105 active:scale-95">
+    View All Services
+    <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 group-hover:rotate-12 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+    </svg>
+  </a>
+</div>
     </div>
 
     <!-- Services Grid: with staggered animations -->
@@ -1475,6 +1014,616 @@ window.addEventListener('load', function() {
       </a>
     </div>
   </div>
+</section>
+
+<!-- ===== SECTION: PROCESS + IMAGE + DARK FEATURES (with #40513B green color) ===== -->
+<!-- <section class="relative">
+  <div class="relative w-full overflow-hidden">
+    <div class="absolute inset-0">
+      <img
+        src="/assets/m.jfif"
+        alt="Rolling green hills"
+        class="w-full h-full object-cover object-center"
+        style="object-position: center 25%;"
+      />
+    </div>
+
+    <div class="relative z-10 max-w-4xl mx-auto px-6 pt-1 md:pt-2 pb-32 md:pb-40">
+      <h2 class="text-center text-3xl sm:text-4xl md:text-[2.75rem] font-bold text-[#1a1a1a] leading-tight mt-8">
+        Why SIEC
+      </h2>
+
+      <p class="text-center text-sm text-neutral-500 mt-3 max-w-md mx-auto">
+        Committed to sustainability and environmental stewardship
+      </p>
+    </div>
+
+    <div class="relative z-10 max-w-3xl mx-auto px-6 -mt-12 md:-mt-16 pb-56 md:pb-72">
+      <div class="relative">
+        <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-white/40 md:-translate-x-1/2"></div>
+
+        <div class="relative flex flex-col md:items-start mb-8 md:mb-10 pl-12 md:pl-0">
+          <div class="md:w-1/2 md:pl-10 text-left">
+            <h4 class="text-base md:text-lg font-semibold text-white">
+              Expertise and Experience
+            </h4>
+            <p class="text-sm md:text-base text-white/80 leading-relaxed mt-1 max-w-xs">
+              Extensive experience across energy, infrastructure, and manufacturing sectors
+            </p>
+          </div>
+
+          <span class="absolute left-4 md:left-1/2 top-1.5 -translate-x-1/2 w-2.5 h-2.5 rotate-45 bg-[#7a8f5c] border-2 border-[#f4f2ec]"></span>
+        </div>
+
+        <div class="relative flex flex-col md:items-end mb-8 md:mb-10 pl-12 md:pl-0">
+          <div class="md:w-1/2 md:pr-10 md:ml-auto text-left md:text-right">
+            <h4 class="text-base md:text-lg font-semibold text-white">
+              Innovation and Customization
+            </h4>
+            <p class="text-sm md:text-base text-white/80 leading-relaxed mt-1 max-w-xs md:ml-auto">
+              Practical, cost-effective solutions tailored to your needs
+            </p>
+          </div>
+
+          <span class="absolute left-4 md:left-1/2 top-1.5 -translate-x-1/2 w-2.5 h-2.5 rotate-45 bg-[#7a8f5c] border-2 border-[#f4f2ec]"></span>
+        </div>
+
+        <div class="relative flex flex-col md:items-start mb-8 md:mb-10 pl-12 md:pl-0">
+          <div class="md:w-1/2 md:pl-10 text-left">
+            <h4 class="text-base md:text-lg font-semibold text-white">
+              Sustainability Focus
+            </h4>
+            <p class="text-sm md:text-base text-white/80 leading-relaxed mt-1 max-w-xs">
+              Minimizing environmental impact while enhancing efficiency
+            </p>
+          </div>
+
+          <span class="absolute left-4 md:left-1/2 top-1.5 -translate-x-1/2 w-2.5 h-2.5 rotate-45 bg-[#7a8f5c] border-2 border-[#f4f2ec]"></span>
+        </div>
+
+        <div class="relative flex flex-col md:items-end pl-12 md:pl-0">
+          <div class="md:w-1/2 md:pr-10 md:ml-auto text-left md:text-right">
+            <h4 class="text-base md:text-lg font-semibold text-white">
+              Reliable and Timely
+            </h4>
+            <p class="text-sm md:text-base text-white/80 leading-relaxed mt-1 max-w-xs md:ml-auto">
+              High-quality results delivered on time, every time
+            </p>
+          </div>
+
+          <span class="absolute left-4 md:left-1/2 top-1.5 -translate-x-1/2 w-2.5 h-2.5 rotate-45 bg-[#7a8f5c] border-2 border-[#f4f2ec]"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-[#40513B] via-[#40513B]/70 to-transparent"></div>
+
+    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-[#40513B]/30 rounded-full blur-[100px]"></div>
+  </div>
+
+  <div class="bg-[#40513B] relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <div
+        class="absolute inset-0"
+        style="background: linear-gradient(45deg, #40513B, #2d3d2a, #5a7a4a, #40513B); background-size: 400% 400%;"
+      ></div>
+    </div>
+
+    <div class="absolute top-0 left-0 right-0 -translate-y-1/2 h-32 bg-gradient-to-t from-[#40513B] via-[#40513B]/60 to-transparent blur-[2px]"></div>
+
+    <div class="max-w-5xl mx-auto px-6 pt-16 pb-20 md:pb-24 text-center relative z-10 font-sans">
+      <h3 class="text-3xl sm:text-4xl md:text-[2.75rem] font-semibold text-white leading-tight">
+        What Makes Us Different<br />
+        <span class="font-medium text-[#b8d4b0]">
+          Leading the way in sustainable consulting
+        </span>
+      </h3>
+
+      <p class="text-sm md:text-base text-white/50 max-w-xl mx-auto mt-6 leading-relaxed font-normal">
+        At SIEC, we combine scientific expertise, innovative technologies, and a client-centric approach to deliver tailored solutions that promote a greener and more sustainable future.
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 mt-16">
+        <div class="px-6 md:border-r md:border-white/15">
+          <div>
+            <h5 class="text-[#b8d4b0] font-semibold text-sm">
+              Multidisciplinary Approach
+            </h5>
+            <p class="text-xs text-white/40 leading-relaxed mt-2">
+              Experts from diverse backgrounds including environmental science, ecology, engineering, and policy
+            </p>
+          </div>
+        </div>
+
+        <div class="px-6 md:border-r md:border-white/15">
+          <div>
+            <h5 class="text-[#b8d4b0] font-semibold text-sm">
+              Scientific Expertise
+            </h5>
+            <p class="text-xs text-white/40 leading-relaxed mt-2">
+              Evidence-based solutions grounded in the latest environmental research and best practices
+            </p>
+          </div>
+        </div>
+
+        <div class="px-6 md:border-r md:border-white/15">
+          <div>
+            <h5 class="text-[#b8d4b0] font-semibold text-sm">
+              Innovative Technologies
+            </h5>
+            <p class="text-xs text-white/40 leading-relaxed mt-2">
+              Cutting-edge tools and methods to address complex environmental challenges effectively
+            </p>
+          </div>
+        </div>
+
+        <div class="px-6">
+          <div>
+            <h5 class="text-[#b8d4b0] font-semibold text-sm">
+              Client-Centric Solutions
+            </h5>
+            <p class="text-xs text-white/40 leading-relaxed mt-2">
+              Tailored services designed to meet the unique needs of every organization and community
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<!-- <style>
+.scroll-animate {
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-animate.visible {
+  opacity: 1;
+}
+
+@keyframes fadeInZoom {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.fade-in-zoom.visible {
+  animation: fadeInZoom 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes fadeInUpGlow {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+    filter: blur(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.fade-in-up-glow.visible {
+  animation: fadeInUpGlow 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes slideInLeft3D {
+  0% {
+    opacity: 0;
+    transform: translateX(-80px) rotateY(30deg) scale(0.9);
+    perspective: 1000px;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) rotateY(0) scale(1);
+    perspective: 1000px;
+  }
+}
+
+.slide-in-left-3d.visible {
+  animation: slideInLeft3D 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes slideInRight3D {
+  0% {
+    opacity: 0;
+    transform: translateX(80px) rotateY(-30deg) scale(0.9);
+    perspective: 1000px;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) rotateY(0) scale(1);
+    perspective: 1000px;
+  }
+}
+
+.slide-in-right-3d.visible {
+  animation: slideInRight3D 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes fadeInRotate {
+  0% {
+    opacity: 0;
+    transform: rotateX(-15deg) translateY(60px);
+    perspective: 1000px;
+  }
+  100% {
+    opacity: 1;
+    transform: rotateX(0) translateY(0);
+    perspective: 1000px;
+  }
+}
+
+.fade-in-rotate.visible {
+  animation: fadeInRotate 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) rotate(-5deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
+
+.fade-in-scale.visible {
+  animation: fadeInScale 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes fadeInBlur {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(1.1);
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.fade-in-blur.visible {
+  animation: fadeInBlur 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes flipInLeft {
+  0% {
+    opacity: 0;
+    transform: perspective(600px) rotateY(-60deg) translateX(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(600px) rotateY(0) translateX(0);
+  }
+}
+
+.flip-in-left.visible {
+  animation: flipInLeft 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes flipInRight {
+  0% {
+    opacity: 0;
+    transform: perspective(600px) rotateY(60deg) translateX(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(600px) rotateY(0) translateX(0);
+  }
+}
+
+.flip-in-right.visible {
+  animation: flipInRight 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient-shift {
+  animation: gradientShift 10s ease infinite;
+}
+
+#parallax-bg {
+  transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.delay-200 {
+  transition-delay: 0.2s;
+  animation-delay: 0.2s;
+}
+
+.delay-300 {
+  transition-delay: 0.3s;
+  animation-delay: 0.3s;
+}
+
+.delay-400 {
+  transition-delay: 0.4s;
+  animation-delay: 0.4s;
+}
+
+.delay-500 {
+  transition-delay: 0.5s;
+  animation-delay: 0.5s;
+}
+
+.delay-600 {
+  transition-delay: 0.6s;
+  animation-delay: 0.6s;
+}
+
+.delay-700 {
+  transition-delay: 0.7s;
+  animation-delay: 0.7s;
+}
+
+.delay-800 {
+  transition-delay: 0.8s;
+  animation-delay: 0.8s;
+}
+
+.scroll-animate.stagger-children {
+  transition-delay: 0.1s;
+}
+</style> -->
+
+<!-- <script>
+document.addEventListener('DOMContentLoaded', function() {
+  const animatedElements = document.querySelectorAll('.scroll-animate');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        
+        if (entry.target.classList.contains('stagger-children')) {
+          const children = entry.target.children;
+          Array.from(children).forEach((child, index) => {
+            child.style.transitionDelay = `${(index + 1) * 0.1}s`;
+            child.classList.add('visible');
+          });
+        }
+      }
+    });
+  }, {
+    threshold: 0.2,
+    rootMargin: '0px 0px -30px 0px'
+  });
+  
+  animatedElements.forEach(element => {
+    observer.observe(element);
+  });
+
+  const parallaxBg = document.getElementById('parallax-bg');
+
+  if (parallaxBg) {
+    window.addEventListener('scroll', function() {
+      const scrolled = window.pageYOffset;
+      const section = parallaxBg.closest('section');
+
+      if (section) {
+        const rect = section.getBoundingClientRect();
+        const offset = rect.top + window.pageYOffset;
+        const distance = scrolled - offset;
+
+        if (distance > -100 && distance < 500) {
+          const speed = distance * 0.15;
+          parallaxBg.style.transform = `translateY(${speed}px)`;
+        }
+      }
+    });
+  }
+
+  document.querySelectorAll('.group').forEach(card => {
+    card.addEventListener('mousemove', function(e) {
+      const rect = this.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+      this.querySelector('div').style.transform =
+        `perspective(1000px) rotateY(${x * 10}deg) rotateX(${y * -10}deg)`;
+    });
+
+    card.addEventListener('mouseleave', function() {
+      this.querySelector('div').style.transform =
+        'perspective(1000px) rotateY(0) rotateX(0)';
+    });
+  });
+});
+
+window.addEventListener('load', function() {
+  const visibleElements = document.querySelectorAll('.scroll-animate');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  visibleElements.forEach(el => observer.observe(el));
+});
+</script> -->
+
+<!-- ===== MISSION & VISION — no section background, editorial split layout ===== -->
+<section class="relative py-24">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8">
+
+    <div class="text-center mb-14">
+      <span class="font-mono text-[11px] uppercase tracking-[0.25em] text-[#628141]">Why We Exist</span>
+    </div>
+
+    <div class="grid md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-[#1b4332]/15">
+
+      <!-- MISSION -->
+      <div class="md:pr-14 pb-10 md:pb-0">
+        <span class="font-mono text-xs uppercase tracking-[0.2em] text-[#628141]">Mission</span>
+        <h3 class="font-display text-3xl md:text-4xl text-[#1b4332] mt-3 mb-4 leading-tight">
+          Leading sustainable consulting
+        </h3>
+        <p class="font-body text-[#40513B]/70 leading-relaxed max-w-md">
+          Combining scientific expertise with practical, client-centric approaches to deliver measurable environmental impact.
+        </p>
+        <div class="flex items-center gap-3 mt-6">
+          <div class="w-8 h-8 rounded-full bg-[#628141]/10 flex items-center justify-center text-[#628141]">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <span class="font-mono text-xs uppercase tracking-wide text-[#40513B]/60">Measurable impact</span>
+        </div>
+      </div>
+
+      <!-- VISION -->
+      <div class="md:pl-14 pt-10 md:pt-0">
+        <span class="font-mono text-xs uppercase tracking-[0.2em] text-[#628141]">Vision</span>
+        <h3 class="font-display text-3xl md:text-4xl text-[#1b4332] mt-3 mb-4 leading-tight">
+          Environmental integrity first
+        </h3>
+        <p class="font-body text-[#40513B]/70 leading-relaxed max-w-md">
+          Embedding sustainability in every aspect of business and society for a healthier, more resilient future.
+        </p>
+        <div class="flex items-center gap-3 mt-6">
+          <div class="w-8 h-8 rounded-full bg-[#628141]/10 flex items-center justify-center text-[#628141]">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+            </svg>
+          </div>
+          <span class="font-mono text-xs uppercase tracking-wide text-[#40513B]/60">Global change</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== STATS — data strip, no section background, count-up on scroll ===== -->
+<section class="pb-24">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8">
+    <div class="border-t border-[#1b4332]/15"></div>
+    <div class="grid grid-cols-2 md:grid-cols-4 divide-x divide-[#1b4332]/15">
+      <div class="flex flex-col items-center py-9 px-2">
+        <span class="font-display text-4xl md:text-5xl text-[#1b4332] counter-number" data-target="25">0</span>
+        <span class="font-mono text-[10px] uppercase tracking-[0.2em] text-[#40513B]/50 mt-2">Years of Excellence</span>
+      </div>
+      <div class="flex flex-col items-center py-9 px-2">
+        <span class="font-display text-4xl md:text-5xl text-[#1b4332] counter-number" data-target="500">0</span>
+        <span class="font-mono text-[10px] uppercase tracking-[0.2em] text-[#40513B]/50 mt-2">Projects Delivered</span>
+      </div>
+      <div class="flex flex-col items-center py-9 px-2">
+        <span class="font-display text-4xl md:text-5xl text-[#1b4332] counter-number" data-target="50">0</span>
+        <span class="font-mono text-[10px] uppercase tracking-[0.2em] text-[#40513B]/50 mt-2">Expert Consultants</span>
+      </div>
+      <div class="flex flex-col items-center py-9 px-2">
+        <span class="font-display text-4xl md:text-5xl text-[#1b4332] counter-number" data-target="40">0</span>
+        <span class="font-mono text-[10px] uppercase tracking-[0.2em] text-[#40513B]/50 mt-2">Countries Served</span>
+      </div>
+    </div>
+    <div class="border-t border-[#1b4332]/15"></div>
+  </div>
+</section>
+
+<!-- Why SIEC - Redesigned to match Elite Endeavor style with images -->
+<section class="pt-8 pb-16 bg-[#e8f5e9]">
+    <div class="container mx-auto px-4">
+
+        <!-- Section Header (SIEC) -->
+        <div class="text-center">
+            <span class="inline-flex items-center gap-2 text-[#2ecc71] font-semibold text-[10px] uppercase tracking-[0.3em] mb-3">
+              
+            </span>
+            <h2 class="text-3xl md:text-4xl font-bold text-[#1a3c34] mb-16 md:mb-24 inline-block">
+                Why Choose <span class="text-primary" style="color: #2ecc71;">SIEC</span>
+                <span class="block w-20 h-1 mt-3 mx-auto bg-gradient-to-r from-[#2ecc71] to-[#3498db] rounded-full"></span>            </h2>
+        </div>
+
+        <!-- Grid 4 cards (SIEC content) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+
+            <!-- Card 1: Expertise and Experience -->
+            <div class="relative text-center bg-white rounded-xl border-2 border-[#5BC0BE] shadow-[0_4px_12px_rgba(91,192,190,0.18)] hover:shadow-xl transition-all duration-300 pt-20 px-6 pb-8">
+                <!-- Image (keep consistent with Jianan style but use SIEC icon placeholder) -->
+                <img src="assets/w_1.png" alt="Expertise and Experience"
+                    class="w-32 h-auto mx-auto absolute -top-16 left-1/2 -translate-x-1/2">
+
+                <h3 class="text-xl font-bold text-[#1a3c34] mb-6 text-center">
+                    Expertise and Experience
+                    <span class="block w-12 h-0.5 mt-2 mx-auto bg-gradient-to-r from-[#2ecc71] to-[#3498db] rounded-full"></span>                </h3>
+
+                <p class="text-gray-600">
+                    Extensive experience across energy, infrastructure, and manufacturing sectors.
+                </p>
+            </div>
+
+          <!-- Card 2: Innovation and Customization -->
+<div class="relative text-center bg-white rounded-xl border-2 border-[#5BC0BE] shadow-[0_4px_12px_rgba(91,192,190,0.18)] hover:shadow-xl transition-all duration-300 pt-20 px-6 pb-8">
+
+    <img src="assets/w_2.png" alt="Innovation and Customization"
+        class="w-32 h-auto mx-auto absolute -top-16 left-1/2 -translate-x-1/2">
+
+    <h3 class="text-xl font-bold text-[#1a3c34] mb-6 text-center">
+        Innovation and Customization
+        <span class="block w-12 h-0.5 mt-2 mx-auto bg-gradient-to-r from-[#2ecc71] to-[#3498db] rounded-full"></span>    </h3>
+
+    <p class="text-gray-600">
+        Practical, cost-effective solutions tailored to your specific needs.
+    </p>
+</div>
+
+            <!-- Card 3: Sustainability Focus -->
+            <div class="relative text-center bg-white rounded-xl border-2 border-[#5BC0BE] shadow-[0_4px_12px_rgba(91,192,190,0.18)] hover:shadow-xl transition-all duration-300 pt-20 px-6 pb-8">
+
+                <img src="assets/w_3.png" alt="Sustainability Focus"
+                    class="w-32 h-auto mx-auto absolute -top-16 left-1/2 -translate-x-1/2">
+
+                <h3 class="text-xl font-bold text-[#1a3c34] mb-6 text-center">
+                    Sustainability Focus
+                    <span class="block w-12 h-0.5 mt-2 mx-auto bg-gradient-to-r from-[#2ecc71] to-[#3498db] rounded-full"></span>                </h3>
+
+                <p class="text-gray-600">
+                    Minimizing environmental impact while enhancing efficiency.
+                </p>
+            </div>
+
+            <!-- Card 4: Reliable and Timely -->
+            <div class="relative text-center bg-white rounded-xl border-2 border-[#5BC0BE] shadow-[0_4px_12px_rgba(91,192,190,0.18)] hover:shadow-xl transition-all duration-300 pt-20 px-6 pb-8">
+                
+                <img src="assets/w_4.png" alt="Reliable and Timely"
+                    class="w-32 h-auto mx-auto absolute -top-16 left-1/2 -translate-x-1/2">
+
+                <h3 class="text-xl font-bold text-[#1a3c34] mb-6 text-center">
+                    Reliable and Timely
+                    <span class="block w-12 h-0.5 mt-2 mx-auto bg-gradient-to-r from-[#2ecc71] to-[#3498db] rounded-full"></span>                </h3>
+
+                <p class="text-gray-600">
+                    High-quality results delivered on time, every time.
+                </p>
+            </div>
+
+        </div>
+    </div>
 </section>
 
 <!-- Floating Animation Keyframes -->
@@ -1649,156 +1798,319 @@ document.addEventListener('DOMContentLoaded', function() {
 </section>
 
 <!-- ===== WHY SIEC ===== -->
-<section class="relative py-16 md:py-20 overflow-hidden bg-[#0d2b20]">
-  
-  <!-- SINGLE FIXED BACKGROUND BANNER -->
+<!-- <section class="relative py-16 md:py-20 overflow-hidden bg-[#0d2b20]">
   <div class="absolute inset-0 z-0">
-    <img 
-      src="/assets/bg_2.jfif" 
-      alt="Environmental background" 
+    <img
+      src="/assets/bg_2.jfif"
+      alt="Environmental background"
       class="w-full h-full object-cover"
     />
-    <div class="absolute inset-0 bg-gradient-to-br from-[#0d2b20]/55 via-[#0d2b20]/45 to-[#1b4332]/60"></div>    
-    <div class="absolute inset-0" style="background: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(34, 197, 94, 0.02) 40px, rgba(34, 197, 94, 0.02) 41px);"></div>
-    
-    <!-- Glow orbs -->
+    <div class="absolute inset-0 bg-gradient-to-br from-[#0d2b20]/55 via-[#0d2b20]/45 to-[#1b4332]/60"></div>
+    <div
+      class="absolute inset-0"
+      style="background: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(34, 197, 94, 0.02) 40px, rgba(34, 197, 94, 0.02) 41px);"
+    ></div>
+
     <div class="absolute top-1/3 right-1/3 w-72 h-72 rounded-full bg-[#22c55e]/10 blur-[100px] animate-pulse-slow"></div>
-    <div class="absolute bottom-1/3 left-1/4 w-60 h-60 rounded-full bg-[#8fbfae]/10 blur-[80px] animate-pulse-slow" style="animation-delay: 2s;"></div>
+    <div
+      class="absolute bottom-1/3 left-1/4 w-60 h-60 rounded-full bg-[#8fbfae]/10 blur-[80px] animate-pulse-slow"
+      style="animation-delay: 2s;"
+    ></div>
   </div>
 
-  <!-- Content Layer -->
   <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <!-- Section Header - MATCHING HERO STYLE -->
     <div class="text-center max-w-2xl mx-auto mb-10">
-      <span class="inline-flex items-center gap-2 text-white/70 font-semibold text-[10px] uppercase tracking-[0.3em]">
+      <span
+        class="inline-flex items-center gap-2 text-white/70 font-semibold text-[10px] uppercase tracking-[0.3em]"
+      >
         <span class="w-5 h-px bg-[#22c55e]"></span>
         Why SIEC
         <span class="relative flex h-1.5 w-1.5 ml-1">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#22c55e] opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#22c55e]"></span>
+          <span
+            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#22c55e] opacity-75"
+          ></span>
+          <span
+            class="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#22c55e]"
+          ></span>
         </span>
       </span>
-      <h2 class="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-white mt-2 leading-[1.15]">
-        Partner with <span class="bg-gradient-to-r from-[#22c55e] via-[#4ade80] to-[#22c55e] bg-clip-text text-transparent font-bold">Environmental</span> Experts
+
+      <h2
+        class="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-white mt-2 leading-[1.15]"
+      >
+        Partner with
+        <span
+          class="bg-gradient-to-r from-[#22c55e] via-[#4ade80] to-[#22c55e] bg-clip-text text-transparent font-bold"
+        >
+          Environmental
+        </span>
+        Experts
       </h2>
-      <p class="text-white/70 text-sm mt-2 font-medium backdrop-blur-sm bg-black/20 p-2 rounded-xl border border-white/5 inline-block px-4">Scientific rigor. Practical solutions. Measurable outcomes.</p>
+
+      <p
+        class="text-white/70 text-sm mt-2 font-medium backdrop-blur-sm bg-black/20 p-2 rounded-xl border border-white/5 inline-block px-4"
+      >
+        Scientific rigor. Practical solutions. Measurable outcomes.
+      </p>
     </div>
 
-    <!-- BANNER CONTAINER (single banner with sliding cards inside) -->
-    <div class="relative bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl overflow-hidden">
-      
-      <!-- Sliding Cards Wrapper -->
+    <div
+      class="relative bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl overflow-hidden"
+    >
       <div class="sliding-wrapper overflow-hidden py-8 md:py-10">
         <div class="sliding-track flex gap-5 md:gap-6 animate-slide">
-          
-          <!-- CARD 1: Expertise -->
-          <div class="flex-shrink-0 w-[260px] md:w-[300px] lg:w-[340px] bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-6 text-center hover:bg-white/20 transition-all duration-300">
-            <div class="w-14 h-14 rounded-full bg-gradient-to-br from-[#22c55e]/40 to-[#4ade80]/20 flex items-center justify-center text-white mx-auto mb-3">
-              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+          <div
+            class="flex-shrink-0 w-[260px] md:w-[300px] lg:w-[340px] bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-6 text-center hover:bg-white/20 transition-all duration-300"
+          >
+            <div
+              class="w-14 h-14 rounded-full bg-gradient-to-br from-[#22c55e]/40 to-[#4ade80]/20 flex items-center justify-center text-white mx-auto mb-3"
+            >
+              <svg
+                class="w-7 h-7"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
+                />
               </svg>
             </div>
             <h3 class="text-lg font-bold text-white">Expertise</h3>
-            <p class="text-sm text-white/70 font-medium">Decades of combined experience</p>
+            <p class="text-sm text-white/70 font-medium">
+              Decades of combined experience
+            </p>
           </div>
 
-          <!-- CARD 2: Innovation -->
-          <div class="flex-shrink-0 w-[260px] md:w-[300px] lg:w-[340px] bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-6 text-center hover:bg-white/20 transition-all duration-300">
-            <div class="w-14 h-14 rounded-full bg-gradient-to-br from-[#22c55e]/40 to-[#4ade80]/20 flex items-center justify-center text-white mx-auto mb-3">
-              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+          <div
+            class="flex-shrink-0 w-[260px] md:w-[300px] lg:w-[340px] bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-6 text-center hover:bg-white/20 transition-all duration-300"
+          >
+            <div
+              class="w-14 h-14 rounded-full bg-gradient-to-br from-[#22c55e]/40 to-[#4ade80]/20 flex items-center justify-center text-white mx-auto mb-3"
+            >
+              <svg
+                class="w-7 h-7"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M13 10V3L4 14h7v7l9-11h-7z"
+                />
               </svg>
             </div>
             <h3 class="text-lg font-bold text-white">Innovation</h3>
-            <p class="text-sm text-white/70 font-medium">Latest technologies &amp; best practices</p>
+            <p class="text-sm text-white/70 font-medium">
+              Latest technologies &amp; best practices
+            </p>
           </div>
 
-          <!-- CARD 3: Reliability -->
-          <div class="flex-shrink-0 w-[260px] md:w-[300px] lg:w-[340px] bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-6 text-center hover:bg-white/20 transition-all duration-300">
-            <div class="w-14 h-14 rounded-full bg-gradient-to-br from-[#22c55e]/40 to-[#4ade80]/20 flex items-center justify-center text-white mx-auto mb-3">
-              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          <div
+            class="flex-shrink-0 w-[260px] md:w-[300px] lg:w-[340px] bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-6 text-center hover:bg-white/20 transition-all duration-300"
+          >
+            <div
+              class="w-14 h-14 rounded-full bg-gradient-to-br from-[#22c55e]/40 to-[#4ade80]/20 flex items-center justify-center text-white mx-auto mb-3"
+            >
+              <svg
+                class="w-7 h-7"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
               </svg>
             </div>
             <h3 class="text-lg font-bold text-white">Reliability</h3>
-            <p class="text-sm text-white/70 font-medium">On-time, professional execution</p>
+            <p class="text-sm text-white/70 font-medium">
+              On-time, professional execution
+            </p>
           </div>
 
-          <!-- CARD 4: Global Reach -->
-          <div class="flex-shrink-0 w-[260px] md:w-[300px] lg:w-[340px] bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-6 text-center hover:bg-white/20 transition-all duration-300">
-            <div class="w-14 h-14 rounded-full bg-gradient-to-br from-[#22c55e]/40 to-[#4ade80]/20 flex items-center justify-center text-white mx-auto mb-3">
-              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/>
+          <div
+            class="flex-shrink-0 w-[260px] md:w-[300px] lg:w-[340px] bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-6 text-center hover:bg-white/20 transition-all duration-300"
+          >
+            <div
+              class="w-14 h-14 rounded-full bg-gradient-to-br from-[#22c55e]/40 to-[#4ade80]/20 flex items-center justify-center text-white mx-auto mb-3"
+            >
+              <svg
+                class="w-7 h-7"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"
+                />
               </svg>
             </div>
             <h3 class="text-lg font-bold text-white">Global Reach</h3>
-            <p class="text-sm text-white/70 font-medium">40+ countries served</p>
+            <p class="text-sm text-white/70 font-medium">
+              40+ countries served
+            </p>
           </div>
 
-          <!-- DUPLICATE CARDS for seamless loop -->
-          <div class="flex-shrink-0 w-[260px] md:w-[300px] lg:w-[340px] bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-6 text-center hover:bg-white/20 transition-all duration-300">
-            <div class="w-14 h-14 rounded-full bg-gradient-to-br from-[#22c55e]/40 to-[#4ade80]/20 flex items-center justify-center text-white mx-auto mb-3">
-              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+          <div
+            class="flex-shrink-0 w-[260px] md:w-[300px] lg:w-[340px] bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-6 text-center hover:bg-white/20 transition-all duration-300"
+          >
+            <div
+              class="w-14 h-14 rounded-full bg-gradient-to-br from-[#22c55e]/40 to-[#4ade80]/20 flex items-center justify-center text-white mx-auto mb-3"
+            >
+              <svg
+                class="w-7 h-7"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
+                />
               </svg>
             </div>
             <h3 class="text-lg font-bold text-white">Expertise</h3>
-            <p class="text-sm text-white/70 font-medium">Decades of combined experience</p>
+            <p class="text-sm text-white/70 font-medium">
+              Decades of combined experience
+            </p>
           </div>
-          <div class="flex-shrink-0 w-[260px] md:w-[300px] lg:w-[340px] bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-6 text-center hover:bg-white/20 transition-all duration-300">
-            <div class="w-14 h-14 rounded-full bg-gradient-to-br from-[#22c55e]/40 to-[#4ade80]/20 flex items-center justify-center text-white mx-auto mb-3">
-              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+
+          <div
+            class="flex-shrink-0 w-[260px] md:w-[300px] lg:w-[340px] bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-6 text-center hover:bg-white/20 transition-all duration-300"
+          >
+            <div
+              class="w-14 h-14 rounded-full bg-gradient-to-br from-[#22c55e]/40 to-[#4ade80]/20 flex items-center justify-center text-white mx-auto mb-3"
+            >
+              <svg
+                class="w-7 h-7"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M13 10V3L4 14h7v7l9-11h-7z"
+                />
               </svg>
             </div>
             <h3 class="text-lg font-bold text-white">Innovation</h3>
-            <p class="text-sm text-white/70 font-medium">Latest technologies &amp; best practices</p>
+            <p class="text-sm text-white/70 font-medium">
+              Latest technologies &amp; best practices
+            </p>
           </div>
-          <div class="flex-shrink-0 w-[260px] md:w-[300px] lg:w-[340px] bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-6 text-center hover:bg-white/20 transition-all duration-300">
-            <div class="w-14 h-14 rounded-full bg-gradient-to-br from-[#22c55e]/40 to-[#4ade80]/20 flex items-center justify-center text-white mx-auto mb-3">
-              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+
+          <div
+            class="flex-shrink-0 w-[260px] md:w-[300px] lg:w-[340px] bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-6 text-center hover:bg-white/20 transition-all duration-300"
+          >
+            <div
+              class="w-14 h-14 rounded-full bg-gradient-to-br from-[#22c55e]/40 to-[#4ade80]/20 flex items-center justify-center text-white mx-auto mb-3"
+            >
+              <svg
+                class="w-7 h-7"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
               </svg>
             </div>
             <h3 class="text-lg font-bold text-white">Reliability</h3>
-            <p class="text-sm text-white/70 font-medium">On-time, professional execution</p>
+            <p class="text-sm text-white/70 font-medium">
+              On-time, professional execution
+            </p>
           </div>
-          <div class="flex-shrink-0 w-[260px] md:w-[300px] lg:w-[340px] bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-6 text-center hover:bg-white/20 transition-all duration-300">
-            <div class="w-14 h-14 rounded-full bg-gradient-to-br from-[#22c55e]/40 to-[#4ade80]/20 flex items-center justify-center text-white mx-auto mb-3">
-              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/>
+
+          <div
+            class="flex-shrink-0 w-[260px] md:w-[300px] lg:w-[340px] bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-6 text-center hover:bg-white/20 transition-all duration-300"
+          >
+            <div
+              class="w-14 h-14 rounded-full bg-gradient-to-br from-[#22c55e]/40 to-[#4ade80]/20 flex items-center justify-center text-white mx-auto mb-3"
+            >
+              <svg
+                class="w-7 h-7"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"
+                />
               </svg>
             </div>
             <h3 class="text-lg font-bold text-white">Global Reach</h3>
-            <p class="text-sm text-white/70 font-medium">40+ countries served</p>
+            <p class="text-sm text-white/70 font-medium">
+              40+ countries served
+            </p>
           </div>
-
         </div>
       </div>
 
-      <!-- Stats inside banner at bottom - MATCHING HERO STYLE -->
-      <div class="grid grid-cols-4 gap-4 py-5 px-6 border-t border-white/5 bg-black/20 backdrop-blur-sm">
+      <div
+        class="grid grid-cols-4 gap-4 py-5 px-6 border-t border-white/5 bg-black/20 backdrop-blur-sm"
+      >
         <div class="text-center">
           <div class="text-xl font-display font-bold text-white">20+</div>
-          <p class="text-[10px] text-white/50 uppercase tracking-wider font-medium">Years</p>
+          <p
+            class="text-[10px] text-white/50 uppercase tracking-wider font-medium"
+          >
+            Years
+          </p>
         </div>
+
         <div class="text-center">
           <div class="text-xl font-display font-bold text-white">500+</div>
-          <p class="text-[10px] text-white/50 uppercase tracking-wider font-medium">Projects</p>
+          <p
+            class="text-[10px] text-white/50 uppercase tracking-wider font-medium"
+          >
+            Projects
+          </p>
         </div>
+
         <div class="text-center">
           <div class="text-xl font-display font-bold text-white">40</div>
-          <p class="text-[10px] text-white/50 uppercase tracking-wider font-medium">Countries</p>
+          <p
+            class="text-[10px] text-white/50 uppercase tracking-wider font-medium"
+          >
+            Countries
+          </p>
         </div>
+
         <div class="text-center">
           <div class="text-xl font-display font-bold text-white">98%</div>
-          <p class="text-[10px] text-white/50 uppercase tracking-wider font-medium">Satisfaction</p>
+          <p
+            class="text-[10px] text-white/50 uppercase tracking-wider font-medium"
+          >
+            Satisfaction
+          </p>
         </div>
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 <!-- Add this CSS at the end of your style section or in custom.css -->
 <style>

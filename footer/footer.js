@@ -1,6 +1,6 @@
 /* SIEC — Footer behavior. Runs after footer.html is injected into #footer. */
 (function initFooter() {
-  const footer = document.querySelector('footer');
+  const footer = document.querySelector('footer.gf');
   if (!footer) return;
 
   const yearEl = document.getElementById('footer-year');
@@ -13,9 +13,11 @@
       e.preventDefault();
       const email = form.querySelector('#newsletter-email').value.trim();
       if (!email) return;
-      // No backend wired up yet — placeholder confirmation only.
       status.textContent = `Thanks — we'll send updates to ${email}.`;
       form.reset();
+      setTimeout(() => {
+        status.textContent = '';
+      }, 5000);
     });
   }
 
