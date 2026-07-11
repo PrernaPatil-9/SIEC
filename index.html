@@ -16,23 +16,38 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700;9..144,800&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
   
   <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 
   <style>
-      @keyframes revealUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
+    /* ===== GLOBAL FONT SETTINGS ===== */
+    body {
+      font-family: 'Inter', sans-serif;
     }
-  }
 
-  /* why siec */
+    .font-display {
+      font-family: 'Fraunces', serif;
+    }
+    .font-body {
+      font-family: 'Inter', sans-serif;
+    }
+    .font-mono {
+      font-family: 'IBM Plex Mono', monospace;
+    }
 
-   @keyframes slide {
+    @keyframes revealUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* mission & vision  */
+
+    @keyframes slide {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
@@ -61,59 +76,144 @@
 
     /* hero */
 
-      @keyframes float-slow {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-10px) rotate(2deg); }
-  }
-  @keyframes scan {
-    0% { transform: translateY(-100%); }
-    100% { transform: translateY(100%); }
-  }
-  @keyframes scroll-fill {
-    0% { transform: translateY(-100%); }
-    100% { transform: translateY(100%); }
-  }
-  @keyframes pulse-slow {
-    0%, 100% { opacity: 0.3; transform: scale(1); }
-    50% { opacity: 0.6; transform: scale(1.1); }
-  }
-  @keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-  .animate-float-slow {
-    animation: float-slow 6s ease-in-out infinite;
-  }
-  .animate-scan {
-    animation: scan 4s ease-in-out infinite;
-  }
-  .animate-scroll-fill {
-    animation: scroll-fill 2s ease-in-out infinite;
-  }
-  .animate-pulse-slow {
-    animation: pulse-slow 6s ease-in-out infinite;
-  }
-  .animate-\[spin_16s_linear_infinite\] {
-    animation: spin 16s linear infinite;
-  }
+    @keyframes float-slow {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(2deg); }
+    }
+    @keyframes scan {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(100%); }
+    }
+    @keyframes scroll-fill {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(100%); }
+    }
+    @keyframes pulse-slow {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.1); }
+    }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .animate-float-slow {
+      animation: float-slow 6s ease-in-out infinite;
+    }
+    .animate-scan {
+      animation: scan 4s ease-in-out infinite;
+    }
+    .animate-scroll-fill {
+      animation: scroll-fill 2s ease-in-out infinite;
+    }
+    .animate-pulse-slow {
+      animation: pulse-slow 6s ease-in-out infinite;
+    }
+    .animate-\[spin_16s_linear_infinite\] {
+      animation: spin 16s linear infinite;
+    }
 
     /* Marquee Animation */
-  @keyframes marquee {
+    @keyframes marquee {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    .logo-marquee {
+      animation: marquee 25s linear infinite;
+      width: max-content;
+    }
+
+    .logo-marquee:hover {
+      animation-play-state: paused;
+    }
+
+    /* why siec */
+
+      /* ---------- Keyframes for sliding animations ---------- */
+  @keyframes slideInLeft {
     0% {
-      transform: translateX(0);
+      opacity: 0;
+      transform: translateX(-60px);
     }
     100% {
-      transform: translateX(-50%);
+      opacity: 1;
+      transform: translateX(0);
     }
   }
 
-  .logo-marquee {
-    animation: marquee 25s linear infinite;
-    width: max-content;
+  @keyframes slideInRight {
+    0% {
+      opacity: 0;
+      transform: translateX(60px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
 
-  .logo-marquee:hover {
-    animation-play-state: paused;
+  @keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(-10px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ---------- Initial state: hidden ---------- */
+  .mission-label,
+  .mission-title,
+  .mission-text,
+  .mission-badge,
+  .vision-label,
+  .vision-title,
+  .vision-text,
+  .vision-badge,
+  .heading-wrapper span {
+    opacity: 0;
+    transform: translateX(0); /* reset for animation */
+  }
+
+  .heading-wrapper span {
+    transform: translateY(-10px);
+  }
+
+  /* ---------- Animated state (applied via JS when visible) ---------- */
+  .mission-vision-section.visible .heading-wrapper span {
+    animation: fadeIn 1s ease-out 0s both;
+  }
+
+  .mission-vision-section.visible .mission-label {
+    animation: slideInLeft 0.8s ease-out 0.1s both;
+  }
+  .mission-vision-section.visible .mission-title {
+    animation: slideInLeft 0.9s ease-out 0.2s both;
+  }
+  .mission-vision-section.visible .mission-text {
+    animation: slideInLeft 1s ease-out 0.35s both;
+  }
+  .mission-vision-section.visible .mission-badge {
+    animation: slideInLeft 0.8s ease-out 0.5s both;
+  }
+
+  .mission-vision-section.visible .vision-label {
+    animation: slideInRight 0.8s ease-out 0.1s both;
+  }
+  .mission-vision-section.visible .vision-title {
+    animation: slideInRight 0.9s ease-out 0.2s both;
+  }
+  .mission-vision-section.visible .vision-text {
+    animation: slideInRight 1s ease-out 0.35s both;
+  }
+  .mission-vision-section.visible .vision-badge {
+    animation: slideInRight 0.8s ease-out 0.5s both;
+  }
+
+  /* ---------- Base ---------- */
+  .mission-column,
+  .vision-column {
+    overflow: hidden;
   }
   </style>
 </head>
@@ -267,7 +367,7 @@
           <!-- ===== LEFT SIDE: REDESIGNED CONTENT ===== -->
           <div>
             <!-- Badge -->
-            <span class="inline-flex items-center gap-2 text-[#0d2b20] font-semibold text-[10px] uppercase tracking-[0.2em] mb-4">
+            <span class="inline-flex items-center gap-2 text-[#0d2b20] font-body font-semibold text-[10px] uppercase tracking-[0.2em] mb-4">
               <span class="w-8 h-px bg-gradient-to-r from-[#22c55e] to-[#4ade80]"></span>
               About SIEC
               <span class="relative flex h-1.5 w-1.5">
@@ -278,13 +378,13 @@
             </span>
     
             <!-- Heading -->
-            <h2 class="text-3xl sm:text-4xl font-bold text-[#0d2b20] mb-4 leading-[1.15]">
+            <h2 class="font-display text-3xl sm:text-4xl font-bold text-[#0d2b20] mb-4 leading-[1.15]">
               Who We Are<br/>
               <span class="bg-gradient-to-r from-[#22c55e] to-[#1b4332] bg-clip-text text-transparent">At a Glance</span>
             </h2>
     
             <!-- Description - cleaner, more refined -->
-            <p class="text-sm text-neutral-700 leading-relaxed mb-5 bg-white/40 backdrop-blur-sm p-4 rounded-xl border border-[#22c55e]/10">
+            <p class="font-body text-sm text-neutral-700 leading-relaxed mb-5 bg-white/40 backdrop-blur-sm p-4 rounded-xl border border-[#22c55e]/10">
               <strong class="text-[#0d2b20]">SIEC</strong> is a global environmental consultancy that combines scientific rigor with practical know‑how. We help businesses, governments, and communities navigate complex environmental challenges — from site remediation and regulatory compliance to long‑term sustainability strategy.
             </p>
     
@@ -297,8 +397,8 @@
                   </svg>
                 </div>
                 <div>
-                  <p class="text-sm font-semibold text-[#0d2b20]">Multidisciplinary Expertise</p>
-                  <p class="text-xs text-neutral-500">Ecologists, engineers, policy experts &amp; data scientists working together.</p>
+                  <p class="font-body text-sm font-semibold text-[#0d2b20]">Multidisciplinary Expertise</p>
+                  <p class="font-body text-xs text-neutral-500">Ecologists, engineers, policy experts &amp; data scientists working together.</p>
                 </div>
               </div>
     
@@ -309,8 +409,8 @@
                   </svg>
                 </div>
                 <div>
-                  <p class="text-sm font-semibold text-[#0d2b20]">Global Reach, Local Impact</p>
-                  <p class="text-xs text-neutral-500">Serving 40+ countries with deep regional knowledge and networks.</p>
+                  <p class="font-body text-sm font-semibold text-[#0d2b20]">Global Reach, Local Impact</p>
+                  <p class="font-body text-xs text-neutral-500">Serving 40+ countries with deep regional knowledge and networks.</p>
                 </div>
               </div>
     
@@ -321,8 +421,8 @@
                   </svg>
                 </div>
                 <div>
-                  <p class="text-sm font-semibold text-[#0d2b20]">Science‑Led Solutions</p>
-                  <p class="text-xs text-neutral-500">Data-driven strategies that deliver measurable environmental outcomes.</p>
+                  <p class="font-body text-sm font-semibold text-[#0d2b20]">Science‑Led Solutions</p>
+                  <p class="font-body text-xs text-neutral-500">Data-driven strategies that deliver measurable environmental outcomes.</p>
                 </div>
               </div>
             </div>
@@ -337,8 +437,8 @@
                     </svg>
                   </div>
                   <div>
-                    <p class="font-semibold text-[#0d2b20] text-xs">Innovation</p>
-                    <p class="text-[10px] text-neutral-500">Pushing boundaries</p>
+                    <p class="font-body font-semibold text-[#0d2b20] text-xs">Innovation</p>
+                    <p class="font-body text-[10px] text-neutral-500">Pushing boundaries</p>
                   </div>
                 </div>
               </div>
@@ -350,15 +450,15 @@
                     </svg>
                   </div>
                   <div>
-                    <p class="font-semibold text-[#0d2b20] text-xs">Global</p>
-                    <p class="text-[10px] text-neutral-500">40+ countries</p>
+                    <p class="font-body font-semibold text-[#0d2b20] text-xs">Global</p>
+                    <p class="font-body text-[10px] text-neutral-500">40+ countries</p>
                   </div>
                 </div>
               </div>
             </div>
     
             <!-- CTA -->
-            <a href="/pages/about/about.html" class="inline-flex items-center gap-2 mt-5 text-[#22c55e] font-medium text-sm hover:text-[#16a34a] transition-colors group">
+            <a href="/pages/about/about.html" class="inline-flex items-center gap-2 mt-5 text-[#22c55e] font-body font-medium text-sm hover:text-[#16a34a] transition-colors group">
               <span>About Us</span>
               <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -370,21 +470,29 @@
           <div class="flex justify-center items-center">
             <div class="relative w-full max-w-md aspect-square">
               <!-- Hexagon container using clip-path -->
-<div class="absolute inset-0 overflow-hidden"
-     style="clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);">
+<!-- Hexagon Border -->
+<div
+  class="absolute inset-0 p-[4px] bg-[#22c55e]"
+  style="clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);">
 
-  <video
-    src="/assets/a2.mp4"
-    class="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
-    autoplay
-    muted
-    loop
-    playsinline
-    preload="metadata">
-  </video>
+  <!-- Hexagon Video -->
+  <div
+    class="w-full h-full overflow-hidden"
+    style="clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);">
 
-  <!-- Overlay for depth -->
-  <div class="absolute inset-0 bg-gradient-to-t from-[#0d2b20]/50 via-[#0d2b20]/10 to-transparent"></div>
+    <video
+      src="/assets/a2.mp4"
+      class="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata">
+    </video>
+
+    <div class="absolute inset-0 bg-gradient-to-t from-[#0d2b20]/50 via-[#0d2b20]/10 to-transparent"></div>
+
+  </div>
 </div>
     
               <!-- Decorative hexagon ring (glow) -->
@@ -394,7 +502,7 @@
               </div>
     
               <!-- Floating label (positioned at the bottom) -->
-              <div class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur-sm text-[#0d2b20] text-xs font-semibold uppercase tracking-wider px-4 py-2 rounded-full shadow-md border border-[#22c55e]/20 whitespace-nowrap z-10">
+              <div class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur-sm text-[#0d2b20] font-body text-xs font-semibold uppercase tracking-wider px-4 py-2 rounded-full shadow-md border border-[#22c55e]/20 whitespace-nowrap z-10">
                 <span class="flex items-center gap-2">
                   <span class="w-2 h-2 rounded-full bg-[#22c55e] animate-pulse"></span>
                   Field &amp; Lab Excellence
@@ -644,7 +752,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- ===== TRUST BAR ===== -->
 <section class="py-12 bg-[#fdf8f0] border-y border-[#e8e0d0] overflow-hidden">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <p class="text-center text-sm uppercase tracking-[0.2em] text-[#2ecc71] mb-6 font-semibold">
+    <p class="text-center text-sm uppercase tracking-[0.2em] text-[#2ecc71] mb-6 font-body font-semibold">
       Our Comprehensive Services
     </p>
 
@@ -653,52 +761,52 @@ document.addEventListener('DOMContentLoaded', function() {
         
         <!-- Service 1 -->
         <div class="flex-shrink-0 bg-gradient-to-r from-[#2ecc71]/20 to-[#3498db]/20 backdrop-blur-sm px-4 py-2 rounded-full border border-[#2ecc71]/30 shadow-sm hover:shadow-md transition-all duration-300 hover:from-[#2ecc71]/30 hover:to-[#3498db]/30 hover:border-[#2ecc71]/60">
-          <span class="text-[#1a3a2a] font-semibold text-sm whitespace-nowrap">Environmental Impact Assessment</span>
+          <span class="text-[#1a3a2a] font-body font-semibold text-sm whitespace-nowrap">Environmental Impact Assessment</span>
         </div>
         
         <!-- Service 2 -->
         <div class="flex-shrink-0 bg-gradient-to-r from-[#2ecc71]/20 to-[#3498db]/20 backdrop-blur-sm px-4 py-2 rounded-full border border-[#2ecc71]/30 shadow-sm hover:shadow-md transition-all duration-300 hover:from-[#2ecc71]/30 hover:to-[#3498db]/30 hover:border-[#2ecc71]/60">
-          <span class="text-[#1a3a2a] font-semibold text-sm whitespace-nowrap">Sustainability Consulting</span>
+          <span class="text-[#1a3a2a] font-body font-semibold text-sm whitespace-nowrap">Sustainability Consulting</span>
         </div>
         
         <!-- Service 3 -->
         <div class="flex-shrink-0 bg-gradient-to-r from-[#2ecc71]/20 to-[#3498db]/20 backdrop-blur-sm px-4 py-2 rounded-full border border-[#2ecc71]/30 shadow-sm hover:shadow-md transition-all duration-300 hover:from-[#2ecc71]/30 hover:to-[#3498db]/30 hover:border-[#2ecc71]/60">
-          <span class="text-[#1a3a2a] font-semibold text-sm whitespace-nowrap">Climate Change & Carbon</span>
+          <span class="text-[#1a3a2a] font-body font-semibold text-sm whitespace-nowrap">Climate Change & Carbon</span>
         </div>
         
         <!-- Service 4 -->
         <div class="flex-shrink-0 bg-gradient-to-r from-[#2ecc71]/20 to-[#3498db]/20 backdrop-blur-sm px-4 py-2 rounded-full border border-[#2ecc71]/30 shadow-sm hover:shadow-md transition-all duration-300 hover:from-[#2ecc71]/30 hover:to-[#3498db]/30 hover:border-[#2ecc71]/60">
-          <span class="text-[#1a3a2a] font-semibold text-sm whitespace-nowrap">Natural Resource Management</span>
+          <span class="text-[#1a3a2a] font-body font-semibold text-sm whitespace-nowrap">Natural Resource Management</span>
         </div>
         
         <!-- Service 5 -->
         <div class="flex-shrink-0 bg-gradient-to-r from-[#2ecc71]/20 to-[#3498db]/20 backdrop-blur-sm px-4 py-2 rounded-full border border-[#2ecc71]/30 shadow-sm hover:shadow-md transition-all duration-300 hover:from-[#2ecc71]/30 hover:to-[#3498db]/30 hover:border-[#2ecc71]/60">
-          <span class="text-[#1a3a2a] font-semibold text-sm whitespace-nowrap">Environmental Monitoring</span>
+          <span class="text-[#1a3a2a] font-body font-semibold text-sm whitespace-nowrap">Environmental Monitoring</span>
         </div>
         
         <!-- Service 6 -->
         <div class="flex-shrink-0 bg-gradient-to-r from-[#2ecc71]/20 to-[#3498db]/20 backdrop-blur-sm px-4 py-2 rounded-full border border-[#2ecc71]/30 shadow-sm hover:shadow-md transition-all duration-300 hover:from-[#2ecc71]/30 hover:to-[#3498db]/30 hover:border-[#2ecc71]/60">
-          <span class="text-[#1a3a2a] font-semibold text-sm whitespace-nowrap">Compliance & Regulatory Support</span>
+          <span class="text-[#1a3a2a] font-body font-semibold text-sm whitespace-nowrap">Compliance & Regulatory Support</span>
         </div>
 
         <!-- Duplicate for seamless loop -->
         <div class="flex-shrink-0 bg-gradient-to-r from-[#2ecc71]/20 to-[#3498db]/20 backdrop-blur-sm px-4 py-2 rounded-full border border-[#2ecc71]/30 shadow-sm hover:shadow-md transition-all duration-300 hover:from-[#2ecc71]/30 hover:to-[#3498db]/30 hover:border-[#2ecc71]/60">
-          <span class="text-[#1a3a2a] font-semibold text-sm whitespace-nowrap">Environmental Impact Assessment</span>
+          <span class="text-[#1a3a2a] font-body font-semibold text-sm whitespace-nowrap">Environmental Impact Assessment</span>
         </div>
         <div class="flex-shrink-0 bg-gradient-to-r from-[#2ecc71]/20 to-[#3498db]/20 backdrop-blur-sm px-4 py-2 rounded-full border border-[#2ecc71]/30 shadow-sm hover:shadow-md transition-all duration-300 hover:from-[#2ecc71]/30 hover:to-[#3498db]/30 hover:border-[#2ecc71]/60">
-          <span class="text-[#1a3a2a] font-semibold text-sm whitespace-nowrap">Sustainability Consulting</span>
+          <span class="text-[#1a3a2a] font-body font-semibold text-sm whitespace-nowrap">Sustainability Consulting</span>
         </div>
         <div class="flex-shrink-0 bg-gradient-to-r from-[#2ecc71]/20 to-[#3498db]/20 backdrop-blur-sm px-4 py-2 rounded-full border border-[#2ecc71]/30 shadow-sm hover:shadow-md transition-all duration-300 hover:from-[#2ecc71]/30 hover:to-[#3498db]/30 hover:border-[#2ecc71]/60">
-          <span class="text-[#1a3a2a] font-semibold text-sm whitespace-nowrap">Climate Change & Carbon</span>
+          <span class="text-[#1a3a2a] font-body font-semibold text-sm whitespace-nowrap">Climate Change & Carbon</span>
         </div>
         <div class="flex-shrink-0 bg-gradient-to-r from-[#2ecc71]/20 to-[#3498db]/20 backdrop-blur-sm px-4 py-2 rounded-full border border-[#2ecc71]/30 shadow-sm hover:shadow-md transition-all duration-300 hover:from-[#2ecc71]/30 hover:to-[#3498db]/30 hover:border-[#2ecc71]/60">
-          <span class="text-[#1a3a2a] font-semibold text-sm whitespace-nowrap">Natural Resource Management</span>
+          <span class="text-[#1a3a2a] font-body font-semibold text-sm whitespace-nowrap">Natural Resource Management</span>
         </div>
         <div class="flex-shrink-0 bg-gradient-to-r from-[#2ecc71]/20 to-[#3498db]/20 backdrop-blur-sm px-4 py-2 rounded-full border border-[#2ecc71]/30 shadow-sm hover:shadow-md transition-all duration-300 hover:from-[#2ecc71]/30 hover:to-[#3498db]/30 hover:border-[#2ecc71]/60">
-          <span class="text-[#1a3a2a] font-semibold text-sm whitespace-nowrap">Environmental Monitoring</span>
+          <span class="text-[#1a3a2a] font-body font-semibold text-sm whitespace-nowrap">Environmental Monitoring</span>
         </div>
         <div class="flex-shrink-0 bg-gradient-to-r from-[#2ecc71]/20 to-[#3498db]/20 backdrop-blur-sm px-4 py-2 rounded-full border border-[#2ecc71]/30 shadow-sm hover:shadow-md transition-all duration-300 hover:from-[#2ecc71]/30 hover:to-[#3498db]/30 hover:border-[#2ecc71]/60">
-          <span class="text-[#1a3a2a] font-semibold text-sm whitespace-nowrap">Compliance & Regulatory Support</span>
+          <span class="text-[#1a3a2a] font-body font-semibold text-sm whitespace-nowrap">Compliance & Regulatory Support</span>
         </div>
 
       </div>
@@ -848,24 +956,24 @@ document.addEventListener('DOMContentLoaded', function() {
          onscroll="this.style.opacity='1'; this.style.transform='translateY(0)'"
          id="services-header">
       <div class="lg:col-span-8">
-<span class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full border border-gray-300 bg-gray-100 text-[#40513B] text-[10px] font-semibold uppercase tracking-widest mb-3">
+<span class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full border border-gray-300 bg-gray-100 text-[#40513B] font-body text-[10px] font-semibold uppercase tracking-widest mb-3">
   <span class="w-1.5 h-1.5 rounded-full bg-[#40513B]"></span>
   What We Do
 </span>
 
-<h2 class="text-3xl sm:text-4xl font-display font-semibold mb-3 leading-tight">
+<h2 class="font-display text-3xl sm:text-4xl font-semibold mb-3 leading-tight">
   <span class="text-black">Comprehensive</span> 
   <span class="text-[#40513B]">Environmental</span><br />
   <span class="text-[#2563EB]">Solutions</span>
 </h2>
-        <p class="text-base text-white/50 max-w-xl">
+        <p class="font-body text-base text-white/50 max-w-xl">
           From assessment to implementation, end‑to‑end environmental consulting tailored to your needs.
         </p>
       </div>
 
      <div class="lg:col-span-4 flex lg:justify-end">
   <a href="/pages/services/services.html"
-     class="group inline-flex items-center px-5 py-2.5 bg-[#6CB33F] text-white font-semibold rounded-full transition-all duration-300 hover:bg-[#4E9A2D] hover:shadow-lg hover:-translate-y-0.5 hover:scale-105 active:scale-95">
+     class="group inline-flex items-center px-5 py-2.5 bg-[#6CB33F] text-white font-body font-semibold rounded-full transition-all duration-300 hover:bg-[#4E9A2D] hover:shadow-lg hover:-translate-y-0.5 hover:scale-105 active:scale-95">
     View All Services
     <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 group-hover:rotate-12 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -908,13 +1016,13 @@ document.addEventListener('DOMContentLoaded', function() {
             </svg>
           </div>
 
-          <h3 class="text-base font-display font-semibold mb-2 text-white group-hover:text-[#b8d4b0] transition-colors duration-300">Environmental Impact Assessment</h3>
-          <p class="text-white/50 text-xs leading-relaxed group-hover:text-white/70 transition-colors duration-300">
+          <h3 class="font-display text-base font-semibold mb-2 text-white group-hover:text-[#b8d4b0] transition-colors duration-300">Environmental Impact Assessment</h3>
+          <p class="font-body text-white/50 text-xs leading-relaxed group-hover:text-white/70 transition-colors duration-300">
             Comprehensive assessments to identify, predict, and evaluate environmental impacts of proposed projects.
           </p>
 
           <div class="mt-auto pt-4">
-            <span class="inline-flex items-center text-[#b8d4b0] font-semibold text-[11px] group-hover:translate-x-3 group-hover:gap-2 transition-all duration-300">
+            <span class="inline-flex items-center text-[#b8d4b0] font-body font-semibold text-[11px] group-hover:translate-x-3 group-hover:gap-2 transition-all duration-300">
               Learn More
               <svg class="w-3.5 h-3.5 ml-1 group-hover:translate-x-1 group-hover:rotate-12 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -952,13 +1060,13 @@ document.addEventListener('DOMContentLoaded', function() {
             </svg>
           </div>
 
-          <h3 class="text-base font-display font-semibold mb-2 text-white group-hover:text-[#b8d4b0] transition-colors duration-300">Sustainability Consulting</h3>
-          <p class="text-white/50 text-xs leading-relaxed group-hover:text-white/70 transition-colors duration-300">
+          <h3 class="font-display text-base font-semibold mb-2 text-white group-hover:text-[#b8d4b0] transition-colors duration-300">Sustainability Consulting</h3>
+          <p class="font-body text-white/50 text-xs leading-relaxed group-hover:text-white/70 transition-colors duration-300">
             Strategic sustainability planning, ESG reporting, and carbon footprint reduction strategies for organizations.
           </p>
 
           <div class="mt-auto pt-4">
-            <span class="inline-flex items-center text-[#b8d4b0] font-semibold text-[11px] group-hover:translate-x-3 group-hover:gap-2 transition-all duration-300">
+            <span class="inline-flex items-center text-[#b8d4b0] font-body font-semibold text-[11px] group-hover:translate-x-3 group-hover:gap-2 transition-all duration-300">
               Learn More
               <svg class="w-3.5 h-3.5 ml-1 group-hover:translate-x-1 group-hover:-rotate-12 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -996,13 +1104,13 @@ document.addEventListener('DOMContentLoaded', function() {
             </svg>
           </div>
 
-          <h3 class="text-base font-display font-semibold mb-2 text-white group-hover:text-[#b8d4b0] transition-colors duration-300">Climate Change & Carbon</h3>
-          <p class="text-white/50 text-xs leading-relaxed group-hover:text-white/70 transition-colors duration-300">
+          <h3 class="font-display text-base font-semibold mb-2 text-white group-hover:text-[#b8d4b0] transition-colors duration-300">Climate Change & Carbon</h3>
+          <p class="font-body text-white/50 text-xs leading-relaxed group-hover:text-white/70 transition-colors duration-300">
             Climate risk assessment, carbon offsetting, and net‑zero transition planning for businesses and governments.
           </p>
 
           <div class="mt-auto pt-4">
-            <span class="inline-flex items-center text-[#b8d4b0] font-semibold text-[11px] group-hover:translate-x-3 group-hover:gap-2 transition-all duration-300">
+            <span class="inline-flex items-center text-[#b8d4b0] font-body font-semibold text-[11px] group-hover:translate-x-3 group-hover:gap-2 transition-all duration-300">
               Learn More
               <svg class="w-3.5 h-3.5 ml-1 group-hover:translate-x-1 group-hover:rotate-12 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -1466,61 +1574,90 @@ window.addEventListener('load', function() {
 });
 </script> -->
 
-<!-- ===== MISSION & VISION — no section background, editorial split layout ===== -->
-<section class="relative py-24">
-  <div class="max-w-6xl mx-auto px-6 lg:px-8">
+<!-- ===== MISSION & VISION — Editorial Split Layout with Background Image ===== -->
+<section
+  class="relative py-24 overflow-hidden mission-vision-section"
+>
+  <!-- Background Image -->
+  <div class="absolute inset-0">
+    <img
+      src="assets/bg_2.jfif"
+      alt="Environmental Background"
+      class="w-full h-full object-cover scale-110"
+    />
+    <!-- Dark Overlay -->
+    <div class="absolute inset-0 bg-[#0b1d16]/70"></div>
+    <!-- Gradient -->
+    <div class="absolute inset-0 bg-gradient-to-r from-[#0b1d16]/80 via-[#0b1d16]/55 to-[#0b1d16]/80"></div>
+  </div>
 
-    <div class="text-center mb-14">
-      <span class="font-mono text-[11px] uppercase tracking-[0.25em] text-[#628141]">Why We Exist</span>
+  <div class="relative max-w-6xl mx-auto px-6 lg:px-8">
+    <!-- Heading -->
+    <div class="text-center mb-14 heading-wrapper">
+      <span class="font-mono text-[11px] uppercase tracking-[0.25em] text-[#9bc76d]">
+        Why We Exist
+      </span>
     </div>
 
-    <div class="grid md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-[#1b4332]/15">
+    <div class="grid md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-white/15">
+      <!-- MISSION — sliding from left -->
+      <div class="md:pr-14 pb-10 md:pb-0 mission-column">
+        <span class="font-mono text-xs uppercase tracking-[0.2em] text-[#9bc76d] mission-label">
+          Mission
+        </span>
 
-      <!-- MISSION -->
-      <div class="md:pr-14 pb-10 md:pb-0">
-        <span class="font-mono text-xs uppercase tracking-[0.2em] text-[#628141]">Mission</span>
-        <h3 class="font-display text-3xl md:text-4xl text-[#1b4332] mt-3 mb-4 leading-tight">
+        <h3 class="font-display text-3xl md:text-4xl text-white mt-3 mb-4 leading-tight mission-title">
           Leading sustainable consulting
         </h3>
-        <p class="font-body text-[#40513B]/70 leading-relaxed max-w-md">
+
+        <p class="font-body text-white/75 leading-relaxed max-w-md mission-text">
           Combining scientific expertise with practical, client-centric approaches to deliver measurable environmental impact.
         </p>
-        <div class="flex items-center gap-3 mt-6">
-          <div class="w-8 h-8 rounded-full bg-[#628141]/10 flex items-center justify-center text-[#628141]">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+
+        <div class="flex items-center gap-3 mt-6 mission-badge">
+          <div class="w-10 h-10 rounded-full bg-[#628141]/20 border border-[#628141]/40 flex items-center justify-center text-[#9bc76d]">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
             </svg>
           </div>
-          <span class="font-mono text-xs uppercase tracking-wide text-[#40513B]/60">Measurable impact</span>
+          <span class="font-mono text-xs uppercase tracking-wide text-white/70">
+            Measurable Impact
+          </span>
         </div>
       </div>
 
-      <!-- VISION -->
-      <div class="md:pl-14 pt-10 md:pt-0">
-        <span class="font-mono text-xs uppercase tracking-[0.2em] text-[#628141]">Vision</span>
-        <h3 class="font-display text-3xl md:text-4xl text-[#1b4332] mt-3 mb-4 leading-tight">
+      <!-- VISION — sliding from right -->
+      <div class="md:pl-14 pt-10 md:pt-0 vision-column">
+        <span class="font-mono text-xs uppercase tracking-[0.2em] text-[#9bc76d] vision-label">
+          Vision
+        </span>
+
+        <h3 class="font-display text-3xl md:text-4xl text-white mt-3 mb-4 leading-tight vision-title">
           Environmental integrity first
         </h3>
-        <p class="font-body text-[#40513B]/70 leading-relaxed max-w-md">
+
+        <p class="font-body text-white/75 leading-relaxed max-w-md vision-text">
           Embedding sustainability in every aspect of business and society for a healthier, more resilient future.
         </p>
-        <div class="flex items-center gap-3 mt-6">
-          <div class="w-8 h-8 rounded-full bg-[#628141]/10 flex items-center justify-center text-[#628141]">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+
+        <div class="flex items-center gap-3 mt-6 vision-badge">
+          <div class="w-10 h-10 rounded-full bg-[#628141]/20 border border-[#628141]/40 flex items-center justify-center text-[#9bc76d]">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
             </svg>
           </div>
-          <span class="font-mono text-xs uppercase tracking-wide text-[#40513B]/60">Global change</span>
+          <span class="font-mono text-xs uppercase tracking-wide text-white/70">
+            Global Change
+          </span>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
 <!-- ===== STATS — data strip, no section background, count-up on scroll ===== -->
-<section class="pb-24">
+<section class="relative pt-24 pb-14 overflow-hidden">
   <div class="max-w-6xl mx-auto px-6 lg:px-8">
     <div class="border-t border-[#1b4332]/15"></div>
     <div class="grid grid-cols-2 md:grid-cols-4 divide-x divide-[#1b4332]/15">
@@ -1545,79 +1682,80 @@ window.addEventListener('load', function() {
   </div>
 </section>
 
-<!-- Why SIEC - Redesigned to match Elite Endeavor style with images -->
-<section class="pt-8 pb-16 bg-[#e8f5e9]">
+<!-- Why SIEC -->
+<section class="pt-16 pb-16 bg-[#e8f5e9]">
     <div class="container mx-auto px-4">
 
         <!-- Section Header (SIEC) -->
         <div class="text-center">
-            <span class="inline-flex items-center gap-2 text-[#2ecc71] font-semibold text-[10px] uppercase tracking-[0.3em] mb-3">
+            <span class="inline-flex items-center gap-2 text-[#2ecc71] font-body font-semibold text-[10px] uppercase tracking-[0.3em] mb-3">
               
             </span>
-            <h2 class="text-3xl md:text-4xl font-bold text-[#1a3c34] mb-16 md:mb-24 inline-block">
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-[#1a3c34] mb-16 md:mb-24 inline-block">
                 Why Choose <span class="text-primary" style="color: #2ecc71;">SIEC</span>
-                <span class="block w-20 h-1 mt-3 mx-auto bg-gradient-to-r from-[#2ecc71] to-[#3498db] rounded-full"></span>            </h2>
+                <span class="block w-20 h-1 mt-3 mx-auto bg-gradient-to-r from-[#2ecc71] to-[#3498db] rounded-full"></span>
+            </h2>
         </div>
 
         <!-- Grid 4 cards (SIEC content) -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
 
             <!-- Card 1: Expertise and Experience -->
-            <div class="relative text-center bg-white rounded-xl border-2 border-[#5BC0BE] shadow-[0_4px_12px_rgba(91,192,190,0.18)] hover:shadow-xl transition-all duration-300 pt-20 px-6 pb-8">
-                <!-- Image (keep consistent with Jianan style but use SIEC icon placeholder) -->
+            <div class="relative text-center bg-white rounded-xl border-2 border-[#5BC0BE] shadow-[0_4px_12px_rgba(91,192,190,0.18)] hover:shadow-xl transition-all duration-300 pt-20 px-6 pb-8 card-1">
                 <img src="assets/w_1.png" alt="Expertise and Experience"
                     class="w-32 h-auto mx-auto absolute -top-16 left-1/2 -translate-x-1/2">
 
-                <h3 class="text-xl font-bold text-[#1a3c34] mb-6 text-center">
+                <h3 class="font-body text-xl font-bold text-[#1a3c34] mb-6 text-center">
                     Expertise and Experience
-                    <span class="block w-12 h-0.5 mt-2 mx-auto bg-gradient-to-r from-[#2ecc71] to-[#3498db] rounded-full"></span>                </h3>
+                    <span class="block w-12 h-0.5 mt-2 mx-auto bg-gradient-to-r from-[#2ecc71] to-[#3498db] rounded-full"></span>
+                </h3>
 
-                <p class="text-gray-600">
+                <p class="font-body text-gray-600">
                     Extensive experience across energy, infrastructure, and manufacturing sectors.
                 </p>
             </div>
 
-          <!-- Card 2: Innovation and Customization -->
-<div class="relative text-center bg-white rounded-xl border-2 border-[#5BC0BE] shadow-[0_4px_12px_rgba(91,192,190,0.18)] hover:shadow-xl transition-all duration-300 pt-20 px-6 pb-8">
+            <!-- Card 2: Innovation and Customization -->
+            <div class="relative text-center bg-white rounded-xl border-2 border-[#5BC0BE] shadow-[0_4px_12px_rgba(91,192,190,0.18)] hover:shadow-xl transition-all duration-300 pt-20 px-6 pb-8 card-2">
+                <img src="assets/w_2.png" alt="Innovation and Customization"
+                    class="w-32 h-auto mx-auto absolute -top-16 left-1/2 -translate-x-1/2">
 
-    <img src="assets/w_2.png" alt="Innovation and Customization"
-        class="w-32 h-auto mx-auto absolute -top-16 left-1/2 -translate-x-1/2">
+                <h3 class="font-body text-xl font-bold text-[#1a3c34] mb-6 text-center">
+                    Innovation and Customization
+                    <span class="block w-12 h-0.5 mt-2 mx-auto bg-gradient-to-r from-[#2ecc71] to-[#3498db] rounded-full"></span>
+                </h3>
 
-    <h3 class="text-xl font-bold text-[#1a3c34] mb-6 text-center">
-        Innovation and Customization
-        <span class="block w-12 h-0.5 mt-2 mx-auto bg-gradient-to-r from-[#2ecc71] to-[#3498db] rounded-full"></span>    </h3>
-
-    <p class="text-gray-600">
-        Practical, cost-effective solutions tailored to your specific needs.
-    </p>
-</div>
+                <p class="font-body text-gray-600">
+                    Practical, cost-effective solutions tailored to your specific needs.
+                </p>
+            </div>
 
             <!-- Card 3: Sustainability Focus -->
-            <div class="relative text-center bg-white rounded-xl border-2 border-[#5BC0BE] shadow-[0_4px_12px_rgba(91,192,190,0.18)] hover:shadow-xl transition-all duration-300 pt-20 px-6 pb-8">
-
+            <div class="relative text-center bg-white rounded-xl border-2 border-[#5BC0BE] shadow-[0_4px_12px_rgba(91,192,190,0.18)] hover:shadow-xl transition-all duration-300 pt-20 px-6 pb-8 card-3">
                 <img src="assets/w_3.png" alt="Sustainability Focus"
                     class="w-32 h-auto mx-auto absolute -top-16 left-1/2 -translate-x-1/2">
 
-                <h3 class="text-xl font-bold text-[#1a3c34] mb-6 text-center">
+                <h3 class="font-body text-xl font-bold text-[#1a3c34] mb-6 text-center">
                     Sustainability Focus
-                    <span class="block w-12 h-0.5 mt-2 mx-auto bg-gradient-to-r from-[#2ecc71] to-[#3498db] rounded-full"></span>                </h3>
+                    <span class="block w-12 h-0.5 mt-2 mx-auto bg-gradient-to-r from-[#2ecc71] to-[#3498db] rounded-full"></span>
+                </h3>
 
-                <p class="text-gray-600">
+                <p class="font-body text-gray-600">
                     Minimizing environmental impact while enhancing efficiency.
                 </p>
             </div>
 
             <!-- Card 4: Reliable and Timely -->
-            <div class="relative text-center bg-white rounded-xl border-2 border-[#5BC0BE] shadow-[0_4px_12px_rgba(91,192,190,0.18)] hover:shadow-xl transition-all duration-300 pt-20 px-6 pb-8">
-                
+            <div class="relative text-center bg-white rounded-xl border-2 border-[#5BC0BE] shadow-[0_4px_12px_rgba(91,192,190,0.18)] hover:shadow-xl transition-all duration-300 pt-20 px-6 pb-8 card-4">
                 <img src="assets/w_4.png" alt="Reliable and Timely"
                     class="w-32 h-auto mx-auto absolute -top-16 left-1/2 -translate-x-1/2">
 
-                <h3 class="text-xl font-bold text-[#1a3c34] mb-6 text-center">
+                <h3 class="font-body text-xl font-bold text-[#1a3c34] mb-6 text-center">
                     Reliable and Timely
-                    <span class="block w-12 h-0.5 mt-2 mx-auto bg-gradient-to-r from-[#2ecc71] to-[#3498db] rounded-full"></span>                </h3>
+                    <span class="block w-12 h-0.5 mt-2 mx-auto bg-gradient-to-r from-[#2ecc71] to-[#3498db] rounded-full"></span>
+                </h3>
 
-                <p class="text-gray-600">
+                <p class="font-body text-gray-600">
                     High-quality results delivered on time, every time.
                 </p>
             </div>
@@ -1625,6 +1763,69 @@ window.addEventListener('load', function() {
         </div>
     </div>
 </section>
+
+<style>
+    /* ---------- Keyframes for card animations ---------- */
+    @keyframes fadeInUpCard {
+        0% {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* ---------- Initial state: cards hidden ---------- */
+    .card-1,
+    .card-2,
+    .card-3,
+    .card-4 {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    /* ---------- Animated state (applied via JS when visible) ---------- */
+    .card-1.visible {
+        animation: fadeInUpCard 0.7s ease-out 0.1s both;
+    }
+    .card-2.visible {
+        animation: fadeInUpCard 0.7s ease-out 0.2s both;
+    }
+    .card-3.visible {
+        animation: fadeInUpCard 0.7s ease-out 0.3s both;
+    }
+    .card-4.visible {
+        animation: fadeInUpCard 0.7s ease-out 0.4s both;
+    }
+</style>
+
+<script>
+    // Intersection Observer for scroll-triggered animation
+    document.addEventListener('DOMContentLoaded', function() {
+        const cards = document.querySelectorAll('.card-1, .card-2, .card-3, .card-4');
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            },
+            {
+                threshold: 0.15,
+                rootMargin: '0px 0px -50px 0px'
+            }
+        );
+
+        cards.forEach(card => {
+            observer.observe(card);
+        });
+    });
+</script>
 
 <!-- Floating Animation Keyframes -->
 <style>
@@ -1729,7 +1930,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="text-center max-w-3xl mx-auto px-6">
         
         <!-- Badge -->
-        <span class="inline-flex items-center gap-2 text-[#8fbfae] text-[10px] uppercase tracking-[0.2em] font-medium mb-4">
+        <span class="inline-flex items-center gap-2 text-[#8fbfae] font-body text-[10px] uppercase tracking-[0.2em] font-medium mb-4">
           <span class="w-6 h-px bg-[#8fbfae]/50"></span>
           Let's Work Together
           <span class="relative flex h-1.5 w-1.5">
@@ -1740,26 +1941,26 @@ document.addEventListener('DOMContentLoaded', function() {
         </span>
 
         <!-- Heading -->
-        <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 leading-[1.15]">
+        <h2 class="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 leading-[1.15]">
           Ready to Make a<br class="sm:hidden"/>
           <span class="bg-gradient-to-r from-[#22c55e] via-[#4ade80] to-[#22c55e] bg-clip-text text-transparent">Sustainable Impact</span>?
         </h2>
 
         <!-- Description -->
-        <p class="text-white/70 text-sm md:text-base max-w-xl mx-auto mb-6 leading-relaxed backdrop-blur-sm bg-black/20 py-2 px-4 rounded-xl border border-white/5 inline-block">
+        <p class="font-body text-white/70 text-sm md:text-base max-w-xl mx-auto mb-6 leading-relaxed backdrop-blur-sm bg-black/20 py-2 px-4 rounded-xl border border-white/5 inline-block">
           Partner with SIEC to create environmental solutions that drive meaningful change.
         </p>
 
         <!-- CTA Buttons -->
         <div class="flex flex-wrap justify-center gap-3">
-          <a href="#" class="group inline-flex items-center px-6 py-2.5 bg-[#22c55e] text-white text-sm font-medium rounded-full transition-all duration-300 hover:bg-[#16a34a] hover:shadow-[0_15px_30px_-10px_#22c55e] hover:-translate-y-0.5">
+          <a href="#" class="group inline-flex items-center px-6 py-2.5 bg-[#22c55e] text-white font-body text-sm font-medium rounded-full transition-all duration-300 hover:bg-[#16a34a] hover:shadow-[0_15px_30px_-10px_#22c55e] hover:-translate-y-0.5">
             <span>Start Your Project</span>
             <svg class="w-4 h-4 ml-1.5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
             </svg>
           </a>
           
-          <a href="#" class="group inline-flex items-center px-6 py-2.5 text-white/80 text-sm font-medium rounded-full border border-white/20 transition-all duration-300 hover:bg-white/10 hover:border-white/40 hover:-translate-y-0.5">
+          <a href="#" class="group inline-flex items-center px-6 py-2.5 text-white/80 font-body text-sm font-medium rounded-full border border-white/20 transition-all duration-300 hover:bg-white/10 hover:border-white/40 hover:-translate-y-0.5">
             <span>Learn More</span>
             <svg class="w-4 h-4 ml-1.5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
@@ -1768,7 +1969,7 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
 
         <!-- Trust Indicators -->
-        <div class="mt-6 pt-4 border-t border-white/10 flex flex-wrap justify-center items-center gap-5 text-white/40 text-xs">
+        <div class="mt-6 pt-4 border-t border-white/10 flex flex-wrap justify-center items-center gap-5 text-white/40 font-body text-xs">
           <span class="flex items-center gap-1.5">
             <span class="w-1.5 h-1.5 rounded-full bg-[#22c55e]"></span>
             200+ partners
@@ -1781,7 +1982,7 @@ document.addEventListener('DOMContentLoaded', function() {
           </span>
           <span class="flex items-center gap-1.5">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/>
             </svg>
             40+ countries
           </span>
@@ -2363,6 +2564,7 @@ document.addEventListener('DOMContentLoaded', function() {
   <script src="../../footer/footer.js"></script>
   <script src="home.js"></script>
   <script src="../../js/main.js"></script>
+
   <!-- COUNTER SCRIPT -->
 <script>
   document.addEventListener('DOMContentLoaded', function() {
@@ -2411,7 +2613,36 @@ document.addEventListener('DOMContentLoaded', function() {
       observer.observe(counter);
     });
   });
+
+  // mission & vision 
+   // Intersection Observer for scroll-triggered animation
+  document.addEventListener('DOMContentLoaded', function() {
+    const section = document.querySelector('.mission-vision-section');
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            section.classList.add('visible');
+            // Optionally unobserve after animation triggers
+            // observer.unobserve(section);
+          } else {
+            // Remove class to allow re-animation when scrolling back up
+            section.classList.remove('visible');
+          }
+        });
+      },
+      {
+        threshold: 0.2, // Trigger when 20% of section is visible
+        rootMargin: '0px 0px -50px 0px' // Fine-tune trigger point
+      }
+    );
+
+    observer.observe(section);
+  });
+
 </script>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   // Select slides and dots using more specific selectors
