@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SIEC – Products Catalog</title>
+  <meta name="description" content="Industrial products for environmental and engineering solutions." />
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700;9..144,800&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+  <style>
+    /* ===== GLOBAL FONT SETTINGS ===== */
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f8fafc;
+    }
+
+    .font-display {
+      font-family: 'Fraunces', serif;
+    }
+    .font-body {
+      font-family: 'Inter', sans-serif;
+    }
+    .font-mono {
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    /* ===== PRODUCT CARD STYLES ===== */
+    .product-card {
+      background: white;
+      border-radius: 1.25rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      overflow: hidden;
+      border: 1px solid rgba(108, 179, 63, 0.15);
+      position: relative;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(108, 179, 63, 0.12);
+      border-color: rgba(108, 179, 63, 0.4);
+    }
+
+    .product-card .card-image {
+      position: relative;
+      overflow: hidden;
+      background: #f0f7f4;
+      height: 200px;
+    }
+
+    .product-card .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .product-card:hover .card-image img {
+      transform: scale(1.05);
+    }
+
+    .product-card .card-image .badge-category {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(108, 179, 63, 0.9);
+      backdrop-filter: blur(8px);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .product-card .card-image .wishlist-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(4px);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: #94a3b8;
+    }
+
+    .product-card .card-image .wishlist-btn:hover {
+      background: white;
+      transform: scale(1.1);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .product-card .card-image .wishlist-btn.liked {
+      color: #e53e3e;
+      background: rgba(229, 62, 62, 0.1);
+    }
+
+    .product-card .card-body {
+      padding: 16px 20px 20px;
+    }
+
+    .product-card .card-body .product-name {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #0b1a2f;
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+
+    .product-card .card-body .product-desc {
+      font-size: 0.85rem;
+      color: #64748b;
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+
+    .product-card .card-body .product-price {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #0b1a2f;
+    }
+
+    .product-card .card-body .stock-badge {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 2px 10px;
+      border-radius: 20px;
+    }
+
+    .stock-badge.in-stock {
+      background: #e6f7e6;
+      color: #1e7b3a;
+    }
+
+    .stock-badge.out-stock {
+      background: #fee9e7;
+      color: #b33a34;
+    }
+
+    .product-card .card-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(108, 179, 63, 0.15);
+    }
+
+    .product-card .card-actions button {
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .btn-add-cart {
+      background: #6CB33F;
+      color: white;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .btn-add-cart:hover {
+      background: #4E9A2D;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(108, 179, 63, 0.3);
+    }
+
+    .btn-add-cart.added {
+      background: #22c55e;
+    }
+
+    .btn-add-cart.go-to-cart {
+      background: #c9a84c;
+      color: #0b1a2f;
+    }
+
+    .btn-add-cart.go-to-cart:hover {
+      background: #b8963e;
+    }
+
+    .btn-buy-now {
+      background: #0b1a2f;
+      color: white;
+    }
+
+    .btn-buy-now:hover {
+      background: #1a314a;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(11, 26, 47, 0.2);
+    }
+
+    /* ===== FILTER CHIPS ===== */
+    .filter-chip {
+      background: white;
+      border: 1px solid rgba(108, 179, 63, 0.25);
+      padding: 0.4rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      color: #475569;
+    }
+
+    .filter-chip:hover {
+      border-color: #6CB33F;
+      color: #0b1a2f;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(108, 179, 63, 0.15);
+    }
+
+    .filter-chip.active {
+      background: #6CB33F;
+      color: white;
+      border-color: #6CB33F;
+      box-shadow: 0 4px 12px rgba(108, 179, 63, 0.25);
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero-gradient {
+      background: linear-gradient(145deg, #0b1a2f 0%, #1a314a 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-gradient::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(108, 179, 63, 0.05) 40px, rgba(108, 179, 63, 0.05) 41px);
+      pointer-events: none;
+    }
+
+    /* ===== MODAL ===== */
+    .modal-overlay {
+      background: rgba(11, 26, 47, 0.8);
+      backdrop-filter: blur(8px);
+    }
+
+    /* ===== RATING STARS ===== */
+    .rating-star {
+      color: #f5b342;
+      letter-spacing: 1px;
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-fade-up {
+      animation: fadeUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+
+    @keyframes float-slow {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .animate-float-slow {
+      animation: float-slow 6s ease-in-out infinite;
+    }
+
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #6CB33F;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #4E9A2D;
+    }
+
+    /* ===== EMPTY STATE ===== */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .empty-state i {
+      font-size: 4rem;
+      color: #cbd5e1;
+      margin-bottom: 16px;
+    }
+
+    .empty-state h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.5rem;
+      color: #0b1a2f;
+      margin-bottom: 8px;
+    }
+
+    .empty-state p {
+      color: #94a3b8;
+    }
+
+    /* ===== CURRENCY SYMBOL ===== */
+    .currency-symbol {
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== INCLUDE HEADER ===== -->
+  <div id="header"></div>
+
+  <main>
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero-gradient py-20 px-6 text-center relative">
+      <div class="max-w-5xl mx-auto relative z-10">
+        <span class="inline-flex items-center gap-2 text-[#9bc76d] font-body text-[10px] uppercase tracking-[0.2em] font-medium mb-4">
+          <span class="w-6 h-px bg-[#9bc76d]/50"></span>
+          Industrial Product Catalog
+          <span class="relative flex h-1.5 w-1.5">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#22c55e] opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#22c55e]"></span>
+          </span>
+          <span class="w-6 h-px bg-[#9bc76d]/50"></span>
+        </span>
+
+        <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1]">
+          Premium <span class="bg-gradient-to-r from-[#4ade80] via-[#22c55e] to-[#4ade80] bg-clip-text text-transparent">Industrial</span> Products
+        </h1>
+        
+        <p class="font-body text-white/60 text-base md:text-lg max-w-2xl mx-auto mt-4 leading-relaxed">
+          Precision engineering · Sustainable materials · Certified quality for environmental and industrial applications
+        </p>
+
+        <!-- Search Bar -->
+        <div class="mt-8 max-w-2xl mx-auto">
+          <div class="relative flex items-center bg-white/10 backdrop-blur-sm rounded-full border border-white/10 overflow-hidden transition-all focus-within:border-white/30 focus-within:bg-white/15">
+            <i class="fas fa-search absolute left-5 text-white/40 text-sm"></i>
+            <input 
+              type="text" 
+              id="globalSearch" 
+              placeholder="Search products, categories, or brands..." 
+              class="w-full py-3.5 pl-12 pr-4 bg-transparent text-white placeholder-white/40 focus:outline-none"
+            />
+            <button id="searchBtn" class="bg-[#22c55e] text-white px-6 py-2.5 mr-1.5 rounded-full font-semibold hover:bg-[#16a34a] transition-all duration-300 hover:shadow-[0_8px_24px_rgba(34,197,94,0.3)]">
+              <i class="fas fa-arrow-right mr-2"></i>Search
+            </button>
+          </div>
+        </div>
+
+        <!-- Trust Indicators -->
+        <div class="flex flex-wrap justify-center gap-6 mt-8 text-white/50 text-xs font-medium">
+          <span class="flex items-center gap-2">
+            <i class="fas fa-check-circle text-[#22c55e]"></i>
+            ISO 14001 Certified
+          </span>
+          <span class="flex items-center gap-2">
+            <i class="fas fa-truck text-[#22c55e]"></i>
+            Global Shipping
+          </span>
+          <span class="flex items-center gap-2">
+            <i class="fas fa-shield-alt text-[#22c55e]"></i>
+            Industrial Grade
+          </span>
+          <span class="flex items-center gap-2">
+            <i class="fas fa-headset text-[#22c55e]"></i>
+            24/7 Support
+          </span>
+        </div>
+      </div>
+
+      <!-- Decorative Elements -->
+      <div class="absolute top-1/3 right-1/4 w-64 h-64 rounded-full bg-[#22c55e]/5 blur-3xl pointer-events-none"></div>
+      <div class="absolute bottom-1/3 left-1/4 w-48 h-48 rounded-full bg-[#4ade80]/5 blur-3xl pointer-events-none"></div>
+    </section>
+
+    <!-- ===== CATEGORY FILTERS ===== -->
+    <div class="max-w-7xl mx-auto px-6 pt-8 pb-4">
+      <div class="flex flex-wrap items-center gap-3 justify-center md:justify-start" id="categoryFilterContainer">
+        <!-- Injected via JS -->
+      </div>
+    </div>
+
+    <!-- ===== TOOLBAR ===== -->
+    <div class="max-w-7xl mx-auto px-6 pb-4">
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <div class="flex items-center gap-4">
+          <span class="text-sm text-gray-500 font-medium">
+            <i class="far fa-list-alt mr-1"></i> 
+            <span id="productCount">0</span> products
+          </span>
+          <select id="sortSelect" class="text-sm border border-gray-200 rounded-lg px-3 py-1.5 bg-white focus:outline-none focus:border-[#6CB33F] focus:ring-1 focus:ring-[#6CB33F]">
+            <option value="default">Sort by</option>
+            <option value="priceLow">Price: Low → High</option>
+            <option value="priceHigh">Price: High → Low</option>
+            <option value="rating">Rating</option>
+          </select>
+        </div>
+        <div class="flex items-center gap-4">
+          <button id="clearFiltersBtn" class="text-sm text-gray-500 hover:text-[#0b1a2f] transition-all duration-300 flex items-center gap-1.5">
+            <i class="fas fa-undo-alt"></i> Reset
+          </button>
+          <div class="flex items-center gap-3 text-sm bg-white px-3 py-1.5 rounded-full shadow-sm border border-gray-100">
+            <!-- Wishlist Link -->
+            <a href="/pages/wishlist/wishlist.html" class="text-gray-400 hover:text-red-500 transition-colors relative" aria-label="View wishlist">
+              <i class="fas fa-heart text-base"></i>
+              <span id="wishlistCount" class="absolute -top-1 -right-2 bg-red-500 text-white text-[8px] font-bold rounded-full w-4 h-4 flex items-center justify-center">0</span>
+            </a>
+            <span class="w-px h-4 bg-gray-200"></span>
+            <!-- Cart Link -->
+            <a href="/pages/cart/cart.html" class="text-gray-400 hover:text-[#6CB33F] transition-colors relative" aria-label="View cart">
+              <i class="fas fa-shopping-cart text-base"></i>
+              <span id="cartCount" class="absolute -top-1 -right-2 bg-[#6CB33F] text-white text-[8px] font-bold rounded-full w-4 h-4 flex items-center justify-center">0</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== PRODUCT GRID ===== -->
+    <div class="max-w-7xl mx-auto px-6 pb-20">
+      <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <!-- Dynamically generated -->
+      </div>
+
+      <!-- Empty State -->
+      <div id="emptyState" class="empty-state hidden">
+        <i class="fas fa-box-open"></i>
+        <h3>No products found</h3>
+        <p>Try adjusting your filters or search terms</p>
+        <button id="resetFromEmpty" class="mt-4 text-[#6CB33F] font-medium hover:underline">
+          <i class="fas fa-undo-alt mr-1"></i> Clear all filters
+        </button>
+      </div>
+    </div>
+
+    <!-- ===== CTA SECTION ===== -->
+    <!-- <section class="max-w-7xl mx-auto px-6 pb-16">
+      <div class="relative rounded-3xl overflow-hidden">
+        <img 
+          src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1974&auto=format&fit=crop" 
+          alt="Sustainable engineering" 
+          class="w-full h-64 md:h-80 object-cover"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-[#0d2b20]/90 via-[#0d2b20]/70 to-[#0d2b20]/40"></div>
+        
+        <div class="absolute inset-0 flex items-center justify-center text-center px-6">
+          <div>
+            <h3 class="font-display text-2xl md:text-3xl text-white font-bold mb-2">
+              Need a <span class="text-[#22c55e]">custom solution</span>?
+            </h3>
+            <p class="text-white/60 text-sm max-w-lg mx-auto">
+              Contact our engineering team for bulk orders, custom fabrication, and tailored industrial solutions.
+            </p>
+            <button class="mt-4 bg-[#22c55e] text-white px-8 py-2.5 rounded-full font-semibold hover:bg-[#16a34a] transition-all duration-300 hover:shadow-[0_8px_24px_rgba(34,197,94,0.3)] hover:-translate-y-0.5">
+              <i class="fas fa-headset mr-2"></i> Talk to an Expert
+            </button>
+          </div>
+        </div>
+      </div>
+    </section> -->
+  </main>
+
+  <!-- ===== INCLUDE FOOTER ===== -->
+  <div id="footer"></div>
+
+  <!-- ===== PRODUCT MODAL ===== -->
+  <div id="productModal" class="fixed inset-0 z-50 flex items-center justify-center px-4 modal-overlay hidden">
+    <div class="bg-white max-w-4xl w-full rounded-3xl shadow-2xl p-6 md:p-8 relative max-h-[90vh] overflow-y-auto">
+      <button id="closeModalBtn" class="absolute top-4 right-5 text-gray-400 hover:text-gray-700 text-3xl transition-colors">&times;</button>
+      <div id="modalContent" class="grid md:grid-cols-2 gap-8">
+        <!-- Filled by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script src="../../js/products.js"></script>
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/cart.js"></script>
+  <script src="../../js/wishlist.js"></script>
+  <script src="../../js/filters.js"></script>
+  <script src="../../js/productModal.js"></script>
+  <script src="../../js/main.js"></script>
+
+  <!-- Header & Footer Loader -->
+  <script>
+    (function loadHeaderFooter() {
+      // ===== LOAD HEADER =====
+      const headerContainer = document.getElementById('header');
+      if (headerContainer) {
+        fetch('../../header/header.html')
+          .then(response => {
+            if (!response.ok) throw new Error('Header not found');
+            return response.text();
+          })
+          .then(html => {
+            headerContainer.innerHTML = html;
+            
+            // Re-initialize header scripts after loading
+            if (typeof initHeader === 'function') {
+              initHeader();
+            }
+          })
+          .catch(() => {
+            headerContainer.innerHTML = `
+              <header class="bg-[#0b1a2f] text-white py-4 px-6">
+                <div class="max-w-7xl mx-auto flex items-center justify-between">
+                  <a href="/" class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-[#22c55e] rounded-lg flex items-center justify-center font-bold text-lg">SIEC</div>
+                    <span class="font-display text-xl font-semibold">SIEC</span>
+                  </a>
+                  <nav class="hidden md:flex items-center gap-8">
+                    <a href="/" class="text-white/70 hover:text-white transition">Home</a>
+                    <a href="/pages/about/about.html" class="text-white/70 hover:text-white transition">About</a>
+                    <a href="/pages/services/services.html" class="text-white/70 hover:text-white transition">Services</a>
+                    <a href="/pages/products/products.html" class="text-[#22c55e] font-semibold">Products</a>
+                    <a href="/pages/careers/careers.html" class="text-white/70 hover:text-white transition">Careers</a>
+                    <a href="/pages/contact/contact.html" class="text-white/70 hover:text-white transition">Contact</a>
+                  </nav>
+                </div>
+              </header>
+            `;
+          });
+      }
+
+      // ===== LOAD FOOTER =====
+      const footerContainer = document.getElementById('footer');
+      if (footerContainer) {
+        fetch('../../footer/footer.html')
+          .then(response => {
+            if (!response.ok) throw new Error('Footer HTML not found');
+            return response.text();
+          })
+          .then(html => {
+            footerContainer.innerHTML = html;
+          })
+          .catch(() => {
+            const footerScript = document.createElement('script');
+            footerScript.src = '../../footer/footer.js';
+            footerScript.onerror = function() {
+              footerContainer.innerHTML = `
+                <footer class="bg-[#0b1a2f] text-white/60 py-12 px-6">
+                  <div class="max-w-7xl mx-auto text-center">
+                    <p>&copy; 2026 SIEC. All rights reserved.</p>
+                  </div>
+                </footer>
+              `;
+            };
+            document.body.appendChild(footerScript);
+          });
+      }
+    })();
+  </script>
+
+  <script>
+    // ===== OVERRIDE UTILS FORMAT PRICE WITH INR =====
+    // Override the formatPrice function to use ₹
+    if (typeof Utils !== 'undefined') {
+      Utils.formatPrice = function(num) {
+        return '₹' + num.toFixed(2);
+      };
+    }
+
+// ===== OVERRIDE RENDER PRODUCTS WITH ENHANCED UI =====
+function renderProducts(products) {
+    const grid = document.getElementById('productGrid');
+    const emptyState = document.getElementById('emptyState');
+    
+    if (!grid) return;
+    
+    if (!products || products.length === 0) {
+        grid.innerHTML = '';
+        if (emptyState) emptyState.classList.remove('hidden');
+        document.getElementById('productCount').textContent = '0';
+        return;
+    }
+    
+    if (emptyState) emptyState.classList.add('hidden');
+    document.getElementById('productCount').textContent = products.length;
+    
+    grid.innerHTML = products.map(p => {
+        // Check if it's the WhatsApp card
+        if (p.isWhatsApp) {
+            return `
+            <div class="product-card" data-id="${p.id}">
+                <div class="card-image">
+                    <img src="${p.img}" alt="${p.name}" loading="lazy" />
+                    <span class="badge-category">${p.category}</span>
+                </div>
+                <div class="card-body">
+                    <div class="flex items-center justify-between mb-1">
+                        <h3 class="product-name">${p.name}</h3>
+                        <div class="flex items-center gap-1 text-sm text-gray-600">
+                            <span class="rating-star">★★★★★</span>
+                            <span class="text-xs text-gray-400">${p.rating}</span>
+                        </div>
+                    </div>
+                    <p class="product-desc">${p.desc}</p>
+                    <div class="flex items-center justify-between">
+                        <span class="product-price" style="color: #25D366;">💬 Chat Now</span>
+                        <span class="stock-badge" style="background: #e6f7e6; color: #1e7b3a;">✅ Available</span>
+                    </div>
+                    <div class="card-actions" style="border-top: 1px solid rgba(108, 179, 63, 0.15);">
+                        <button class="btn-whatsapp-inquiry" onclick="window.open('https://wa.me/91${p.whatsappNumber}?text=${encodeURIComponent(p.whatsappMessage)}', '_blank')" style="
+                            background: #25D366;
+                            color: white;
+                            flex: 1;
+                            justify-content: center;
+                            padding: 6px 14px;
+                            border-radius: 20px;
+                            font-size: 0.8rem;
+                            font-weight: 600;
+                            transition: all 0.3s ease;
+                            border: none;
+                            cursor: pointer;
+                            display: flex;
+                            align-items: center;
+                            gap: 4px;
+                            width: 100%;
+                        " onmouseover="this.style.background='#1da851'; this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#25D366'; this.style.transform='translateY(0)'">
+                            <i class="fab fa-whatsapp"></i> Enquire Now
+                        </button>
+                    </div>
+                </div>
+            </div>`;
+        }
+        
+        // Regular product cards
+        const inWish = wishlist.some(w => w.id === p.id);
+        const inCart = cart.some(c => c.id === p.id);
+        const stockClass = p.stock > 0 ? 'in-stock' : 'out-stock';
+        const stockText = p.stock > 0 ? `In Stock (${p.stock})` : 'Out of Stock';
+        
+        // Use the formatPrice with INR
+        const price = Utils.formatPrice ? Utils.formatPrice(p.price) : '₹' + p.price.toFixed(2);
+        
+        // Generate image with fallback
+        const productImage = p.img || 'https://placehold.co/400x300/1e293b/c9a84c?text=' + encodeURIComponent(p.name);
+        
+        return `
+        <div class="product-card" data-id="${p.id}">
+            <div class="card-image">
+                <img src="${productImage}" alt="${p.name}" loading="lazy" />
+                <span class="badge-category">${p.category}</span>
+                <button class="wishlist-btn ${inWish ? 'liked' : ''}" data-id="${p.id}">
+                    <i class="fas fa-heart"></i>
+                </button>
+            </div>
+            <div class="card-body">
+                <div class="flex items-center justify-between mb-1">
+                    <h3 class="product-name">${p.name}</h3>
+                    <div class="flex items-center gap-1 text-sm text-gray-600">
+                        <span class="rating-star">${Utils.stars(p.rating)}</span>
+                        <span class="text-xs text-gray-400">${p.rating}</span>
+                    </div>
+                </div>
+                <p class="product-desc">${p.desc}</p>
+                <div class="flex items-center justify-between">
+                    <span class="product-price">${price}</span>
+                    <span class="stock-badge ${stockClass}">${stockText}</span>
+                </div>
+                <div class="card-actions">
+                    <button class="add-cart-btn btn-add-cart ${inCart ? 'added go-to-cart' : ''}" data-id="${p.id}">
+                        ${inCart ? '<i class="fas fa-shopping-cart"></i> Go to Cart' : '<i class="fas fa-cart-plus"></i> Add'}
+                    </button>
+                    <button class="buy-now-btn btn-buy-now" data-id="${p.id}">
+                        <i class="fas fa-bolt"></i> Buy
+                    </button>
+                </div>
+            </div>
+        </div>`;
+    }).join('');
+    
+    // Attach event listeners for regular products only
+    attachProductEvents();
+    
+    // GSAP animation
+    gsap.from('.product-card', {
+        opacity: 0,
+        y: 30,
+        stagger: 0.05,
+        duration: 0.6,
+        ease: 'power2.out',
+        clearProps: 'all'
+    });
+}
+    // ===== ATTACH EVENTS =====
+    function attachProductEvents() {
+      // Wishlist
+      document.querySelectorAll('.wishlist-btn').forEach(btn => {
+        btn.removeEventListener('click', handleWishlistClick);
+        btn.addEventListener('click', handleWishlistClick);
+      });
+      
+      // Add to cart
+      document.querySelectorAll('.add-cart-btn').forEach(btn => {
+        btn.removeEventListener('click', handleAddToCart);
+        btn.addEventListener('click', handleAddToCart);
+      });
+      
+      // Buy now
+      document.querySelectorAll('.buy-now-btn').forEach(btn => {
+        btn.removeEventListener('click', handleBuyNow);
+        btn.addEventListener('click', handleBuyNow);
+      });
+    }
+
+    // ===== EVENT HANDLERS =====
+    function handleWishlistClick(e) {
+      const id = parseInt(e.currentTarget.dataset.id);
+      const added = toggleWishlist(id);
+      e.currentTarget.classList.toggle('liked', added);
+    }
+
+    function handleAddToCart(e) {
+      const id = parseInt(e.currentTarget.dataset.id);
+      const success = addToCart(id);
+      if (success) {
+        // Change button to "Go to Cart"
+        e.currentTarget.innerHTML = '<i class="fas fa-shopping-cart"></i> Go to Cart';
+        e.currentTarget.classList.add('added', 'go-to-cart');
+        
+        // Redirect to cart page on click when it's "Go to Cart" state
+        e.currentTarget.onclick = function() {
+          window.location.href = '/pages/cart/cart.html';
+        };
+        
+        // Update cart count
+        if (typeof updateCartCounters === 'function') {
+          updateCartCounters();
+        }
+      }
+    }
+
+    function handleBuyNow(e) {
+      const id = parseInt(e.currentTarget.dataset.id);
+      const product = Products.find(p => p.id === id);
+      if (product) {
+        addToCart(id);
+        // Redirect to cart page
+        window.location.href = '/pages/cart/cart.html';
+      }
+    }
+
+    // ===== OVERRIDE CART UPDATE TO REFRESH BUTTON STATES =====
+    // Store the original updateCartCounters if it exists
+    if (typeof updateCartCounters === 'function') {
+      const originalUpdateCartCounters = updateCartCounters;
+      updateCartCounters = function() {
+        originalUpdateCartCounters();
+        // Update all product card button states
+        document.querySelectorAll('.product-card').forEach(card => {
+          const id = parseInt(card.dataset.id);
+          const inCart = cart.some(c => c.id === id);
+          const btn = card.querySelector('.add-cart-btn');
+          if (btn) {
+            if (inCart) {
+              btn.innerHTML = '<i class="fas fa-shopping-cart"></i> Go to Cart';
+              btn.classList.add('added', 'go-to-cart');
+              btn.onclick = function() {
+                window.location.href = '/pages/cart/cart.html';
+              };
+            } else {
+              btn.innerHTML = '<i class="fas fa-cart-plus"></i> Add';
+              btn.classList.remove('added', 'go-to-cart');
+              btn.onclick = null;
+              // Re-attach add to cart handler
+              btn.removeEventListener('click', handleAddToCart);
+              btn.addEventListener('click', handleAddToCart);
+            }
+          }
+        });
+      };
+    }
+
+    // ===== INITIALIZATION =====
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize modules
+      initCart();
+      initWishlist();
+      initFilters();
+      initProductModal();
+      
+      // Initial render
+      renderProducts(Products);
+      
+      // Override the global renderProducts with our enhanced version
+      window.renderProducts = renderProducts;
+    });
+  </script>
+
+</body>
+</html>

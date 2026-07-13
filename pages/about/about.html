@@ -14,16 +14,31 @@
 
   <link rel="icon" type="image/x-icon" href="/assets/logo.png">
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts - Updated to match Index page -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
   <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 
   <style>
+    /* ===== GLOBAL FONT SETTINGS - Matching Index ===== */
+    body {
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .font-display {
+      font-family: 'Roboto', sans-serif;
+    }
+    .font-body {
+      font-family: 'Roboto', sans-serif;
+    }
+    .font-mono {
+      font-family: 'Roboto', sans-serif;
+    }
+
     .page-header {
       background: linear-gradient(135deg, rgba(13,43,32,0.92) 0%, rgba(27,67,50,0.82) 50%, rgba(45,106,79,0.78) 100%);
       padding-top: 8rem;
@@ -74,7 +89,7 @@
     @media (min-width: 1024px) { .section-padding { padding-top: 8rem; padding-bottom: 8rem; } }
 
     .heading-lg {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Roboto', sans-serif;
       font-size: 2.25rem;
       line-height: 1.15;
       letter-spacing: -0.025em;
@@ -147,6 +162,23 @@
       background: linear-gradient(135deg, rgba(13,43,32,0.93) 0%, rgba(27,67,50,0.88) 100%);
       z-index: 1;
     }
+
+    /* Animation keyframes from Index page */
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(18px); }
+      to { opacity:1; transform:translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity:0; }
+      to { opacity:1; }
+    }
+    @keyframes scrollDrop {
+      0% { transform:translateY(-100%); }
+      100% { transform:translateY(220%); }
+    }
+    .animate-fade-up { animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) both; }
+    .animate-fade-in { animation: fadeIn 1.1s ease both; }
+    .animate-scroll-drop { animation: scrollDrop 2.2s cubic-bezier(0.65,0,0.35,1) infinite; }
   </style>
 </head>
 <body>
@@ -188,7 +220,7 @@
     <div class="max-w-4xl">
 
       <!-- Badge -->
-      <span class="inline-flex items-center gap-2 text-[#8fbfae] font-semibold text-xs uppercase tracking-[0.3em] mb-5">
+      <span class="inline-flex items-center gap-2 text-[#8fbfae] font-body font-semibold text-xs uppercase tracking-[0.3em] mb-5">
         <span class="w-8 h-px bg-[#8fbfae]/50"></span>
         About SIEC
         <span class="relative flex h-1.5 w-1.5">
@@ -207,7 +239,7 @@
       </h1>
 
       <!-- Description -->
-      <p class="text-base sm:text-lg md:text-xl text-white/80 max-w-2xl leading-relaxed backdrop-blur-sm bg-black/20 py-3 px-5 rounded-xl border border-white/5 inline-block">
+      <p class="font-body text-base sm:text-lg md:text-xl text-white/80 max-w-2xl leading-relaxed backdrop-blur-sm bg-black/20 py-3 px-5 rounded-xl border border-white/5 inline-block">
         We are a team of dedicated environmental professionals committed to creating a harmonious balance between human activities and the natural world.
       </p>
 
@@ -220,8 +252,8 @@
             </svg>
           </div>
           <div>
-            <p class="text-white font-bold text-lg">40+</p>
-            <p class="text-white/40 text-xs uppercase tracking-wider">Countries Served</p>
+            <p class="font-display text-white font-bold text-lg">40+</p>
+            <p class="font-mono text-white/40 text-xs uppercase tracking-wider">Countries Served</p>
           </div>
         </div>
 
@@ -232,8 +264,8 @@
             </svg>
           </div>
           <div>
-            <p class="text-white font-bold text-lg">500+</p>
-            <p class="text-white/40 text-xs uppercase tracking-wider">Projects Delivered</p>
+            <p class="font-display text-white font-bold text-lg">500+</p>
+            <p class="font-mono text-white/40 text-xs uppercase tracking-wider">Projects Delivered</p>
           </div>
         </div>
 
@@ -244,8 +276,8 @@
             </svg>
           </div>
           <div>
-            <p class="text-white font-bold text-lg">98%</p>
-            <p class="text-white/40 text-xs uppercase tracking-wider">Client Satisfaction</p>
+            <p class="font-display text-white font-bold text-lg">98%</p>
+            <p class="font-mono text-white/40 text-xs uppercase tracking-wider">Client Satisfaction</p>
           </div>
         </div>
       </div>
@@ -254,7 +286,7 @@
 
   <!-- Scroll Indicator -->
   <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-white/30 z-10">
-    <span class="text-[8px] uppercase tracking-[0.2em]">Scroll</span>
+    <span class="font-mono text-[8px] uppercase tracking-[0.2em]">Scroll</span>
     <div class="relative w-px h-8 bg-white/10 overflow-hidden">
       <div
         class="absolute inset-x-0 h-1/2 bg-gradient-to-b from-[#22c55e] to-transparent animate-[scroll-fill_2s_ease-in-out_infinite]"
@@ -398,19 +430,19 @@
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           <div>
             <p class="font-display text-4xl md:text-5xl font-bold text-white">500+</p>
-            <p class="text-white/60 text-sm uppercase tracking-[0.15em] mt-2">Projects Delivered</p>
+            <p class="font-mono text-white/60 text-sm uppercase tracking-[0.15em] mt-2">Projects Delivered</p>
           </div>
           <div>
             <p class="font-display text-4xl md:text-5xl font-bold text-white">40+</p>
-            <p class="text-white/60 text-sm uppercase tracking-[0.15em] mt-2">Countries Served</p>
+            <p class="font-mono text-white/60 text-sm uppercase tracking-[0.15em] mt-2">Countries Served</p>
           </div>
           <div>
             <p class="font-display text-4xl md:text-5xl font-bold text-white">20+</p>
-            <p class="text-white/60 text-sm uppercase tracking-[0.15em] mt-2">Years of Practice</p>
+            <p class="font-mono text-white/60 text-sm uppercase tracking-[0.15em] mt-2">Years of Practice</p>
           </div>
           <div>
             <p class="font-display text-4xl md:text-5xl font-bold text-white">98%</p>
-            <p class="text-white/60 text-sm uppercase tracking-[0.15em] mt-2">Client Retention</p>
+            <p class="font-mono text-white/60 text-sm uppercase tracking-[0.15em] mt-2">Client Retention</p>
           </div>
         </div>
       </div>
@@ -460,7 +492,7 @@
 
           <!-- Name + role -->
           <div class="mt-6">
-            <p class="text-white font-display text-2xl font-bold leading-tight">Amit Gandhe</p>
+            <p class="font-display text-white text-2xl font-bold leading-tight">Amit Gandhe</p>
             <p class="font-mono text-[#8fbfae] text-xs uppercase tracking-[0.2em] mt-1">Founder, SIEC</p>
           </div>
 
@@ -472,8 +504,8 @@
               </svg>
             </div>
             <div>
-              <p class="text-white font-body font-bold text-base leading-none">~20 years</p>
-              <p class="text-white/50 font-body text-[10px] uppercase tracking-wider mt-1">Leading environmental projects</p>
+              <p class="font-display text-white font-bold text-base leading-none">~20 years</p>
+              <p class="font-mono text-white/50 text-[10px] uppercase tracking-wider mt-1">Leading environmental projects</p>
             </div>
           </div>
         </div>
@@ -588,7 +620,7 @@
 
     <!-- Header -->
     <div class="text-center mb-12">
-      <span class="inline-flex items-center gap-2 text-[#0d2b20] font-semibold text-xs uppercase tracking-[0.22em] mb-4">
+      <span class="inline-flex items-center gap-2 text-[#0d2b20] font-body font-semibold text-xs uppercase tracking-[0.22em] mb-4">
         <span class="w-6 h-px bg-gradient-to-r from-[#22c55e] to-[#4ade80]"></span>
         Our Foundation &amp; Approach
         <span class="relative flex h-1.5 w-1.5">
@@ -601,7 +633,7 @@
         Mission, Vision, Values &amp;
         <span class="bg-gradient-to-r from-[#22c55e] to-[#1b4332] bg-clip-text text-transparent">How We Work</span>
       </h2>
-      <p class="text-sm sm:text-base text-neutral-600 mt-3 max-w-xl mx-auto">
+      <p class="font-body text-sm sm:text-base text-neutral-600 mt-3 max-w-xl mx-auto">
         The principles that guide SIEC — and the process we use to turn them into measurable results.
       </p>
     </div>
@@ -621,7 +653,7 @@
             </div>
           </div>
           <h3 class="font-display text-xl font-bold text-[#0d2b20] mb-2">Mission</h3>
-          <p class="text-sm text-neutral-600 leading-relaxed">
+          <p class="font-body text-sm text-neutral-600 leading-relaxed">
             Lead in sustainable environmental consulting with innovative, science-based, client-centric solutions.
           </p>
         </div>
@@ -638,7 +670,7 @@
             </div>
           </div>
           <h3 class="font-display text-xl font-bold text-[#0d2b20] mb-2">Vision</h3>
-          <p class="text-sm text-neutral-600 leading-relaxed">
+          <p class="font-body text-sm text-neutral-600 leading-relaxed">
             Environmental integrity at the core of decision-making, with sustainability embedded in business and society.
           </p>
         </div>
@@ -654,7 +686,7 @@
             </div>
           </div>
           <h3 class="font-display text-xl font-bold text-[#0d2b20] mb-2">Values</h3>
-          <p class="text-sm text-neutral-600 leading-relaxed">
+          <p class="font-body text-sm text-neutral-600 leading-relaxed">
             Multidisciplinary collaboration across science, ecology, engineering, and policy for comprehensive solutions.
           </p>
         </div>
@@ -675,7 +707,7 @@
           A Process Built on
           <span class="bg-gradient-to-r from-[#22c55e] to-[#1b4332] bg-clip-text text-transparent">Rigor &amp; Transparency</span>
         </h3>
-        <p class="text-sm text-neutral-600 mt-1.5">
+        <p class="font-body text-sm text-neutral-600 mt-1.5">
           Our proven methodology ensures measurable results at every stage.
         </p>
       </div>
@@ -695,7 +727,7 @@
             </div>
             <span class="font-mono text-xs tracking-[0.2em] text-[#22c55e] mb-1.5">STAGE 01</span>
             <h4 class="font-display text-base font-bold text-[#0d2b20] mb-1.5">Assess</h4>
-            <p class="text-sm text-neutral-600 leading-relaxed max-w-[190px]">
+            <p class="font-body text-sm text-neutral-600 leading-relaxed max-w-[190px]">
               Site surveys, baseline sampling, and regulatory review to map current impact.
             </p>
           </div>
@@ -709,7 +741,7 @@
             </div>
             <span class="font-mono text-xs tracking-[0.2em] text-[#22c55e] mb-1.5">STAGE 02</span>
             <h4 class="font-display text-base font-bold text-[#0d2b20] mb-1.5">Design</h4>
-            <p class="text-sm text-neutral-600 leading-relaxed max-w-[190px]">
+            <p class="font-body text-sm text-neutral-600 leading-relaxed max-w-[190px]">
               Science-led remediation and sustainability plans tailored to site and sector.
             </p>
           </div>
@@ -723,7 +755,7 @@
             </div>
             <span class="font-mono text-xs tracking-[0.2em] text-[#22c55e] mb-1.5">STAGE 03</span>
             <h4 class="font-display text-base font-bold text-[#0d2b20] mb-1.5">Implement</h4>
-            <p class="text-sm text-neutral-600 leading-relaxed max-w-[190px]">
+            <p class="font-body text-sm text-neutral-600 leading-relaxed max-w-[190px]">
               On-site execution with continuous monitoring and lab validation at each stage.
             </p>
           </div>
@@ -737,7 +769,7 @@
             </div>
             <span class="font-mono text-xs tracking-[0.2em] text-[#22c55e] mb-1.5">STAGE 04</span>
             <h4 class="font-display text-base font-bold text-[#0d2b20] mb-1.5">Report</h4>
-            <p class="text-sm text-neutral-600 leading-relaxed max-w-[190px]">
+            <p class="font-body text-sm text-neutral-600 leading-relaxed max-w-[190px]">
               Transparent reporting against metrics with recommendations for ongoing improvement.
             </p>
           </div>
@@ -749,24 +781,23 @@
   </div>
 </section>
 
-    <!-- ===== FIELD PHOTO BANNER ===== -->
-    <!-- <section class="container-custom pb-4 md:pb-8">
-      <div class="photo-banner h-72 md:h-96">
-        <img src="https://picsum.photos/seed/siec-mangroves-field/1600/700" alt="Field team conducting a mangrove restoration survey" loading="lazy" />
-        <div class="banner-overlay" aria-hidden="true"></div>
-        <div class="banner-caption">
-          <p class="text-xs uppercase tracking-[0.2em] text-[#8fbfae] mb-1">Field Notes</p>
-          <p class="font-display text-xl md:text-2xl">Mangrove restoration survey, coastal remediation site</p>
-        </div>
-      </div>
-    </section> -->
-
 <!-- ===== TIMELINE - HORIZONTAL MARQUEE/CAROUSEL ===== -->
-<section class="py-12 md:py-16 relative overflow-hidden bg-cover bg-center bg-no-repeat" style="background-image: url('/assets/bg_2.jfif');">
+<section class="py-12 md:py-16 relative overflow-hidden">
   
-  <!-- Decorative Elements -->
-  <div class="absolute top-0 right-0 w-80 h-80 bg-[#22c55e]/10 rounded-full blur-3xl"></div>
-  <div class="absolute bottom-0 left-0 w-64 h-64 bg-[#4ade80]/10 rounded-full blur-3xl"></div>
+  <!-- Background Image with Glass Effect -->
+  <div class="absolute inset-0 z-0">
+    <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('/assets/bg_2.jfif');"></div>
+    <!-- Glass Overlay -->
+    <div class="absolute inset-0 bg-white/10 backdrop-blur-[2px]"></div>
+    <!-- Dark Gradient Overlay for better readability -->
+    <div class="absolute inset-0 bg-gradient-to-b from-[#0d2b20]/60 via-[#0d2b20]/40 to-[#0d2b20]/60"></div>
+    <!-- Subtle Pattern Overlay -->
+    <div class="absolute inset-0" style="background: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(34, 197, 94, 0.03) 40px, rgba(34, 197, 94, 0.03) 41px);"></div>
+  </div>
+  
+  <!-- Decorative Orbs -->
+  <div class="absolute top-0 right-0 w-80 h-80 bg-[#22c55e]/10 rounded-full blur-3xl z-0"></div>
+  <div class="absolute bottom-0 left-0 w-64 h-64 bg-[#4ade80]/10 rounded-full blur-3xl z-0"></div>
   
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
     
@@ -786,16 +817,16 @@
         </span>
       </div>
       
-      <!-- Heading with darker transparent background -->
-      <div class="bg-white/20 backdrop-blur-md px-6 py-3 rounded-2xl border border-white/30 inline-block mt-4">
+      <!-- Heading with Glass Effect -->
+      <div class="bg-white/20 backdrop-blur-md px-6 py-3 rounded-2xl border border-white/30 inline-block mt-4 shadow-lg shadow-black/10">
         <h2 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white leading-[1.15]">
           Building a Legacy of<br/>
           <span class="bg-gradient-to-r from-[#22c55e] to-[#4ade80] bg-clip-text text-transparent">Environmental Excellence</span>
         </h2>
       </div>
       
-      <!-- Paragraph with darker transparent background -->
-      <p class="font-body text-sm text-white max-w-2xl mx-auto bg-white/20 backdrop-blur-md py-2 px-4 rounded-full border border-white/30 inline-block mt-3">
+      <!-- Paragraph with Glass Effect -->
+      <p class="font-body text-sm text-white max-w-2xl mx-auto bg-white/20 backdrop-blur-md py-2 px-4 rounded-full border border-white/30 inline-block mt-3 shadow-lg shadow-black/10">
         Our journey of impact and innovation since 2006
       </p>
     </div>
@@ -806,7 +837,7 @@
       <!-- Timeline Wrapper with Marquee -->
       <div class="timeline-marquee-wrapper relative">
         
-        <!-- Horizontal Line -->
+        <!-- Horizontal Line with Glass Effect -->
         <div class="absolute left-0 right-0 top-[72px] h-0.5 bg-gradient-to-r from-[#22c55e]/10 via-[#22c55e]/70 to-[#22c55e]/10"></div>
         
         <!-- Marquee Container -->
@@ -816,7 +847,7 @@
           
           <!-- Timeline Item 1 - 2006 -->
           <div class="flex-none w-64 flex flex-col items-center text-center group">
-            <span class="font-mono text-sm font-bold text-[#4ade80] mb-2">2006</span>
+            <span class="font-mono text-sm font-bold text-[#4ade80] mb-2 drop-shadow-lg">2006</span>
             <div class="relative flex flex-col items-center">
               <div class="relative w-5 h-5 rounded-full bg-gradient-to-br from-[#22c55e] to-[#4ade80] border-4 border-white/90 shadow-lg shadow-[#22c55e]/40 z-10 transition-all duration-300 group-hover:scale-125 group-hover:shadow-[#22c55e]/70">
                 <div class="absolute inset-1 rounded-full bg-white/20 animate-pulse"></div>
@@ -824,7 +855,7 @@
               <div class="w-0.5 h-8 bg-gradient-to-b from-[#22c55e] to-[#22c55e]/30"></div>
             </div>
             <div class="mt-0 w-64">
-              <div class="bg-white/90 backdrop-blur-md p-5 rounded-2xl border border-white/30 shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-2 hover:border-[#22c55e]/50 hover:bg-white/95">
+              <div class="bg-white/90 backdrop-blur-md p-5 rounded-2xl border border-white/30 shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-2 hover:border-[#22c55e]/50 hover:bg-white/95">
                 <h4 class="font-body text-base font-bold text-[#0d2b20]">Foundation of SIEC</h4>
                 <p class="font-body text-xs text-neutral-700 leading-relaxed mt-1">
                   SIEC was established with a vision to provide comprehensive environmental consulting services.
@@ -835,7 +866,7 @@
 
           <!-- Timeline Item 2 - 2007 -->
           <div class="flex-none w-64 flex flex-col items-center text-center group">
-            <span class="font-mono text-sm font-bold text-[#4ade80] mb-2">2007</span>
+            <span class="font-mono text-sm font-bold text-[#4ade80] mb-2 drop-shadow-lg">2007</span>
             <div class="relative flex flex-col items-center">
               <div class="relative w-5 h-5 rounded-full bg-gradient-to-br from-[#22c55e] to-[#4ade80] border-4 border-white/90 shadow-lg shadow-[#22c55e]/40 z-10 transition-all duration-300 group-hover:scale-125 group-hover:shadow-[#22c55e]/70">
                 <div class="absolute inset-1 rounded-full bg-white/20 animate-pulse"></div>
@@ -843,7 +874,7 @@
               <div class="w-0.5 h-8 bg-gradient-to-b from-[#22c55e] to-[#22c55e]/30"></div>
             </div>
             <div class="mt-0 w-64">
-              <div class="bg-white/90 backdrop-blur-md p-5 rounded-2xl border border-white/30 shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-2 hover:border-[#22c55e]/50 hover:bg-white/95">
+              <div class="bg-white/90 backdrop-blur-md p-5 rounded-2xl border border-white/30 shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-2 hover:border-[#22c55e]/50 hover:bg-white/95">
                 <h4 class="font-body text-base font-bold text-[#0d2b20]">First Major Project</h4>
                 <p class="font-body text-xs text-neutral-700 leading-relaxed mt-1">
                   Secured first major environmental impact assessment project for a Fortune 500 company.
@@ -854,7 +885,7 @@
 
           <!-- Timeline Item 3 - 2009 -->
           <div class="flex-none w-64 flex flex-col items-center text-center group">
-            <span class="font-mono text-sm font-bold text-[#4ade80] mb-2">2009</span>
+            <span class="font-mono text-sm font-bold text-[#4ade80] mb-2 drop-shadow-lg">2009</span>
             <div class="relative flex flex-col items-center">
               <div class="relative w-5 h-5 rounded-full bg-gradient-to-br from-[#22c55e] to-[#4ade80] border-4 border-white/90 shadow-lg shadow-[#22c55e]/40 z-10 transition-all duration-300 group-hover:scale-125 group-hover:shadow-[#22c55e]/70">
                 <div class="absolute inset-1 rounded-full bg-white/20 animate-pulse"></div>
@@ -862,7 +893,7 @@
               <div class="w-0.5 h-8 bg-gradient-to-b from-[#22c55e] to-[#22c55e]/30"></div>
             </div>
             <div class="mt-0 w-64">
-              <div class="bg-white/90 backdrop-blur-md p-5 rounded-2xl border border-white/30 shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-2 hover:border-[#22c55e]/50 hover:bg-white/95">
+              <div class="bg-white/90 backdrop-blur-md p-5 rounded-2xl border border-white/30 shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-2 hover:border-[#22c55e]/50 hover:bg-white/95">
                 <h4 class="font-body text-base font-bold text-[#0d2b20]">ISO Certification</h4>
                 <p class="font-body text-xs text-neutral-700 leading-relaxed mt-1">
                   Achieved ISO 14001 certification, setting new standards for environmental management.
@@ -873,7 +904,7 @@
 
           <!-- Timeline Item 4 - 2016 -->
           <div class="flex-none w-64 flex flex-col items-center text-center group">
-            <span class="font-mono text-sm font-bold text-[#4ade80] mb-2">2016</span>
+            <span class="font-mono text-sm font-bold text-[#4ade80] mb-2 drop-shadow-lg">2016</span>
             <div class="relative flex flex-col items-center">
               <div class="relative w-5 h-5 rounded-full bg-gradient-to-br from-[#22c55e] to-[#4ade80] border-4 border-white/90 shadow-lg shadow-[#22c55e]/40 z-10 transition-all duration-300 group-hover:scale-125 group-hover:shadow-[#22c55e]/70">
                 <div class="absolute inset-1 rounded-full bg-white/20 animate-pulse"></div>
@@ -881,7 +912,7 @@
               <div class="w-0.5 h-8 bg-gradient-to-b from-[#22c55e] to-[#22c55e]/30"></div>
             </div>
             <div class="mt-0 w-64">
-              <div class="bg-white/90 backdrop-blur-md p-5 rounded-2xl border border-white/30 shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-2 hover:border-[#22c55e]/50 hover:bg-white/95">
+              <div class="bg-white/90 backdrop-blur-md p-5 rounded-2xl border border-white/30 shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-2 hover:border-[#22c55e]/50 hover:bg-white/95">
                 <h4 class="font-body text-base font-bold text-[#0d2b20]">Team Expansion</h4>
                 <p class="font-body text-xs text-neutral-700 leading-relaxed mt-1">
                   Grew the team to 25+ environmental experts and consultants.
@@ -892,7 +923,7 @@
 
           <!-- Timeline Item 5 - 2018 -->
           <div class="flex-none w-64 flex flex-col items-center text-center group">
-            <span class="font-mono text-sm font-bold text-[#4ade80] mb-2">2018</span>
+            <span class="font-mono text-sm font-bold text-[#4ade80] mb-2 drop-shadow-lg">2018</span>
             <div class="relative flex flex-col items-center">
               <div class="relative w-5 h-5 rounded-full bg-gradient-to-br from-[#22c55e] to-[#4ade80] border-4 border-white/90 shadow-lg shadow-[#22c55e]/40 z-10 transition-all duration-300 group-hover:scale-125 group-hover:shadow-[#22c55e]/70">
                 <div class="absolute inset-1 rounded-full bg-white/20 animate-pulse"></div>
@@ -900,7 +931,7 @@
               <div class="w-0.5 h-8 bg-gradient-to-b from-[#22c55e] to-[#22c55e]/30"></div>
             </div>
             <div class="mt-0 w-64">
-              <div class="bg-white/90 backdrop-blur-md p-5 rounded-2xl border border-white/30 shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-2 hover:border-[#22c55e]/50 hover:bg-white/95">
+              <div class="bg-white/90 backdrop-blur-md p-5 rounded-2xl border border-white/30 shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-2 hover:border-[#22c55e]/50 hover:bg-white/95">
                 <h4 class="font-body text-base font-bold text-[#0d2b20]">Innovation Hub Launch</h4>
                 <p class="font-body text-xs text-neutral-700 leading-relaxed mt-1">
                   Established a dedicated innovation hub for climate change and sustainability research.
@@ -911,7 +942,7 @@
 
           <!-- Timeline Item 6 - 2020 -->
           <div class="flex-none w-64 flex flex-col items-center text-center group">
-            <span class="font-mono text-sm font-bold text-[#4ade80] mb-2">2020</span>
+            <span class="font-mono text-sm font-bold text-[#4ade80] mb-2 drop-shadow-lg">2020</span>
             <div class="relative flex flex-col items-center">
               <div class="relative w-5 h-5 rounded-full bg-gradient-to-br from-[#22c55e] to-[#4ade80] border-4 border-white/90 shadow-lg shadow-[#22c55e]/40 z-10 transition-all duration-300 group-hover:scale-125 group-hover:shadow-[#22c55e]/70">
                 <div class="absolute inset-1 rounded-full bg-white/20 animate-pulse"></div>
@@ -919,7 +950,7 @@
               <div class="w-0.5 h-8 bg-gradient-to-b from-[#22c55e] to-[#22c55e]/30"></div>
             </div>
             <div class="mt-0 w-64">
-              <div class="bg-white/90 backdrop-blur-md p-5 rounded-2xl border border-white/30 shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-2 hover:border-[#22c55e]/50 hover:bg-white/95">
+              <div class="bg-white/90 backdrop-blur-md p-5 rounded-2xl border border-white/30 shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-2 hover:border-[#22c55e]/50 hover:bg-white/95">
                 <h4 class="font-body text-base font-bold text-[#0d2b20]">Digital Transformation</h4>
                 <p class="font-body text-xs text-neutral-700 leading-relaxed mt-1">
                   Launched digital sustainability solutions and remote consulting capabilities.
@@ -930,7 +961,7 @@
 
           <!-- Timeline Item 7 - 2024 -->
           <div class="flex-none w-64 flex flex-col items-center text-center group">
-            <span class="font-mono text-sm font-bold text-[#4ade80] mb-2">2024</span>
+            <span class="font-mono text-sm font-bold text-[#4ade80] mb-2 drop-shadow-lg">2024</span>
             <div class="relative flex flex-col items-center">
               <div class="relative w-5 h-5 rounded-full bg-gradient-to-br from-[#22c55e] to-[#4ade80] border-4 border-white/90 shadow-lg shadow-[#22c55e]/40 z-10 transition-all duration-300 group-hover:scale-125 group-hover:shadow-[#22c55e]/70">
                 <div class="absolute inset-1 rounded-full bg-white/20 animate-pulse"></div>
@@ -938,7 +969,7 @@
               <div class="w-0.5 h-8 bg-gradient-to-b from-[#22c55e] to-[#22c55e]/30"></div>
             </div>
             <div class="mt-0 w-64">
-              <div class="bg-white/90 backdrop-blur-md p-5 rounded-2xl border border-white/30 shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-2 hover:border-[#22c55e]/50 hover:bg-white/95">
+              <div class="bg-white/90 backdrop-blur-md p-5 rounded-2xl border border-white/30 shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-2 hover:border-[#22c55e]/50 hover:bg-white/95">
                 <h4 class="font-body text-base font-bold text-[#0d2b20]">Global Impact Milestone</h4>
                 <p class="font-body text-xs text-neutral-700 leading-relaxed mt-1">
                   Completed 500+ projects across 40+ countries, driving measurable environmental change.
@@ -949,7 +980,7 @@
 
           <!-- Timeline Item 8 - 2025 -->
           <div class="flex-none w-64 flex flex-col items-center text-center group">
-            <span class="font-mono text-sm font-bold text-[#4ade80] mb-2">2025</span>
+            <span class="font-mono text-sm font-bold text-[#4ade80] mb-2 drop-shadow-lg">2025</span>
             <div class="relative flex flex-col items-center">
               <div class="relative w-5 h-5 rounded-full bg-gradient-to-br from-[#22c55e] to-[#4ade80] border-4 border-white/90 shadow-lg shadow-[#22c55e]/40 z-10 transition-all duration-300 group-hover:scale-125 group-hover:shadow-[#22c55e]/70">
                 <div class="absolute inset-1 rounded-full bg-white/20 animate-pulse"></div>
@@ -957,7 +988,7 @@
               <div class="w-0.5 h-8 bg-gradient-to-b from-[#22c55e] to-[#22c55e]/30"></div>
             </div>
             <div class="mt-0 w-64">
-              <div class="bg-white/90 backdrop-blur-md p-5 rounded-2xl border border-white/30 shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-2 hover:border-[#22c55e]/50 hover:bg-white/95">
+              <div class="bg-white/90 backdrop-blur-md p-5 rounded-2xl border border-white/30 shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-2 hover:border-[#22c55e]/50 hover:bg-white/95">
                 <h4 class="font-body text-base font-bold text-[#0d2b20]">ISO 45001 Certification</h4>
                 <p class="font-body text-xs text-neutral-700 leading-relaxed mt-1">
                   Achieved ISO 45001 certification for occupational health and safety management.
@@ -968,7 +999,7 @@
 
           <!-- Timeline Item 9 - 2026 -->
           <div class="flex-none w-64 flex flex-col items-center text-center group">
-            <span class="font-mono text-sm font-bold text-[#4ade80] mb-2">2026</span>
+            <span class="font-mono text-sm font-bold text-[#4ade80] mb-2 drop-shadow-lg">2026</span>
             <div class="relative flex flex-col items-center">
               <div class="relative w-5 h-5 rounded-full bg-gradient-to-br from-[#22c55e] to-[#4ade80] border-4 border-white/90 shadow-lg shadow-[#22c55e]/40 z-10 transition-all duration-300 group-hover:scale-125 group-hover:shadow-[#22c55e]/70">
                 <div class="absolute inset-1 rounded-full bg-white/20 animate-pulse"></div>
@@ -976,7 +1007,7 @@
               <div class="w-0.5 h-8 bg-gradient-to-b from-[#22c55e] to-[#22c55e]/30"></div>
             </div>
             <div class="mt-0 w-64">
-              <div class="bg-white/90 backdrop-blur-md p-5 rounded-2xl border border-white/30 shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-2 hover:border-[#22c55e]/50 hover:bg-white/95">
+              <div class="bg-white/90 backdrop-blur-md p-5 rounded-2xl border border-white/30 shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-2 hover:border-[#22c55e]/50 hover:bg-white/95">
                 <h4 class="font-body text-base font-bold text-[#0d2b20]">Future Forward</h4>
                 <p class="font-body text-xs text-neutral-700 leading-relaxed mt-1">
                   Continuing our commitment to environmental excellence and sustainable innovation.
@@ -988,7 +1019,7 @@
           <!-- Duplicate items for seamless loop -->
           <!-- 2006 Duplicate -->
           <div class="flex-none w-64 flex flex-col items-center text-center group">
-            <span class="font-mono text-sm font-bold text-[#4ade80] mb-2">2006</span>
+            <span class="font-mono text-sm font-bold text-[#4ade80] mb-2 drop-shadow-lg">2006</span>
             <div class="relative flex flex-col items-center">
               <div class="relative w-5 h-5 rounded-full bg-gradient-to-br from-[#22c55e] to-[#4ade80] border-4 border-white/90 shadow-lg shadow-[#22c55e]/40 z-10 transition-all duration-300 group-hover:scale-125 group-hover:shadow-[#22c55e]/70">
                 <div class="absolute inset-1 rounded-full bg-white/20 animate-pulse"></div>
@@ -996,7 +1027,7 @@
               <div class="w-0.5 h-8 bg-gradient-to-b from-[#22c55e] to-[#22c55e]/30"></div>
             </div>
             <div class="mt-0 w-64">
-              <div class="bg-white/90 backdrop-blur-md p-5 rounded-2xl border border-white/30 shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-2 hover:border-[#22c55e]/50 hover:bg-white/95">
+              <div class="bg-white/90 backdrop-blur-md p-5 rounded-2xl border border-white/30 shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-2 hover:border-[#22c55e]/50 hover:bg-white/95">
                 <h4 class="font-body text-base font-bold text-[#0d2b20]">Foundation of SIEC</h4>
                 <p class="font-body text-xs text-neutral-700 leading-relaxed mt-1">
                   SIEC was established with a vision to provide comprehensive environmental consulting services.
@@ -1007,7 +1038,7 @@
 
           <!-- 2007 Duplicate -->
           <div class="flex-none w-64 flex flex-col items-center text-center group">
-            <span class="font-mono text-sm font-bold text-[#4ade80] mb-2">2007</span>
+            <span class="font-mono text-sm font-bold text-[#4ade80] mb-2 drop-shadow-lg">2007</span>
             <div class="relative flex flex-col items-center">
               <div class="relative w-5 h-5 rounded-full bg-gradient-to-br from-[#22c55e] to-[#4ade80] border-4 border-white/90 shadow-lg shadow-[#22c55e]/40 z-10 transition-all duration-300 group-hover:scale-125 group-hover:shadow-[#22c55e]/70">
                 <div class="absolute inset-1 rounded-full bg-white/20 animate-pulse"></div>
@@ -1015,7 +1046,7 @@
               <div class="w-0.5 h-8 bg-gradient-to-b from-[#22c55e] to-[#22c55e]/30"></div>
             </div>
             <div class="mt-0 w-64">
-              <div class="bg-white/90 backdrop-blur-md p-5 rounded-2xl border border-white/30 shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-2 hover:border-[#22c55e]/50 hover:bg-white/95">
+              <div class="bg-white/90 backdrop-blur-md p-5 rounded-2xl border border-white/30 shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-2 hover:border-[#22c55e]/50 hover:bg-white/95">
                 <h4 class="font-body text-base font-bold text-[#0d2b20]">First Major Project</h4>
                 <p class="font-body text-xs text-neutral-700 leading-relaxed mt-1">
                   Secured first major environmental impact assessment project for a Fortune 500 company.

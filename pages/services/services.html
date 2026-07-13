@@ -13,17 +13,32 @@
   <link rel="stylesheet" href="../../css/custom.css" />
 
   <link rel="icon" type="image/x-icon" href="/assets/logo.png">
-  
-  <!-- Google Fonts: Fraunces (display), Inter (body), IBM Plex Mono (field data) -->
+
+  <!-- Google Fonts - Updated to match Index page -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340..600;1,9..144,400..500&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
   <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 
   <style>
+    /* ===== GLOBAL FONT SETTINGS - Matching Index ===== */
+    body {
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .font-display {
+      font-family: 'Roboto', sans-serif;
+    }
+    .font-body {
+      font-family: 'Roboto', sans-serif;
+    }
+    .font-mono {
+      font-family: 'Roboto', sans-serif;
+    }
+
     :root{
       --ink:#16281f;
       --paper:#f0eee1;
@@ -41,27 +56,14 @@
     body{
       background:var(--paper);
       color:var(--ink);
-      font-family:'Inter', sans-serif;
+      font-family:'Roboto', sans-serif;
     }
 
-    .font-display{ font-family:'Fraunces', serif; }
-    .font-mono{ font-family:'IBM Plex Mono', monospace; }
-
-    .container-custom{
-      max-width:1280px;
-      margin-left:auto;
-      margin-right:auto;
-      padding-left:1.25rem;
-      padding-right:1.25rem;
-    }
-    @media (min-width:768px){ .container-custom{ padding-left:2rem; padding-right:2rem; } }
-
-    /* ===== Field-tag / eyebrow ===== */
     .field-tag{
       display:inline-flex;
       align-items:center;
       gap:.5rem;
-      font-family:'IBM Plex Mono', monospace;
+      font-family:'Roboto', sans-serif;
       font-size:.7rem;
       letter-spacing:.18em;
       text-transform:uppercase;
@@ -94,7 +96,7 @@
     .topo-layer svg{ width:100%; height:100%; }
 
     .report-stamp{
-      font-family:'IBM Plex Mono', monospace;
+      font-family:'Roboto', sans-serif;
       font-size:.65rem;
       letter-spacing:.12em;
       text-transform:uppercase;
@@ -110,9 +112,8 @@
     .report-stamp b{ color:#fff; font-weight:600; letter-spacing:.16em; }
 
     .heading-hero{
-      font-family:'Fraunces', serif;
-      font-optical-sizing:auto;
-      font-weight:480;
+      font-family:'Roboto', sans-serif;
+      font-weight:500;
       font-size:2.6rem;
       line-height:1.06;
       letter-spacing:-0.01em;
@@ -124,9 +125,8 @@
 
     /* ===== Section headings ===== */
     .heading-section{
-      font-family:'Fraunces', serif;
-      font-optical-sizing:auto;
-      font-weight:460;
+      font-family:'Roboto', sans-serif;
+      font-weight:500;
       font-size:2rem;
       line-height:1.16;
       letter-spacing:-0.015em;
@@ -148,7 +148,7 @@
     .service-grid{
       display:grid;
       grid-template-columns:repeat(3, 1fr);
-      gap:1.25rem; /* reduced gap */
+      gap:1.25rem;
     }
     @media (max-width:1024px){
       .service-grid{ grid-template-columns:repeat(2, 1fr); }
@@ -162,10 +162,10 @@
       flex-direction:column;
       background:var(--card-bg);
       border:1px solid var(--line);
-      border-radius:6px; /* slightly smaller radius */
+      border-radius:6px;
       overflow:hidden;
       opacity:0;
-      transform:translateY(18px); /* reduced movement */
+      transform:translateY(18px);
       transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;
     }
     .service-card:hover{
@@ -174,12 +174,21 @@
       border-color:rgba(22,40,31,.24);
     }
 
-    /* Compact media (smaller height) */
     .service-card-media{
       position:relative;
-      aspect-ratio:16/9; /* shorter */
+      aspect-ratio:16/9;
       overflow:hidden;
       background:linear-gradient(155deg, var(--card-color) 0%, #16281f 115%);
+    }
+    .service-card-media .media-image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .service-card:hover .service-card-media .media-image {
+      transform: scale(1.05);
     }
     .service-card-media .media-topo{
       position:absolute;
@@ -196,7 +205,7 @@
       justify-content:center;
     }
     .service-card-media .media-icon svg{
-      width:28%; /* smaller icon */
+      width:28%;
       height:28%;
       color:var(--paper);
       opacity:.92;
@@ -205,7 +214,7 @@
       position:absolute;
       left:.7rem;
       bottom:.6rem;
-      font-family:'IBM Plex Mono', monospace;
+      font-family:'Roboto', sans-serif;
       font-size:.55rem;
       letter-spacing:.1em;
       color:rgba(240,238,225,.7);
@@ -214,23 +223,34 @@
       position:absolute;
       right:.7rem;
       top:.7rem;
-      font-family:'IBM Plex Mono', monospace;
+      font-family:'Roboto', sans-serif;
       font-size:.55rem;
       letter-spacing:.12em;
       color:rgba(240,238,225,.85);
       font-weight:600;
     }
+    .service-card-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(20, 24, 20, 0.1) 0%, rgba(20, 24, 20, 0.5) 100%);
+      pointer-events: none;
+    }
+    .service-card-media .media-code,
+    .service-card-media .media-depth {
+      position: relative;
+      z-index: 1;
+    }
 
-    /* Compact body */
     .service-card-body{
       display:flex;
       flex-direction:column;
       flex:1;
-      padding:1.1rem 1.2rem 1rem; /* reduced padding */
+      padding:1.1rem 1.2rem 1rem;
     }
 
     .field-code{
-      font-family:'IBM Plex Mono', monospace;
+      font-family:'Roboto', sans-serif;
       font-size:.6rem;
       letter-spacing:.14em;
       color:var(--card-color);
@@ -240,9 +260,9 @@
     }
 
     .service-title{
-      font-family:'Fraunces', serif;
-      font-weight:480;
-      font-size:1.1rem; /* smaller */
+      font-family:'Roboto', sans-serif;
+      font-weight:600;
+      font-size:1.1rem;
       line-height:1.2;
       letter-spacing:-0.008em;
       color:var(--ink);
@@ -252,10 +272,10 @@
     .service-desc{
       color:#4d5a4d;
       line-height:1.5;
-      font-size:.82rem; /* smaller */
+      font-size:.82rem;
       margin-bottom:.65rem;
       display: -webkit-box;
-      -webkit-line-clamp: 3; /* limit lines */
+      -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
@@ -265,12 +285,14 @@
       flex-direction:column;
       gap:.25rem;
       margin-bottom:.65rem;
+      padding-left: 0;
+      list-style: none;
     }
     .field-notes li{
       display:flex;
       align-items:baseline;
       gap:.4rem;
-      font-size:.75rem; /* smaller */
+      font-size:.75rem;
       color:#33402f;
     }
     .field-notes li::before{
@@ -290,7 +312,7 @@
     }
     .readout-item{ display:flex; flex-direction:column; gap:.1rem; }
     .readout-label{
-      font-family:'IBM Plex Mono', monospace;
+      font-family:'Roboto', sans-serif;
       font-size:.55rem;
       letter-spacing:.13em;
       color:#8a9587;
@@ -309,11 +331,221 @@
       margin-top:2rem;
       padding-top:1.2rem;
       border-top:var(--rule);
-      font-family:'IBM Plex Mono', monospace;
+      font-family:'Roboto', sans-serif;
       font-size:.65rem;
       letter-spacing:.12em;
       text-transform:uppercase;
       color:#7a8577;
+    }
+
+    /* ===== View Details button ===== */
+    .view-details-btn {
+      margin-top: 1.25rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.4rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: #f0eee1;
+      background: var(--card-color, #3f5c3f);
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+      font-family: 'Roboto', sans-serif;
+    }
+    .view-details-btn:hover,
+    .view-details-btn:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.4);
+      opacity: 0.92;
+    }
+    .view-details-btn:active {
+      transform: translateY(0);
+    }
+
+    /* ===== Overlay ===== */
+    .service-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .service-overlay.is-active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .service-overlay-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(20, 24, 20, 0.72);
+      backdrop-filter: blur(3px);
+    }
+    .service-overlay-panel {
+      position: relative;
+      width: 100%;
+      max-width: 780px;
+      max-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      background: #f0eee1;
+      border-radius: 18px;
+      overflow: hidden;
+      transform: translateY(24px) scale(0.98);
+      opacity: 0;
+      transition: transform 0.35s ease, opacity 0.35s ease;
+      box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.5);
+    }
+    .service-overlay.is-active .service-overlay-panel {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    .service-overlay-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(20, 24, 20, 0.35);
+      color: #f0eee1;
+      font-size: 1.5rem;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      transition: background 0.2s ease;
+    }
+    .service-overlay-close:hover {
+      background: rgba(20, 24, 20, 0.6);
+    }
+    .service-overlay-media {
+      position: relative;
+      flex: 0 0 220px;
+      height: 220px;
+      background: var(--card-color, #3f5c3f);
+      color: #f0eee1;
+      overflow: hidden;
+    }
+    .service-overlay-media .media-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .service-overlay-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(20, 24, 20, 0.15) 0%, rgba(20, 24, 20, 0.55) 100%);
+    }
+    .service-overlay-media .media-code {
+      position: absolute;
+      top: 1.25rem;
+      left: 1.5rem;
+      font-family: 'Roboto', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      z-index: 1;
+    }
+    .service-overlay-media .media-depth {
+      position: absolute;
+      top: 1.25rem;
+      right: 4rem;
+      font-family: 'Roboto', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      opacity: 0.8;
+      z-index: 1;
+    }
+    .service-overlay-body {
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: 2rem 2rem 2.25rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--card-color, #3f5c3f) transparent;
+    }
+    .service-overlay-body::-webkit-scrollbar {
+      width: 8px;
+    }
+    .service-overlay-body::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .service-overlay-body::-webkit-scrollbar-thumb {
+      background: var(--card-color, #3f5c3f);
+      border-radius: 999px;
+    }
+    .service-overlay-body .field-code {
+      display: inline-block;
+      margin-bottom: 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--card-color, #3f5c3f);
+    }
+    .service-overlay-body .service-title {
+      margin: 0 0 0.85rem;
+      font-size: 1.6rem;
+      line-height: 1.25;
+    }
+    .service-overlay-body .service-desc {
+      margin: 0 0 1.25rem;
+      line-height: 1.6;
+      opacity: 0.85;
+    }
+    .service-overlay-body .field-notes {
+      margin: 0 0 1.5rem;
+      padding-left: 1.2rem;
+    }
+    .service-overlay-body .field-notes li {
+      margin-bottom: 0.4rem;
+      line-height: 1.5;
+    }
+    .service-overlay-body .readout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid rgba(0, 0, 0, 0.12);
+    }
+    .service-overlay-body .readout-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .service-overlay-body .readout-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.55;
+      font-family: 'Roboto', sans-serif;
+    }
+    .service-overlay-body .readout-value {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    @media (max-width: 600px) {
+      .service-overlay-body .readout {
+        grid-template-columns: 1fr;
+      }
     }
 
     /* ===== CTA ===== */
@@ -324,7 +556,7 @@
       color:var(--paper);
     }
     .coord-tag{
-      font-family:'IBM Plex Mono', monospace;
+      font-family:'Roboto', sans-serif;
       font-size:.72rem;
       letter-spacing:.18em;
       text-transform:uppercase;
@@ -352,6 +584,115 @@
       .service-card{ opacity:1 !important; transform:none !important; }
       .btn-primary{ transition:none; }
     }
+
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 4px 20px rgba(34, 197, 94, 0.4);
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px) scale(0.8);
+      z-index: 1000;
+    }
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+    }
+    .back-to-top:hover {
+      transform: translateY(-3px) scale(1.1);
+      box-shadow: 0 8px 30px rgba(34, 197, 94, 0.5);
+      background: linear-gradient(135deg, #16a34a, #15803d);
+    }
+    .back-to-top:active {
+      transform: scale(0.9);
+    }
+    .back-to-top svg {
+      width: 24px;
+      height: 24px;
+      transition: transform 0.3s ease;
+    }
+    .back-to-top:hover svg {
+      transform: translateY(-2px);
+    }
+    .back-to-top::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: transparent;
+      border: 2px solid rgba(34, 197, 94, 0.3);
+      animation: pulse-ring 2s ease-out infinite;
+    }
+    @keyframes pulse-ring {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(1.5); opacity: 0; }
+    }
+    .back-to-top .progress-ring {
+      position: absolute;
+      inset: -2px;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .back-to-top .progress-ring svg {
+      transform: rotate(-90deg);
+      width: 100%;
+      height: 100%;
+    }
+    .back-to-top .progress-ring circle {
+      fill: none;
+      stroke: rgba(255, 255, 255, 0.3);
+      stroke-width: 2;
+      stroke-linecap: round;
+      transition: stroke-dashoffset 0.3s ease;
+    }
+    .back-to-top.visible {
+      animation: continuous-bounce 2s ease-in-out infinite;
+    }
+    @keyframes continuous-bounce {
+      0%, 100% { transform: translateY(0) scale(1); }
+      25% { transform: translateY(-8px) scale(1.05); }
+      50% { transform: translateY(0) scale(1); }
+      75% { transform: translateY(-4px) scale(1.03); }
+    }
+    .back-to-top:hover {
+      animation: hover-bounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    @keyframes hover-bounce {
+      0% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-12px) scale(1.15); }
+      100% { transform: translateY(-3px) scale(1.1); }
+    }
+    .back-to-top:active {
+      transform: scale(0.85);
+    }
+    @media (max-width: 768px) {
+      .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 44px;
+        height: 44px;
+        font-size: 20px;
+      }
+      .back-to-top svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -375,7 +716,7 @@
         </svg>
       </div>
 
-      <div class="container-custom relative z-10">
+      <div class="container-custom relative z-10" style="max-width:1280px;margin-left:auto;margin-right:auto;padding-left:1.25rem;padding-right:1.25rem;">
         <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
           <div class="max-w-3xl">
             <span class="field-tag mb-5" style="color:#9fc2ab;">Service Log — SIEC</span>
@@ -384,14 +725,13 @@
               Every engagement starts the same way a site investigation does — at the surface, then down through the layers until the picture is complete.
             </p>
           </div>
-          
         </div>
       </div>
     </section>
 
     <!-- ===== INTRO ===== -->
     <section class="section-padding pb-0 md:pb-0">
-      <div class="container-custom">
+      <div class="container-custom" style="max-width:1280px;margin-left:auto;margin-right:auto;padding-left:1.25rem;padding-right:1.25rem;">
         <span class="field-tag mb-3" style="color:var(--moss);">Our Services</span>
 
         <h2 class="heading-section mb-3">
@@ -399,7 +739,7 @@
           Practical Expertise.
         </h2>
 
-        <p class="text-sm md:text-base text-[color:var(--muted)] max-w-3xl">
+        <p class="text-sm md:text-base" style="color:#4d5a4d; max-width:3xl;">
           SIEC provides end-to-end environmental solutions, including impact
           assessments, sustainability consulting, renewable energy, water and
           waste management, carbon reduction, and environmental compliance for
@@ -408,9 +748,9 @@
       </div>
     </section>
 
-  <!-- ===== SERVICES GRID ===== -->
+    <!-- ===== SERVICES GRID ===== -->
     <section class="section-padding">
-      <div class="container-custom">
+      <div class="container-custom" style="max-width:1280px;margin-left:auto;margin-right:auto;padding-left:1.25rem;padding-right:1.25rem;">
         <div class="service-grid" id="service-grid">
 
           <!-- 01: EIA -->
@@ -738,240 +1078,8 @@
     </div>
 
     <style>
-      /* ===== Card media image ===== */
-      .service-card-media {
-        position: relative;
-        overflow: hidden;
-      }
-      .service-card-media .media-image {
-        display: block;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.4s ease;
-      }
-      .service-card:hover .service-card-media .media-image {
-        transform: scale(1.05);
-      }
-      .service-card-media::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(180deg, rgba(20, 24, 20, 0.1) 0%, rgba(20, 24, 20, 0.5) 100%);
-        pointer-events: none;
-      }
-      .service-card-media .media-code,
-      .service-card-media .media-depth {
-        position: relative;
-        z-index: 1;
-      }
-
-      /* ===== View Details button ===== */
-      .view-details-btn {
-        margin-top: 1.25rem;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.65rem 1.4rem;
-        font-size: 0.85rem;
-        font-weight: 600;
-        letter-spacing: 0.03em;
-        text-transform: uppercase;
-        color: #f0eee1;
-        background: var(--card-color, #3f5c3f);
-        border: none;
-        border-radius: 999px;
-        cursor: pointer;
-        transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
-      }
-      .view-details-btn:hover,
-      .view-details-btn:focus-visible {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.4);
-        opacity: 0.92;
-      }
-      .view-details-btn:active {
-        transform: translateY(0);
-      }
-
-      /* ===== Overlay ===== */
-      .service-overlay {
-        position: fixed;
-        inset: 0;
-        z-index: 1000;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 1.5rem;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.3s ease, visibility 0.3s ease;
-      }
-      .service-overlay.is-active {
-        opacity: 1;
-        visibility: visible;
-      }
-      .service-overlay-backdrop {
-        position: absolute;
-        inset: 0;
-        background: rgba(20, 24, 20, 0.72);
-        backdrop-filter: blur(3px);
-      }
-      .service-overlay-panel {
-        position: relative;
-        width: 100%;
-        max-width: 780px;
-        max-height: 88vh;
-        display: flex;
-        flex-direction: column;
-        background: #f0eee1;
-        border-radius: 18px;
-        overflow: hidden;
-        transform: translateY(24px) scale(0.98);
-        opacity: 0;
-        transition: transform 0.35s ease, opacity 0.35s ease;
-        box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.5);
-      }
-      .service-overlay.is-active .service-overlay-panel {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-      }
-      .service-overlay-close {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        border: none;
-        background: rgba(20, 24, 20, 0.35);
-        color: #f0eee1;
-        font-size: 1.5rem;
-        line-height: 1;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 2;
-        transition: background 0.2s ease;
-      }
-      .service-overlay-close:hover {
-        background: rgba(20, 24, 20, 0.6);
-      }
-      .service-overlay-media {
-        position: relative;
-        flex: 0 0 220px;
-        height: 220px;
-        background: var(--card-color, #3f5c3f);
-        color: #f0eee1;
-        overflow: hidden;
-      }
-      .service-overlay-media .media-image {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-      .service-overlay-media::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(180deg, rgba(20, 24, 20, 0.15) 0%, rgba(20, 24, 20, 0.55) 100%);
-      }
-      .service-overlay-media .media-code {
-        position: absolute;
-        top: 1.25rem;
-        left: 1.5rem;
-        font-family: monospace;
-        font-size: 0.85rem;
-        letter-spacing: 0.08em;
-        z-index: 1;
-      }
-      .service-overlay-media .media-depth {
-        position: absolute;
-        top: 1.25rem;
-        right: 4rem;
-        font-family: monospace;
-        font-size: 0.85rem;
-        letter-spacing: 0.08em;
-        opacity: 0.8;
-        z-index: 1;
-      }
-      .service-overlay-body {
-        flex: 1 1 auto;
-        min-height: 0;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
-        padding: 2rem 2rem 2.25rem;
-        scrollbar-width: thin;
-        scrollbar-color: var(--card-color, #3f5c3f) transparent;
-      }
-      .service-overlay-body::-webkit-scrollbar {
-        width: 8px;
-      }
-      .service-overlay-body::-webkit-scrollbar-track {
-        background: transparent;
-      }
-      .service-overlay-body::-webkit-scrollbar-thumb {
-        background: var(--card-color, #3f5c3f);
-        border-radius: 999px;
-      }
-      .service-overlay-body .field-code {
-        display: inline-block;
-        margin-bottom: 0.5rem;
-        font-size: 0.75rem;
-        font-weight: 700;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--card-color, #3f5c3f);
-      }
-      .service-overlay-body .service-title {
-        margin: 0 0 0.85rem;
-        font-size: 1.6rem;
-        line-height: 1.25;
-      }
-      .service-overlay-body .service-desc {
-        margin: 0 0 1.25rem;
-        line-height: 1.6;
-        opacity: 0.85;
-      }
       .service-overlay-body .field-notes {
-        margin: 0 0 1.5rem;
         padding-left: 1.2rem;
-      }
-      .service-overlay-body .field-notes li {
-        margin-bottom: 0.4rem;
-        line-height: 1.5;
-      }
-      .service-overlay-body .readout {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
-        padding-top: 1.25rem;
-        border-top: 1px solid rgba(0, 0, 0, 0.12);
-      }
-      .service-overlay-body .readout-item {
-        display: flex;
-        flex-direction: column;
-        gap: 0.25rem;
-      }
-      .service-overlay-body .readout-label {
-        font-size: 0.7rem;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        opacity: 0.55;
-      }
-      .service-overlay-body .readout-value {
-        font-size: 0.95rem;
-        font-weight: 600;
-      }
-
-      @media (max-width: 600px) {
-        .service-overlay-body .readout {
-          grid-template-columns: 1fr;
-        }
       }
     </style>
 
@@ -1056,245 +1164,109 @@
       })();
     </script>
 
-    <!-- ===== CTA ===== -->
-    <!-- (CTA remains optional, can be uncommented if needed) -->
-    <!-- <section class="section-padding cta-section">
-      ...
-    </section> -->
-
-    <style>
-/* Back to Top Button */
-.back-to-top {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 50px;
-    height: 50px;
-    background: linear-gradient(135deg, #22c55e, #16a34a);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    box-shadow: 0 4px 20px rgba(34, 197, 94, 0.4);
-    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(20px) scale(0.8);
-    z-index: 1000;
-}
-
-.back-to-top.visible {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0) scale(1);
-}
-
-.back-to-top:hover {
-    transform: translateY(-3px) scale(1.1);
-    box-shadow: 0 8px 30px rgba(34, 197, 94, 0.5);
-    background: linear-gradient(135deg, #16a34a, #15803d);
-}
-
-.back-to-top:active {
-    transform: scale(0.9);
-}
-
-.back-to-top svg {
-    width: 24px;
-    height: 24px;
-    transition: transform 0.3s ease;
-}
-
-.back-to-top:hover svg {
-    transform: translateY(-2px);
-}
-
-/* Pulse ring animation */
-.back-to-top::before {
-    content: '';
-    position: absolute;
-    inset: -4px;
-    border-radius: 50%;
-    background: transparent;
-    border: 2px solid rgba(34, 197, 94, 0.3);
-    animation: pulse-ring 2s ease-out infinite;
-}
-
-@keyframes pulse-ring {
-    0% {
-        transform: scale(1);
-        opacity: 1;
-    }
-    100% {
-        transform: scale(1.5);
-        opacity: 0;
-    }
-}
-
-/* Scroll progress ring */
-.back-to-top .progress-ring {
-    position: absolute;
-    inset: -2px;
-    border-radius: 50%;
-    pointer-events: none;
-}
-
-.back-to-top .progress-ring svg {
-    transform: rotate(-90deg);
-    width: 100%;
-    height: 100%;
-}
-
-.back-to-top .progress-ring circle {
-    fill: none;
-    stroke: rgba(255, 255, 255, 0.3);
-    stroke-width: 2;
-    stroke-linecap: round;
-    transition: stroke-dashoffset 0.3s ease;
-}
-
-/* Continuous Bounce Effect */
-.back-to-top.visible {
-    animation: continuous-bounce 2s ease-in-out infinite;
-}
-
-@keyframes continuous-bounce {
-    0%, 100% {
-        transform: translateY(0) scale(1);
-    }
-    25% {
-        transform: translateY(-8px) scale(1.05);
-    }
-    50% {
-        transform: translateY(0) scale(1);
-    }
-    75% {
-        transform: translateY(-4px) scale(1.03);
-    }
-}
-
-/* Keep hover interaction */
-.back-to-top:hover {
-    animation: hover-bounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-@keyframes hover-bounce {
-    0% {
-        transform: translateY(0) scale(1);
-    }
-    50% {
-        transform: translateY(-12px) scale(1.15);
-    }
-    100% {
-        transform: translateY(-3px) scale(1.1);
-    }
-}
-
-/* Click bounce */
-.back-to-top:active {
-    transform: scale(0.85);
-}
-
-/* Mobile responsive */
-@media (max-width: 768px) {
-    .back-to-top {
-        bottom: 20px;
-        right: 20px;
-        width: 44px;
-        height: 44px;
-        font-size: 20px;
-    }
-    .back-to-top svg {
-        width: 20px;
-        height: 20px;
-    }
-}
-</style>
-
-<!-- Back to Top Button -->
-<button id="backToTop" class="back-to-top" aria-label="Back to top">
-    <!-- Your image -->
-    <img src="/assets/btt-removebg-preview.png" alt="Back to top">
-
-    <!-- Progress ring -->
-    <div class="progress-ring">
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+      <img src="/assets/btt-removebg-preview.png" alt="Back to top">
+      <div class="progress-ring">
         <svg viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="46" 
-                stroke-dasharray="289" 
-                stroke-dashoffset="289" 
-                id="progressCircle"/>
+          <circle cx="50" cy="50" r="46" stroke-dasharray="289" stroke-dashoffset="289" id="progressCircle"/>
         </svg>
-    </div>
-</button>
-<script>// Back to Top JavaScript
-document.addEventListener('DOMContentLoaded', function() {
-    const backToTopButton = document.getElementById('backToTop');
-    const progressCircle = document.getElementById('progressCircle');
-    const scrollThreshold = 300;
-    let isVisible = false;
+      </div>
+    </button>
 
-    // Function to update progress ring
-    function updateProgress() {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-        
-        // Update progress ring
-        if (progressCircle) {
-            const circumference = 289; // 2 * PI * 46
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const backToTopButton = document.getElementById('backToTop');
+        const progressCircle = document.getElementById('progressCircle');
+        const scrollThreshold = 300;
+        let isVisible = false;
+
+        function updateProgress() {
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+          const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+
+          if (progressCircle) {
+            const circumference = 289;
             const offset = circumference - (scrollPercent / 100) * circumference;
             progressCircle.style.strokeDashoffset = offset;
-        }
+          }
 
-        // Show/hide button
-        if (scrollTop > scrollThreshold) {
+          if (scrollTop > scrollThreshold) {
             if (!isVisible) {
-                backToTopButton.classList.add('visible');
-                isVisible = true;
+              backToTopButton.classList.add('visible');
+              isVisible = true;
             }
-        } else {
+          } else {
             if (isVisible) {
-                backToTopButton.classList.remove('visible');
-                isVisible = false;
+              backToTopButton.classList.remove('visible');
+              isVisible = false;
             }
+          }
         }
-    }
 
-    // Scroll event listener with throttling for performance
-    let ticking = false;
-    window.addEventListener('scroll', function() {
-        if (!ticking) {
+        let ticking = false;
+        window.addEventListener('scroll', function() {
+          if (!ticking) {
             window.requestAnimationFrame(function() {
-                updateProgress();
-                ticking = false;
+              updateProgress();
+              ticking = false;
             });
             ticking = true;
-        }
-    });
-
-    // Click handler with smooth scroll
-    backToTopButton.addEventListener('click', function(e) {
-        e.preventDefault();
-        // Add click animation
-        this.style.transform = 'scale(0.8)';
-        setTimeout(() => {
-            this.style.transform = '';
-        }, 200);
-        
-        // Smooth scroll to top
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+          }
         });
-    });
 
-    // Initial check
-    updateProgress();
-});</script>
+        backToTopButton.addEventListener('click', function(e) {
+          e.preventDefault();
+          this.style.transform = 'scale(0.8)';
+          setTimeout(() => {
+            this.style.transform = '';
+          }, 200);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        updateProgress();
+      });
+    </script>
+
+    <script>
+      (function(){
+        var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var cards = document.querySelectorAll('.service-card');
+
+        if (reduceMotion) {
+          cards.forEach(function(c){ c.style.opacity = 1; c.style.transform = 'none'; });
+          return;
+        }
+
+        function initReveal(){
+          if (!window.gsap) {
+            cards.forEach(function(c){ c.style.opacity = 1; c.style.transform = 'none'; });
+            return;
+          }
+          if (window.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
+
+          gsap.to(cards, {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            ease: 'power2.out',
+            stagger: 0.06,
+            scrollTrigger: {
+              trigger: '#service-grid',
+              start: 'top 88%',
+              once: true
+            }
+          });
+        }
+
+        window.addEventListener('load', initReveal);
+        setTimeout(function(){
+          if (window.gsap) initReveal();
+        }, 400);
+      })();
+    </script>
+
   </main>
 
   <!-- Footer Container -->
@@ -1305,43 +1277,5 @@ document.addEventListener('DOMContentLoaded', function() {
   <script src="../../footer/footer.js"></script>
   <script src="services.js"></script>
 
-  <script>
-    (function(){
-      var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      var cards = document.querySelectorAll('.service-card');
-
-      if (reduceMotion) {
-        cards.forEach(function(c){ c.style.opacity = 1; c.style.transform = 'none'; });
-        return;
-      }
-
-      function initReveal(){
-        if (!window.gsap) {
-          cards.forEach(function(c){ c.style.opacity = 1; c.style.transform = 'none'; });
-          return;
-        }
-        if (window.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
-
-        gsap.to(cards, {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: 'power2.out',
-          stagger: 0.06,
-          scrollTrigger: {
-            trigger: '#service-grid',
-            start: 'top 88%',
-            once: true
-          }
-        });
-      }
-
-      window.addEventListener('load', initReveal);
-      // Fallback in case load already fired before this script ran
-      setTimeout(function(){
-        if (window.gsap) initReveal();
-      }, 400);
-    })();
-  </script>
 </body>
 </html>
