@@ -701,33 +701,155 @@
   <div id="header"></div>
 
   <main>
-    <!-- ===== PAGE HEADER ===== -->
-    <section class="page-header">
-      <div class="topo-layer" aria-hidden="true">
-        <svg viewBox="0 0 1280 640" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-          <g fill="none" stroke="#cfe4d3" stroke-width="1.1">
-            <path d="M-40,80 C160,20 300,140 480,90 C660,40 780,140 980,90 C1120,55 1220,95 1320,70"/>
-            <path d="M-40,150 C140,95 320,205 500,150 C680,95 800,205 1000,150 C1140,110 1230,150 1320,130"/>
-            <path d="M-40,230 C160,175 330,275 520,220 C700,165 820,270 1010,215 C1150,175 1230,215 1320,195"/>
-            <path d="M-40,470 C170,410 330,520 510,465 C690,410 820,520 1010,460 C1150,420 1230,460 1320,440"/>
-            <path d="M-40,540 C160,490 320,590 500,540 C680,490 810,590 1000,535 C1140,495 1230,535 1320,515"/>
-            <path d="M-40,610 C160,560 330,650 520,600 C700,555 820,650 1010,600 C1150,565 1230,600 1320,585"/>
-          </g>
-        </svg>
-      </div>
+<!-- ===== PAGE HEADER ===== -->
+<section class="page-header">
+  <div class="topo-layer" aria-hidden="true">
+    <svg viewBox="0 0 1280 640" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="#cfe4d3" stroke-width="1.1">
+        <path d="M-40,80 C160,20 300,140 480,90 C660,40 780,140 980,90 C1120,55 1220,95 1320,70"/>
+        <path d="M-40,150 C140,95 320,205 500,150 C680,95 800,205 1000,150 C1140,110 1230,150 1320,130"/>
+        <path d="M-40,230 C160,175 330,275 520,220 C700,165 820,270 1010,215 C1150,175 1230,215 1320,195"/>
+        <path d="M-40,470 C170,410 330,520 510,465 C690,410 820,520 1010,460 C1150,420 1230,460 1320,440"/>
+        <path d="M-40,540 C160,490 320,590 500,540 C680,490 810,590 1000,535 C1140,495 1230,535 1320,515"/>
+        <path d="M-40,610 C160,560 330,650 520,600 C700,555 820,650 1010,600 C1150,565 1230,600 1320,585"/>
+      </g>
+    </svg>
+  </div>
 
-      <div class="container-custom relative z-10" style="max-width:1280px;margin-left:auto;margin-right:auto;padding-left:1.25rem;padding-right:1.25rem;">
-        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
-          <div class="max-w-3xl">
-            <span class="field-tag mb-5" style="color:#9fc2ab;">Service Log — SIEC</span>
-            <h1 class="heading-hero mb-6">Five ways we go<br/><em>deep</em> on the ground</h1>
-            <p class="text-lg md:text-xl leading-relaxed" style="color:rgba(240,238,225,.78); max-width:36rem;">
-              Every engagement starts the same way a site investigation does — at the surface, then down through the layers until the picture is complete.
-            </p>
-          </div>
-        </div>
+  <div class="container-custom relative z-10" style="max-width:1280px;margin-left:auto;margin-right:auto;padding-left:1.25rem;padding-right:1.25rem;">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+      <div class="max-w-3xl">
+        <span class="field-tag mb-5" style="color:#9fc2ab; font-family: 'Inter', system-ui, sans-serif; font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em;">
+          Service Log — SIEC
+        </span>
+        <h1 class="heading-hero mb-6" style="font-family: 'Playfair Display', serif; font-weight: 800; font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.1; letter-spacing: -0.025em; color: white;">
+          Five ways we go<br/><em style="font-style: italic; background: linear-gradient(to right, #4ade80, #22c55e, #4ade80); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">deep</em> on the ground
+        </h1>
+        <p class="text-lg md:text-xl leading-relaxed" style="color:rgba(240,238,225,.78); max-width:36rem; font-family: 'Inter', system-ui, sans-serif; font-weight: 400;">
+          Every engagement starts the same way a site investigation does — at the surface, then down through the layers until the picture is complete.
+        </p>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Page Header Styles - Using Rotary fonts */
+  .page-header {
+    position: relative;
+    background: linear-gradient(145deg, #0f1f18 0%, #1a3329 40%, #12251e 100%);
+    padding: 8rem 0 5rem 0;
+    overflow: hidden;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+  }
+  
+  @media (min-width: 768px) {
+    .page-header {
+      padding: 10rem 0 6rem 0;
+      min-height: 75vh;
+    }
+  }
+  
+  .page-header .topo-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    opacity: 0.25;
+    pointer-events: none;
+  }
+  
+  .page-header .topo-layer svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  
+  .page-header .container-custom {
+    position: relative;
+    z-index: 10;
+  }
+  
+  .page-header .field-tag {
+    display: inline-block;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #9fc2ab;
+    position: relative;
+    padding-left: 2.5rem;
+  }
+  
+  .page-header .field-tag::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.5rem;
+    height: 1px;
+    background: linear-gradient(to right, #4ade80, #22c55e);
+  }
+  
+  .page-header .field-tag::after {
+    content: '';
+    position: absolute;
+    left: 1.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0.375rem;
+    height: 0.375rem;
+    border-radius: 50%;
+    background: #22c55e;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+  
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: translateY(-50%) scale(1); }
+    50% { opacity: 0.5; transform: translateY(-50%) scale(0.7); }
+  }
+  
+  .page-header .heading-hero {
+    font-family: 'Playfair Display', serif;
+    font-weight: 800;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: white;
+  }
+  
+  .page-header .heading-hero em {
+    font-style: italic;
+    background: linear-gradient(to right, #4ade80, #22c55e, #4ade80);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% auto;
+    animation: shimmer 4s ease-in-out infinite;
+  }
+  
+  @keyframes shimmer {
+    0%, 100% { background-position: 0% center; }
+    50% { background-position: 100% center; }
+  }
+  
+  .page-header .text-lg {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 1.125rem;
+    line-height: 1.75;
+    color: rgba(240, 238, 225, 0.78);
+  }
+  
+  @media (min-width: 768px) {
+    .page-header .text-lg {
+      font-size: 1.25rem;
+    }
+  }
+</style>
 
     <!-- ===== INTRO ===== -->
     <section class="section-padding pb-0 md:pb-0">

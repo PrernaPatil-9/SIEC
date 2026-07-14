@@ -14,29 +14,33 @@
 
   <link rel="icon" type="image/x-icon" href="/assets/logo.png">
 
-  <!-- Google Fonts - Updated to match Index page -->
+  <!-- Google Fonts - Updated to match Rotary website (Playfair Display & Inter) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
 
   <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 
   <style>
-    /* ===== GLOBAL FONT SETTINGS - Matching Index ===== */
+    /* ===== GLOBAL FONT SETTINGS - Matching Rotary Website ===== */
     body {
-      font-family: 'Roboto', sans-serif;
+      font-family: 'Inter', system-ui, sans-serif;
     }
 
     .font-display {
-      font-family: 'Roboto', sans-serif;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
     }
     .font-body {
-      font-family: 'Roboto', sans-serif;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-weight: 400;
     }
     .font-mono {
-      font-family: 'Roboto', sans-serif;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-weight: 500;
+      letter-spacing: 0.2em;
     }
 
     .page-header {
@@ -89,7 +93,7 @@
     @media (min-width: 1024px) { .section-padding { padding-top: 8rem; padding-bottom: 8rem; } }
 
     .heading-lg {
-      font-family: 'Roboto', sans-serif;
+      font-family: 'Playfair Display', serif;
       font-size: 2.25rem;
       line-height: 1.15;
       letter-spacing: -0.025em;
@@ -163,7 +167,7 @@
       z-index: 1;
     }
 
-    /* Animation keyframes from Index page */
+    /* Animation keyframes from Rotary page */
     @keyframes fadeUp {
       from { opacity:0; transform:translateY(18px); }
       to { opacity:1; transform:translateY(0); }
@@ -484,7 +488,7 @@
         <!-- Left: Photo panel (image shown in full, never cropped) -->
         <div class="lg:col-span-5 relative bg-gradient-to-br from-[#0d2b20] via-[#1b4332] to-[#2d6a4f] p-6 sm:p-8 flex flex-col">
           <div class="relative rounded-2xl overflow-hidden bg-black/10 flex-1 flex items-center justify-center">
-            <img src="https://sienvconsult.com/wp-content/uploads/2024/11/AMT_3924-.jpg"
+            <img src="/assets/founder.webp"
                  alt="Amit Gandhe, Founder of SIEC"
                  loading="lazy"
                  class="w-full h-auto max-h-[520px] object-contain" />
@@ -1323,7 +1327,6 @@
 
   </div>
 </section>
-
 
 <style>
 /* Back to Top Button */
